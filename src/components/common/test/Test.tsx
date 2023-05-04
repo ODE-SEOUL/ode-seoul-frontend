@@ -7,13 +7,13 @@ interface Props {
 
 const Test = ({ text }: Props) => <StyledTest className={text}>{text}</StyledTest>;
 
-export default Test;
-
 const StyledTest = styled.div`
   color: #fff;
   background-color: #000;
-  padding: 10px;
+  padding: 6px;
   border-radius: 20px;
   width: 100px;
   text-align: center;
 `;
+
+export default Test;
