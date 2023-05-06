@@ -1,10 +1,10 @@
 import React from 'react';
-import Main from '../src/components/Main';
+import MyReport from '../src/components/MyReport';
 
 export default function index() {
   return (
     <>
-        <Main/>
+        <MyReport/>
     </>
   );
 }

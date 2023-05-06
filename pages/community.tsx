@@ -1,10 +1,10 @@
 import React from 'react';
-import Main from '../src/components/Main';
+import Community from '../src/components/Community';
 
 export default function index() {
   return (
     <>
-        <Main/>
+        <Community/>
     </>
   );
 }
