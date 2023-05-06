@@ -3,8 +3,8 @@
 ## Commit Convention
 
 - **커밋 메시지 규칙** 
-  - "commit convention" #"issue number" "commit message"
-  - 예시) feat #2 소셜로그인 구현
+  - "commit convention": "commit message"
+  - 예시) feat: 소셜로그인 구현
     
 | Tag Name | Description |
 |:---------|:------------|
@@ -21,3 +21,8 @@ Test |	테스트 코드, 리펙토링 테스트 코드 추가, Production Code(�
 Chore |	빌드 업무 수정, 패키지 매니저 수정, 패키지 관리자 구성 등 업데이트, Production Code 변경 없음
 !BREAKING | CHANGE	커다란 API 변경의 경우
 !HOTFIX |	급하게 치명적인 버그를 고쳐야하는 경우
+
+## Branch
+- **브랜치 규칙** 
+  - ``` {접두사}/#{이슈 번호}_{이름} ```
+  - 예시: feat/#23_social-login
