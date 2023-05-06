@@ -1,0 +1,26 @@
+ /* 느림보 고딕
+@font-face {
+    font-family: 'neurimboGothicRegular';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2304-01@1.0/neurimboGothicRegular.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+
+Pretendard
+@font-face {
+    font-family: 'Pretendard';
+    font-style: normal;
+    font-weight: 400;
+    src: url('/fonts/Pretendard-Regular.woff2') format('woff2'),
+         url('/fonts/Pretendard-Regular.woff') format('woff'),
+         url('/fonts/Pretendard-Regular.ttf') format('truetype');
+}
+  
+@font-face {
+    font-family: 'Pretendard';
+    font-style: normal;
+    font-weight: 700;
+    src: url('/fonts/Pretendard-Bold.woff2') format('woff2'),
+         url('/fonts/Pretendard-Bold.woff') format('woff'),
+         url('/fonts/Pretendard-Bold.ttf') format('truetype');
+} */
