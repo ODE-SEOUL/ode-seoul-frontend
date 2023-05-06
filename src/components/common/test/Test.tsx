@@ -1,5 +1,6 @@
 import React from 'react';
-import styled from 'styled-components';
+import styled from '@emotion/styled';
+import { css } from '@emotion/react';
 
 interface Props {
   text?: string;
