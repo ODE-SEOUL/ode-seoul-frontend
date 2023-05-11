@@ -1,7 +1,17 @@
 import Link from 'next/link';
 import styles from './styles.module.css';
+import useModal from "../../../hooks/useModal"
+import Modal from "../../../modal/DefaultModal";
+import LoginMain from '../../Login/LoginMain';
 
 const Navbar: React.FC = () => {
+
+  const { isShowing, toggle } = useModal();
+
+  const handleClick = () => {
+    toggle();
+  };
+
   return (
     <nav className={styles.navbar}>
       <div className={styles['navbar-logo']}>
@@ -34,12 +44,12 @@ const Navbar: React.FC = () => {
         </ul>
       </div>
       <div className={styles['navbar-auth']}>
-        <Link href="/login">
-          로그인
-        </Link>
-        <Link href="/signup">
-          회원가입
-        </Link>
+        
+        <button onClick={handleClick}>로그인</button>
+        {isShowing && <Modal isShowing={isShowing} hide={toggle}>
+        <LoginMain />
+        </Modal>}
+        
       </div>
     </nav>
   );
