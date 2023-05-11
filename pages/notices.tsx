@@ -1,10 +1,10 @@
 import React from 'react';
-import Main from '../src/components/Main/index';
+import Notices from '../src/components/Notices';
 
 export default function index() {
   return (
     <>
-        <Main/>
+        <Notices/>
     </>
   );
 }

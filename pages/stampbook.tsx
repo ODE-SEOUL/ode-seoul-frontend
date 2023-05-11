@@ -1,10 +1,10 @@
 import React from 'react';
-import MyReport from '../src/components/MyReport';
+import Stampbook from '../src/components/Stampbook';
 
 export default function index() {
   return (
     <>
-        <MyReport/>
+        <Stampbook/>
     </>
   );
 }
