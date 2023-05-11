@@ -6,7 +6,7 @@ import { css } from '@emotion/react';
 interface ModalProps {
   isShowing: boolean;
   hide: () => void;
-  message: string;
+  children: React.ReactNode;
 }
 
 const Modal = (props: ModalProps) =>{
@@ -24,7 +24,7 @@ const Modal = (props: ModalProps) =>{
                 <span aria-hidden="true">&times;</span>
               </button>
             </div>
-            <p>{props.message}</p>
+            {props.children}
           </ModalLayOut>
         </OutSide>,
         document.body
@@ -49,8 +49,8 @@ const OutSide = styled.div`
 
 const ModalLayOut = styled.div`
   padding: 20px;
-  width: 200px;
-  height: 100px;
+  width: 800px;
+  height: 600px;
   margin: auto;
   background-color: white;
   box-sizing: border-box;
@@ -61,5 +61,3 @@ const ModalLayOut = styled.div`
   border-radius: 5%;
   box-shadow: 0 2px 30px 0 rgba(0, 0, 0, 0.2);
 `;
-
-

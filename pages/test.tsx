@@ -1,22 +1,23 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Test from '../src/components/common/test/Test';
 import useModal from "../src/hooks/useModal";
 import Modal from "../src/modal/DefaultModal";
 
 export default function Index() {
   const { isShowing, toggle } = useModal();
-  const [message, setMessage] = useState<string | undefined>();
 
-  const handleClick = (info: string) => {
-    setMessage(info);
+  const handleClick = () => {
     toggle();
   };
 
   return (
     <div className="App">
       <Test text='test'/>
-      <button onClick={() => handleClick("Test Modal을 클릭하셨습니다!!!")}>Test Modal</button>
-      {isShowing && <Modal isShowing={isShowing} hide={toggle} message={message!} />}
+      <button onClick={handleClick}>Test Modal</button>
+      {isShowing && <Modal isShowing={isShowing} hide={toggle}>
+        <Test text='hello world'/>
+      </Modal>}
     </div>
   );
 }
+ 
