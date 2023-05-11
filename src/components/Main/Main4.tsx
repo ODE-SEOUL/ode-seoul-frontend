@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from '@emotion/styled';
 import { css } from '@emotion/react';
-import community_data from "../data/community-data";
+import community_data from "../../data/community-data";
 
 const Main2 = () => {
     return (
