@@ -1,15 +1,20 @@
-import React from 'react';
-import Breadcrumb from '../common/Breadcrumb/Breadcrumb';
+import React, { useState } from 'react';
+import Main1 from './Main1';
+import Main2 from './Main2';
+import Main3 from './Main3';
+import Main4 from './Main4';
+import Nav from '../common/Nav/Nav';
 
-const Main = () => {
+const App = () => {
   return (
     <>
-      <Breadcrumb
-        title={'Main'}
-        subTitle={'Main입니다'}
-      />
+      <Nav />
+      <Main1 />
+      <Main2 />
+      <Main3 />
+      <Main4 />
     </>
   );
 };
 
-export default Main;
+export default App;

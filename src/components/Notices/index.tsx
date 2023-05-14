@@ -1,15 +1,15 @@
 import React from 'react';
 import Breadcrumb from '../common/Breadcrumb/Breadcrumb';
 
-const Event = () => {
+const Notices = () => {
   return (
     <>
       <Breadcrumb
-        title={'Event'}
-        subTitle={'Event입니다'}
+        title={'Notices'}
+        subTitle={'Notices입니다'}
       />
     </>
   );
 };
 
-export default Event;
+export default Notices;
