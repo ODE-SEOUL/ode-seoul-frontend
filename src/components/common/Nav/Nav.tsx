@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import styles from './styles.module.css';
+import Image from 'next/image';
 
 const Navbar: React.FC = () => {
   return (
@@ -13,17 +14,17 @@ const Navbar: React.FC = () => {
         <ul>
           <li>
             <Link href="/course">
-              코스리스트
+              코스 추천
+            </Link>
+          </li>
+          <li>
+            <Link href="/service">
+              걷다 즐겨요
             </Link>
           </li>
           <li>
             <Link href="/community">
-              커뮤니티
-            </Link>
-          </li>
-          <li>
-            <Link href="/stampbook">
-              스탬프북
+              같이 걸어요
             </Link>
           </li>
           <li>
@@ -35,7 +36,13 @@ const Navbar: React.FC = () => {
       </div>
       <div className={styles['navbar-auth']}>
         <Link href="/login">
-          로그인
+          <div>
+          <Image src="/assets/img/login_lock.svg"
+            alt="login_lock"
+            width={20}
+            height={22}/>
+            로그인
+          </div>
         </Link>
         <Link href="/signup">
           회원가입
