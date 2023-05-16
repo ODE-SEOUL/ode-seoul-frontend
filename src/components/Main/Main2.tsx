@@ -16,11 +16,11 @@ const Main2 = () => {
             <Circle> more</Circle>
         </FlexContainer>
         
-        <FlexContainer>
+        {/* <FlexContainer>
             <div className='row col-lg-12 mb-100'>
                 <div className="row">
                     {course_data.slice(0, 3).map((item) => {
-                    const { id, img, title, time, distance, tag} = item;
+                    const { id, img, title, distance } = item;
                     return <div key={id} className="col-lg-4 col-sm-12">
                             <Card>
                                 <div className="">
@@ -41,7 +41,7 @@ const Main2 = () => {
                     })}
                 </div>
             </div>
-        </FlexContainer>
+        </FlexContainer> */}
 
       </>
     );
