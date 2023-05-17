@@ -4,6 +4,7 @@ import Main2 from './Main2';
 import Main3 from './Main3';
 import Main4 from './Main4';
 import Nav from '../common/Nav/Nav';
+import Footer from '../common/Footer/Footer';
 
 const App = () => {
   return (
@@ -13,6 +14,7 @@ const App = () => {
       <Main2 />
       <Main3 />
       <Main4 />
+      <Footer />
     </>
   );
 };
