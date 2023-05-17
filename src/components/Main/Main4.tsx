@@ -1,49 +1,98 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from '@emotion/styled';
 import { css } from '@emotion/react';
 import community_data from "../../data/community-data";
 
-const Main2 = () => {
-    return (
-      <>
-        <FlexContainer>
-            <Title>
-                <span>우리 같이 생태문화길을 걸어요 </span>
-            </Title>
-            
-            <Circle> more</Circle>
-        </FlexContainer>
-        
-        <FlexContainer>
-            <div className='row col-lg-12 mb-100'>
-                <div className="row">
-                    {community_data.slice(0, 6).map((item) => {
-                    const { id, img, title, writer, time, dest } = item;
-                    return <div key={id} className="col-lg-4 col-sm-12">
-                            <Card>
-                                <div className="">
-                                    <Img src={img} width="100%" height="200px" />
-                                </div>
-                                <div className="">
-                                    <Body>{title}</Body>
-                                    <SubBody>{dest}</SubBody>
-                                    <SubBody>{time}</SubBody>
-                                </div>
-                            </Card>
-                        </div>
-                    })}
-                </div>
-            </div>
-        </FlexContainer>
+interface Category {
+  // id: number,
+  // img:string,
+  // title:number,
+  // writer: number,
+  // time:number,
+  // dest:number,
+  category_id: number;
+  category: string;
+}
 
-      </>
-    );
+const Main2: React.FC = () => {
+  const [selectedCategory, setSelectedCategory] = useState<number>(1);
+
+  const handleCategoryClick = (categoryId: number) => {
+    setSelectedCategory(categoryId);
   };
-  
+
+  const filteredItems: Category[] = community_data.filter(
+    (item: Category) => item.category_id === selectedCategory
+  );
+
+  const category_list: string[] = [
+    '#반려동물',
+    '#주부',
+    '#직장인',
+    '#이웃주민',
+    '#운동',
+    '#사진',
+    '#체험',
+  ];
+
+  return (
+    <>
+      <FlexContainer>
+        <Title>
+        <span>우리 같이 생태문화길을 걸어요 </span>
+        </Title>
+        <Circle> more</Circle>
+
+      </FlexContainer>
+
+      <FlexContainer className='pr-70 pl-70'>
+        {category_list.map((category: string, index: number) => {
+          const colorClass = `color-${index + 1}`;
+          return (
+            <div key={index}>
+              <CircleButton
+                isSelected={selectedCategory === index + 1}
+                onClick={() => handleCategoryClick(index + 1)}
+                className={colorClass}
+              />
+              {category}
+            </div>
+          );
+        })}
+      </FlexContainer>
+
+      <FlexContainer>
+        <div className='row col-lg-12 mb-100'>
+          <div className="row">
+            {filteredItems.slice(0, 4).map((item: Category) => {
+              const { id, img, title, writer, time, dest, category, category_id } = item;
+              return (
+                <div key={id} className="col-lg-3 col-sm-12">
+                  <Card>
+                    <div className="">
+                      <Img src={img} width="100%" />
+                    </div>
+                    <div className="">
+                      <Body>{title}</Body>
+                    </div>
+                    <div className="">
+                      <SubBody>{writer}</SubBody>
+                      <SubBody>{time}</SubBody>
+                      <SubBody>{dest}</SubBody>
+                    </div>
+                  </Card>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      </FlexContainer>
+    </>
+  );
+};
 
 export default Main2;
 
-  
   
 const FlexContainer = styled.div`
   display: flex;
@@ -51,7 +100,9 @@ const FlexContainer = styled.div`
   align-items: center;
   margin-bottom: 20px;
   margin: 100px;
-
+  text-align: center;
+  font-family: var(--font-secondary);
+  font-weight: 200;
   @media screen and (max-width: 768px) {
     margin: 10px;
     display: flex;
@@ -75,7 +126,6 @@ const Title = styled.div`
 
 const Img = styled.img`
     objectFit: "cover"
-    height: 200px;
 `;
 
 
@@ -101,6 +151,72 @@ const SubBody = styled.div`
 `;
 
 
+const Card = styled.div`
+
+  width: 80%;
+  height: 500px;
+  margin: auto;
+  box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.3);
+  border-radius: 20px;
+  overflow: hidden;
+  padding-bottom: 25px;
+  
+  @media screen and (max-width: 768px) {
+    flex-direction: row;
+    width: 90%;
+  }
+`
+
+
+const CircleButton = styled.div<{ isSelected: boolean; onClick?: () => void }>`
+  font-weight: 100;
+  font-family: var(--font-secondary);
+  border: none;
+  font-size: 20px;
+  border-radius: 100%;
+  padding: 10px;
+  width: 80px;
+  height: 80px;
+  text-align: center;
+  margin-bottom: 30px;
+  box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.3);
+  cursor: pointer;
+
+  &.color-1 {
+    background-color: ${({ isSelected }) => (isSelected ? '#ABB868' : '#eee')};
+  }
+
+  &.color-2 {
+    background-color: ${({ isSelected }) => (isSelected ? '#FFC3A0' : '#eee')};
+  }
+
+  &.color-3 {
+    background-color: ${({ isSelected }) => (isSelected ? '#CDB4DB' : '#eee')};
+  }
+
+  &.color-4 {
+    background-color: ${({ isSelected }) => (isSelected ? '#FFD8D8' : '#eee')};
+  }
+
+  &.color-5 {
+    background-color: ${({ isSelected }) => (isSelected ? '#BDE0FE' : '#eee')};
+  }
+
+  &.color-6 {
+    background-color: ${({ isSelected }) => (isSelected ? '#C8E6C9' : '#eee')};
+  }
+
+  &.color-7 {
+    background-color: ${({ isSelected }) => (isSelected ? '#FFE0AC' : '#eee')};
+  }
+
+  @media screen and (max-width: 768px) {
+    width: 100px;
+    font-size: 15px;
+    float: right;
+  }
+`;
+
 const Circle = styled.div`
   font-weight: 100;
   font-family: var(--font-secondary);
@@ -117,20 +233,8 @@ const Circle = styled.div`
     float: right;
   }
 
-`;
-
-const Card = styled.div`
-
-  width: 70%;
-  height: auto;
-  margin: auto;
-  box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.3);
-  border-radius: 10px;
-  padding: 15px;
-  margin-bottom: 25px;
-
-  @media screen and (max-width: 768px) {
-    flex-direction: row;
-    width: 90%;
+  :hover{
+    background-color: var(--color-darkgreen)
   }
-`
+
+`;
