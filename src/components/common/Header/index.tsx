@@ -5,6 +5,11 @@ import Sidebar from '../../components/common/off-canvas';
 import NavMenus from './nav-menus';
 import MobileMenu from './mobile-menu';
 
+/**
+ * 
+ * 임시 파일입니다!!!! 제 개인 참고용입니다.
+ */
+
 const Header = () => {
   const { headerSticky } = useSticky();
   const [sidebarOpen, setSidebarOpen] = React.useState(false);

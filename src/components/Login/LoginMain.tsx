@@ -6,8 +6,11 @@ const LoginMain = () => {
   return (
     <>
         <Header>로그인 또는 회원가입</Header>
-        <Img src='../assets/img/logo.svg'></Img>
-        <div>오디서울에 오신것을 환영합니다!</div>
+        <FlexContainer>
+            <Img src='../assets/img/logo.svg'></Img>
+            <div>에 오신것을 환영합니다!</div>
+        </FlexContainer>
+        
         <Footer>
             {/* 일단 이미지로 대체하고 api 구현시, 버튼 수정 예정 */}
             <KakaoLogin src='../assets/img/kakao_login.png' />
@@ -42,5 +45,20 @@ const Footer = styled.div`
     font-weight: 300;
     text-align: center;
     padding: 20px;
-    border-top: solid 1px #aaa;
 `
+
+const FlexContainer = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  margin: 80px;
+  text-align: center;
+  font-family: var(--font-secondary);
+  font-weight: 200;
+  @media screen and (max-width: 768px) {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+`;

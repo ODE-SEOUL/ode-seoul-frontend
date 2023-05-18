@@ -47,19 +47,27 @@ const Navbar: React.FC = () => {
       <div className={styles['navbar-auth']}>
         <ul>
           <li >
-            <Link href="/login">
+            <div onClick={handleClick}>
               <img src="/assets/img/login_lock.svg"
                   alt="login_lock"
                   width={20}
                   height={20}
                   className="mr-10"/>
-                로그인
-            </Link>
+                  로그인
+              </div>
+              
+            {isShowing && <Modal isShowing={isShowing} hide={toggle}>
+            <LoginMain />
+            </Modal>}
           </li>
-          <li style={{ height: '22px' }}>
-            <Link href="/signup">
-              회원가입
-            </Link>
+
+          <li >
+            <div onClick={handleClick}>
+                  회원가입
+              </div>
+            {isShowing && <Modal isShowing={isShowing} hide={toggle}>
+            <LoginMain />
+            </Modal>}
           </li>
         </ul>
       </div>

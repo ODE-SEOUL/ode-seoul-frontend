@@ -1,4 +1,4 @@
-import Service from '@/src/components/common/Service';
+import Service from '@/src/components/Service';
 import React from 'react';
 
 
