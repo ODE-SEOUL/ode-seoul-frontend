@@ -6,11 +6,13 @@ import course_data from '@/src/data/course-data';
 import CourseItem from '../common/Item/CourseItem';
 import styled from '@emotion/styled';
 import CourseCarousel from '../common/Carousel/Course';
+import { ICourseData, couresRecommendation } from './api';
 
 
 export default function CourseList() {
 
-  //const {isLoading,data}=useQuery("allCourse",)
+  const {isLoading:courseLoading,data:courseData}=useQuery<ICourseData[]>("allCourse",couresRecommendation);
+
   return (
     <>
 
@@ -20,12 +22,12 @@ export default function CourseList() {
         <CourseCarousel/>
       </CourseCategoryBarContainer>
       <CourseListContainer>
-      {course_data.map(course =>
+      {courseData?.map(course =>
         <CourseItem key={course.id} 
         id={course.id}
-        title={course.title} 
-        location={course.location}
-         detail={course.detail} img={course.img}/>
+        title={course.name} 
+        location={course.gugunSummary}
+         detail={course.description} img={course.image}/>
         )}
       </CourseListContainer>
 
@@ -40,19 +42,12 @@ const Container=styled.div`
 
 const CourseCategoryBarContainer=styled.div`
   margin-top: 4rem;
-  margin-left:6rem;
   
 `;
-const CourseCategoryWindow=styled.div`
-  background: coral;
-  width: 63.25rem;
-  height:3.5rem;
-  
-  overflow: hidden;
-`
-
 const CourseListContainer=styled.div`
-  margin: 2rem 5.2rem;
+  margin-top:2rem;
+  margin-left: 5.2rem;
+  margin-right: 5.2rem;
   display: grid;
   grid-template-columns: repeat(3, 1fr)
 
