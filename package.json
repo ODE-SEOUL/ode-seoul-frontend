@@ -11,8 +11,17 @@
   "dependencies": {
     "@emotion/react": "^11.11.0",
     "@emotion/styled": "^11.11.0",
+<<<<<<< HEAD
     "@mui/material": "^5.13.1",
     "@types/axios": "^0.14.0",
+=======
+    "@flaticon/flaticon-uicons": "^2.2.0",
+    "@fortawesome/fontawesome-svg-core": "^6.4.0",
+    "@fortawesome/free-brands-svg-icons": "^6.4.0",
+    "@fortawesome/free-regular-svg-icons": "^6.4.0",
+    "@fortawesome/free-solid-svg-icons": "^6.4.0",
+    "@fortawesome/react-fontawesome": "^0.2.0",
+>>>>>>> b948685e14586dac75a87e370f3ac838f55f1790
     "@types/node": "18.16.3",
     "@types/react": "18.2.5",
     "@types/react-bootstrap": "^0.32.32",

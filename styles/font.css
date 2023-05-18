@@ -106,7 +106,11 @@
 }
 
 
+
 :root {
     --font-primary: 'neurimboGothicRegular', sans-serif;
     --font-secondary: 'Pretendard', sans-serif;
 }
+
+@import url('https://cdn-uicons.flaticon.com/uicons-bold-rounded/css/uicons-bold-rounded.css')
+
