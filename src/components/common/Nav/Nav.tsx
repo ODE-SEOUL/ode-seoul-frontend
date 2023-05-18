@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import Link from 'next/link';
 import styles from './styles.module.css';
 import useModal from "../../../hooks/useModal"
@@ -15,7 +16,7 @@ const Navbar: React.FC = () => {
   return (
     <nav className={styles.navbar}>
       <div className={styles['navbar-logo']}>
-        <Link href="/main">
+        <Link href="/">
         <img src='../assets/img/logo.svg' width="150px"></img>
         </Link>
       </div>
@@ -23,17 +24,17 @@ const Navbar: React.FC = () => {
         <ul>
           <li>
             <Link href="/course">
-              코스리스트
+              코스 추천
+            </Link>
+          </li>
+          <li>
+            <Link href="/service">
+              걷다 즐겨요
             </Link>
           </li>
           <li>
             <Link href="/community">
-              커뮤니티
-            </Link>
-          </li>
-          <li>
-            <Link href="/stampbook">
-              스탬프북
+              같이 걸어요
             </Link>
           </li>
           <li>
@@ -44,17 +45,26 @@ const Navbar: React.FC = () => {
         </ul>
       </div>
       <div className={styles['navbar-auth']}>
-        
-        <button onClick={handleClick}>로그인</button>
-        {isShowing && <Modal isShowing={isShowing} hide={toggle}>
-        <LoginMain />
-        </Modal>}
-        
+        <ul>
+          <li >
+            <Link href="/login">
+              <img src="/assets/img/login_lock.svg"
+                  alt="login_lock"
+                  width={20}
+                  height={20}
+                  className="mr-10"/>
+                로그인
+            </Link>
+          </li>
+          <li style={{ height: '22px' }}>
+            <Link href="/signup">
+              회원가입
+            </Link>
+          </li>
+        </ul>
       </div>
     </nav>
   );
 };
 
 export default Navbar;
-
-

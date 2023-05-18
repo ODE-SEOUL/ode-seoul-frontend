@@ -1,55 +1,109 @@
 .navbar {
-    display: flex;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 100px;
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 0 50px;
+  font-weight: 100;
+  font-family: var(--font-secondary);
+}
+
+.navbar-links ul {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.navbar-links li {
+  margin: 0 70px;
+}
+
+.navbar-links a {
+  font-size: 20px;
+  color: #333;
+  text-decoration: none;
+}
+
+.navbar-links a:hover {
+  color: var(--color-darkgreen);
+  font-weight: 300;
+}
+
+.navbar-auth ul {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.navbar-auth a {
+  font-size: 20px;
+  color: #333;
+  text-decoration: none;
+  margin: 15px;
+}
+
+.navbar-auth a:hover {
+  color: var(--color-darkgreen);
+  font-weight: 300;
+}
+
+.navbar-toggle {
+  display: none;
+}
+
+.navbar-mobile-links {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .navbar {
     justify-content: space-between;
-    align-items: center;
-    height: 100px;
-    background-color: #fff;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    padding: 0 24px;
-    font-family: var(--font-secondary);
-    font-weight: 100;
+    padding: 0 20px;
   }
-  
-  .navbar-logo a {
+
+  .navbar-links {
+    display: none;
+  }
+
+  .navbar-auth {
+    margin-right: 20px;
+  }
+
+  .navbar-toggle {
+    display: block;
     font-size: 24px;
-    font-weight: bold;
     color: #333;
-    text-decoration: none;
+    cursor: pointer;
+    margin-right: 20px;
+    width:50px;
   }
-  
-  .navbar-links ul {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    list-style: none;
-    margin: 0;
-    padding: 0;
+
+  .navbar-mobile-links {
+    display: none;
   }
-  
-  .navbar-links li {
-    margin: 0 70px;
+
+  .navbar-mobile-links ul {
+    flex-direction: column;
+    align-items: flex-end;
   }
-  
-  .navbar-links a {
+
+  .navbar-mobile-links li {
+    margin: 15px 0;
+  }
+
+  .navbar-mobile-links a {
     font-size: 16px;
-    font-weight: bold;
-    color: #333;
-    text-decoration: none;
   }
-  
-  .navbar-links a:hover {
-    color:var(--color-darkgreen)
+
+  .navbar-mobile-links.show {
+    display: block;
   }
-  
-  .navbar-auth a {
-    font-size: 16px;
-    font-weight: bold;
-    color: #333;
-    text-decoration: none;
-    margin: 15px;
-  }
-  
-  .navbar-auth a:hover {
-    color: var(--color-darkgreen)
-  }
-  
+}

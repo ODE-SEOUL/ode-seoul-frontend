@@ -1,10 +1,11 @@
+import Service from '@/src/components/common/Service';
 import React from 'react';
-import Stampbook from '../src/components/Stampbook';
+
 
 export default function index() {
   return (
     <>
-        <Stampbook/>
+       <Service/>
     </>
   );
 }

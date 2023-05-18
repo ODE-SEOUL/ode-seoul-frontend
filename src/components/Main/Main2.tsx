@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from '@emotion/styled';
 import { css } from '@emotion/react';
-import course_data from "../data/course-data";
+import course_data from "../../data/course-data";
 
 const Main2 = () => {
     return (
