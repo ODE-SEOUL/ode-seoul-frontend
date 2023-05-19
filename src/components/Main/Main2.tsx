@@ -10,7 +10,7 @@ interface Category {
   category: string;
 }
 
-const Main2: React.FC = () => {
+const Main2 = () => {
   const [selectedCategory, setSelectedCategory] = useState<number>(1);
 
   const handleCategoryClick = (categoryId: number) => {
@@ -36,7 +36,6 @@ const Main2: React.FC = () => {
         <Title>
           <span>카테고리 별로 서울을 걸어봐요! </span>
         </Title>
-        <Circle> more</Circle>
       </FlexContainer>
 
       <FlexContainer className='pr-50 pl-50'>

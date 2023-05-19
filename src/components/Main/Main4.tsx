@@ -14,7 +14,7 @@ interface Category {
   category: string;
 }
 
-const Main2: React.FC = () => {
+const Main2 = () => {
   const [selectedCategory, setSelectedCategory] = useState<number>(1);
 
   const handleCategoryClick = (categoryId: number) => {
