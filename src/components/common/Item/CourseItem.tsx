@@ -22,7 +22,7 @@ export default function CourseItem({name,image,gugunSummary,description}:ICourse
                     <CourseItemgugunSummaryText>{gugunSummary}</CourseItemgugunSummaryText>
                 </CourseItemgugunSummary>
                 <div className="mt-20"></div>
-                <CourseItemdescription>{description}</CourseItemdescription>
+                <CourseItemdescription>{description.substring(0,100).concat("...")}</CourseItemdescription>
         </CourseItemContainer>
         
 
@@ -50,7 +50,7 @@ const CourseImage=styled('div')`
     height : 19.875rem;
     width: 22.625rem;
     background : url(${(props:CourseItemImageProps)=>props.imageUrl});
-    box-shadow: 0 2px 3px rgba(0, 0, 0, 0.1), 0 10px 20px rgba(0, 0, 0, 0.06);
+    box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.1);
     background-size : cover;
     background-position : center;
     border-radius: 10px;
@@ -79,7 +79,7 @@ const CourseItemgugunSummaryText=styled.div`
 const CourseItemgugunSummaryMarker=styled.div`
     width:23.35px;
     height:33.41px;
-    content: url("./assets/image/courseItem_marker.svg");
+    content: url("./assets/img/courseItem_marker.svg");
 
 `
 const CourseItemgugunSummary=styled.div`

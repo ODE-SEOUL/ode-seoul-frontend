@@ -30,7 +30,7 @@ export default function CourseList() {
       </CourseCategoryBarContainer>
       <CourseListContainer>
         {
-          courseData?.map(course=>
+          courseData?.slice(0,9).map(course=>
             <CourseItem 
             key={course.id} 
             id={course.id}

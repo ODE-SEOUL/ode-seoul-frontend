@@ -64,7 +64,7 @@ export default function CourseCarousel(){
 }
 const SlideWrapper = styled(Slider)`
     //width:63.25rem;
-    margin-left: 12rem;
+    margin-left: 20rem;
     //margin-right: 5rem;
     height:3.5rem;
     position: relative;
@@ -101,7 +101,7 @@ const Prev = styled.div`
   width: 45px;
   height: 45px;
   position: absolute;
-  left: 2%;
+  left: 0.2%;
   z-index: 3;
 `;
 
