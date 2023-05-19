@@ -1,10 +1,5 @@
-const BASE_URL=process.env.API_URL;
+import { ResponseDto } from "./common";
 
-export interface BasicDto{
-    code:number;
-    message:string;
-    result:any[]
-}
 export interface ICourseData{
     id:number;
     name:string;
@@ -23,6 +18,4 @@ export interface ICourseData{
     routes:any;
 }
 
-export async function couresRecommendation(){
-    return fetch(`${BASE_URL}/courses`).then(response=>response.json());
-}
+export type GetCourseListDto=ResponseDto<ICourseData[]>;

@@ -4,7 +4,7 @@ import Slider, { Settings } from 'react-slick';
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css"
 import { useMemo,useRef,useCallback } from "react";
-import { padding } from "@mui/system";
+
 
 interface sliderProps {
     /** 슬라이더 아이템 요소 */
@@ -27,7 +27,7 @@ export default function CourseCarousel(){
           dots: false,
           infinite: false,
           speed: 500,
-          slidesToShow: 4,
+          slidesToShow: 5,
           slidesToScroll: 1,
           nextArrow:(
             <NextTo>
@@ -63,7 +63,9 @@ export default function CourseCarousel(){
     
 }
 const SlideWrapper = styled(Slider)`
-    width:63.25rem;
+    //width:63.25rem;
+    margin-left: 12rem;
+    //margin-right: 5rem;
     height:3.5rem;
     position: relative;
    
@@ -76,6 +78,9 @@ const SlideWrapper = styled(Slider)`
     .slick-slide div {
       cursor: pointer;
     }
+    .slick-list{
+      width:1012px;
+    }
     // arrow visible하게 하기
     /* .slick-next {
       right: 3% !important;
@@ -84,17 +89,19 @@ const SlideWrapper = styled(Slider)`
     
 `;
 const NextTo = styled.div`
+  margin-top: -2px;
   width: 45px;
   height: 45px;
   position: absolute;
-  right: 4%;
+  right: 12%;
   z-index: 3;
 `;
 const Prev = styled.div`
+  margin-top: -2px;
   width: 45px;
   height: 45px;
   position: absolute;
-  left: 10%;
+  left: 2%;
   z-index: 3;
 `;
 

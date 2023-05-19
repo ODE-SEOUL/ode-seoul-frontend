@@ -1,17 +1,24 @@
-import React from 'react';
+import React, { use } from 'react';
 import Breadcrumb from '../common/Breadcrumb/Breadcrumb';
 import Navbar from '../common/Nav/Nav';
 import { useQuery } from 'react-query';
-import course_data from '@/src/data/course-data';
-import CourseItem from '../common/Item/CourseItem';
 import styled from '@emotion/styled';
 import CourseCarousel from '../common/Carousel/Course';
-import { ICourseData, couresRecommendation } from './api';
+import { GetCourseListDto} from '@/src/types/courseList';
+import { getCourseList } from '@/src/apis/couresList';
+import CourseItem from '../common/Item/CourseItem';
+import axios from 'axios';
+
 
 
 export default function CourseList() {
-
-  const {isLoading:courseLoading,data:courseData}=useQuery<ICourseData[]>("allCourse",couresRecommendation);
+  
+ 
+  const {isLoading,data:courseData}=useQuery("courseList",getCourseList,{
+    select:data=>data?.result
+  });
+  
+  
 
   return (
     <>
@@ -22,13 +29,20 @@ export default function CourseList() {
         <CourseCarousel/>
       </CourseCategoryBarContainer>
       <CourseListContainer>
-      {courseData?.map(course =>
-        <CourseItem key={course.id} 
-        id={course.id}
-        title={course.name} 
-        location={course.gugunSummary}
-         detail={course.description} img={course.image}/>
-        )}
+        {
+          courseData?.map(course=>
+            <CourseItem 
+            key={course.id} 
+            id={course.id}
+            name={course.name}
+            image={course.image}
+            gugunSummary={course.gugunSummary}
+            description={course.description}
+
+             />
+            )
+        }
+       
       </CourseListContainer>
 
 

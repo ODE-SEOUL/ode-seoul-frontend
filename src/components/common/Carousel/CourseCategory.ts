@@ -6,6 +6,7 @@ interface ICourseCategory{
 }
 
 export const CourseCategory:ICourseCategory[]=[
+    
     {   id:1,
         name:"# 볼 거리가 많은",
         color:"#DB771B"
