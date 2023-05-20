@@ -1,5 +1,6 @@
-import { ICourseItem } from "@/src/data/course-data";
+import { ICourseItem } from "../../data/course-data";
 import styled from "@emotion/styled";
+import React from "react";
 
 
 
@@ -24,6 +25,7 @@ export default function CourseItem({name,image,gugunSummary,description}:ICourse
                 <div className="mt-20"></div>
                 <CourseItemdescription>{description.substring(0,100).concat("...")}</CourseItemdescription>
         </CourseItemContainer>
+        <CourseStar/>
         
 
     </>);
@@ -39,21 +41,21 @@ const CourseItemContainer=styled.button`
     border:0;
     outline:0;
     background-color: transparent;
-    margin: 1.25rem;
     height:32.9375rem;
-    width:22rem; 
+    width:18rem; 
     box-sizing: border-box;
     
 `
 
 const CourseImage=styled('div')`
-    height : 19.875rem;
-    width: 22.625rem;
+    height : 15rem;
+    width: 18rem;
     background : url(${(props:CourseItemImageProps)=>props.imageUrl});
     box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.1);
     background-size : cover;
     background-position : center;
     border-radius: 10px;
+    
 `
 
 const Coursename=styled.div`
@@ -71,7 +73,7 @@ const CourseItemdescription=styled.div`
 
 const CourseItemgugunSummaryText=styled.div`  
     margin-left: 10px;
-    margin-top: 20px;
+    margin-top: 10px;
     font-weight:200;
     color:var(--color-gray);
     font-family:var(--font-secondary);
@@ -83,8 +85,15 @@ const CourseItemgugunSummaryMarker=styled.div`
 
 `
 const CourseItemgugunSummary=styled.div`
-    width:22.625rem;
+    width:18rem;
     height:48px;
     display: flex;
     
+`
+
+const CourseStar=styled.div`
+    width:38px;
+    height: 32px;
+    content: url('./assets/img/course_star.svg');
+
 `

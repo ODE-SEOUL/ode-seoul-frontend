@@ -1,8 +1,10 @@
+import React from 'react';
 import { useState } from 'react';
 import Link from 'next/link';
-import styles from './styles.module.css';
 import Image from 'next/image';
 import useSticky from '../../../hooks/use-sticky';
+import styles from './styles.module.css';
+
 
 const Navbar: React.FC = () => {
   const { headerSticky } = useSticky();
