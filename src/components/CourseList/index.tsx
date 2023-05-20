@@ -1,14 +1,15 @@
-import React, { use } from 'react';
+import React from 'react';
 import Breadcrumb from '../common/Breadcrumb/Breadcrumb';
 import Navbar from '../common/Nav/Nav';
 import { useQuery } from 'react-query';
 import styled from '@emotion/styled';
-import CourseCarousel from '../common/Carousel/Course';
-import { GetCourseListDto} from '@/src/types/courseList';
-import { getCourseList } from '@/src/apis/couresList';
+import { getCourseList } from '../../apis/couresList';
 import CourseItem from '../common/Item/CourseItem';
 import axios from 'axios';
-
+import Footer from '../common/Footer/Footer';
+import CourseCarousel from '../common/Carousel/CourseCategory';
+import { selectCategoryAtom } from '../../states/couresList';
+import { useRecoilState, useRecoilValue } from 'recoil';
 
 
 export default function CourseList() {
@@ -17,6 +18,7 @@ export default function CourseList() {
   const {isLoading,data:courseData}=useQuery("courseList",getCourseList,{
     select:data=>data?.result
   });
+  const selectCategory=useRecoilValue<string>(selectCategoryAtom);
   
   
 
@@ -30,7 +32,7 @@ export default function CourseList() {
       </CourseCategoryBarContainer>
       <CourseListContainer>
         {
-          courseData?.slice(0,9).map(course=>
+          courseData?.slice(0,9).filter(item=>item.categories.includes(selectCategory)).map(course=>
             <CourseItem 
             key={course.id} 
             id={course.id}
@@ -44,7 +46,7 @@ export default function CourseList() {
         }
        
       </CourseListContainer>
-
+    <Footer/>
 
     </>
   );

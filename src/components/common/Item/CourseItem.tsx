@@ -1,5 +1,6 @@
-import { ICourseItem } from "@/src/data/course-data";
+import { ICourseItem } from "../../../data/course-data";
 import styled from "@emotion/styled";
+import React from "react";
 
 
 
@@ -71,7 +72,7 @@ const CourseItemdescription=styled.div`
 
 const CourseItemgugunSummaryText=styled.div`  
     margin-left: 10px;
-    margin-top: 20px;
+    margin-top: 10px;
     font-weight:200;
     color:var(--color-gray);
     font-family:var(--font-secondary);
