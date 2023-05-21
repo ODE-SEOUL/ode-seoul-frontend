@@ -2,9 +2,36 @@ import { useEffect, useState } from 'react';
 import { useRecoilState } from 'recoil';
 import styled from '@emotion/styled';
 import Link from 'next/link';
-import styles from './styles.module.css';
-import Image from 'next/image';
-import useSticky from '../../../hooks/use-sticky';
+import useModal from '../../../hooks/useModal';
+import Modal from '../../../modal/DefaultModal';
+import LoginMain from '../../Login/LoginMain';
+import { userAtom } from '../../../recoil/userAtom';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faUser } from "@fortawesome/free-solid-svg-icons";
+
+
+
+const Navbar = () => {
+
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+
+  const handleDropdownToggle = () => {
+    setIsDropdownOpen(!isDropdownOpen);
+  };
+
+  const [user, setUser] = useRecoilState(userAtom);
+  const { isShowing, toggle } = useModal();
+
+  const handleClick = () => {
+    toggle();
+  };
+
+  const handleLogout = () => {
+    setUser(null);
+  };
+
+  useEffect(() => {
+    console.log(user);
 
     if (user) {
       console.log('마이페이지');
