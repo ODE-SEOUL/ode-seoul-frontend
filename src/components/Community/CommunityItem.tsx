@@ -2,19 +2,15 @@ import React, { useState } from 'react';
 import styled from '@emotion/styled';
 import { css } from '@emotion/react';
 import community_data from "../../data/community-data";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faAngleRight } from "@fortawesome/free-solid-svg-icons";
 
 interface Category {
-  // id: number,
-  // img:string,
-  // title:number,
-  // writer: number,
-  // time:number,
-  // dest:number,
   category_id: number;
   category: string;
 }
 
-const Main2 = () => {
+const CommunityItem = () => {
   const [selectedCategory, setSelectedCategory] = useState<number>(1);
 
   const handleCategoryClick = (categoryId: number) => {
@@ -37,31 +33,30 @@ const Main2 = () => {
 
   return (
     <>
-      <FlexContainer>
-        <Title>
-        <span>우리 같이 생태문화길을 걸어요 </span>
-        </Title>
-        <Circle> more</Circle>
+      <div style={{ background: "white" }}>
+        <FlexContainer>
+          {category_list.map((category: string, index: number) => {
+            const colorClass = `color-${index + 1}`;
+            return (
+              <div key={index}>
+                <CircleButton
+                  isSelected={selectedCategory === index + 1}
+                  onClick={() => handleCategoryClick(index + 1)}
+                  className={colorClass}
+                />
+                {category}
+              </div>
+            );
+          })}
+        </FlexContainer>
+      </div>
 
-      </FlexContainer>
+      <div style={{ justifyContent: "flex-end", display: "flex" }}>
+        <Circle>글 쓰기</Circle>
+      </div>
 
-      <FlexContainer className='pr-70 pl-70'>
-        {category_list.map((category: string, index: number) => {
-          const colorClass = `color-${index + 1}`;
-          return (
-            <div key={index}>
-              <CircleButton
-                isSelected={selectedCategory === index + 1}
-                onClick={() => handleCategoryClick(index + 1)}
-                className={colorClass}
-              />
-              {category}
-            </div>
-          );
-        })}
-      </FlexContainer>
+      <FlexContainer style={{ background: "#eee" }}>
 
-      <FlexContainer>
         <div className='row col-lg-12 mb-100'>
           <div className="row">
             {filteredItems.slice(0, 4).map((item: Category) => {
@@ -69,16 +64,21 @@ const Main2 = () => {
               return (
                 <div key={id} className="col-lg-3 col-sm-12">
                   <Card>
-                    <div className="">
-                      <Img src={img} width="100%" />
+                    <Img src={img} width="100%" />
+                    <div className='row' style={{height: "50px"}}>
+                        <div className='col-lg-6'>
+                            <ProfileImg></ProfileImg>
+                        </div>
+                        <div className='col-lg-6'>
+                            <Title>{writer}</Title>
+                        </div>
                     </div>
                     <div className="">
                       <Body>{title}</Body>
                     </div>
                     <div className="">
-                      <SubBody>{writer}</SubBody>
-                      <SubBody>{time}</SubBody>
-                      <SubBody>{dest}</SubBody>
+                      <SubBody><FontAwesomeIcon icon={faAngleRight} className="mr-10"/>{dest}</SubBody>
+                      <SubBody><FontAwesomeIcon icon={faAngleRight} className="mr-10"/>{time}</SubBody>
                     </div>
                   </Card>
                 </div>
@@ -91,15 +91,16 @@ const Main2 = () => {
   );
 };
 
-export default Main2;
+export default CommunityItem;
 
-  
+
 const FlexContainer = styled.div`
+  border-top: 1px solid #eee;
   display: flex;
+  padding: 70px;
   justify-content: space-between;
   align-items: center;
   margin-bottom: 20px;
-  margin: 100px;
   text-align: center;
   font-family: var(--font-secondary);
   font-weight: 200;
@@ -111,9 +112,10 @@ const FlexContainer = styled.div`
   }
 `;
 
-
 const Title = styled.div`
-  font-size: 30px;
+  font-size: 15px;
+  margin-left: 20px;
+  line-height: 50px;
   font-weight: 300;
   font-family: var(--font-secondary);
   text-align: left;
@@ -125,12 +127,12 @@ const Title = styled.div`
 `;
 
 const Img = styled.img`
-    objectFit: "cover"
+  object-fit: cover;
 `;
 
 
 const Body = styled.div`
-  font-size: 30px;
+  font-size: 20px;
   font-weight: 300;
   font-family: var(--font-secondary);
   text-align: center;
@@ -141,9 +143,9 @@ const SubBody = styled.div`
   font-size: 15px;
   font-weight: 100;
   font-family: var(--font-secondary);
-  text-align: center;
+  text-align: left;
   margin: 10px;
-
+  margin-left: 50px;
   @media screen and (max-width: 768px) {
     font-size: 20px;
     font-weight: 200;
@@ -152,15 +154,15 @@ const SubBody = styled.div`
 
 
 const Card = styled.div`
-
   width: 80%;
-  height: 500px;
+  height: auto;
   margin: auto;
   box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.3);
   border-radius: 20px;
   overflow: hidden;
   padding-bottom: 25px;
-  
+  background: #fff;
+
   @media screen and (max-width: 768px) {
     flex-direction: row;
     width: 90%;
@@ -224,8 +226,9 @@ const Circle = styled.div`
   font-size: 20px;
   border-radius: 20px;
   padding: 10px;
-  width: 200px;
+  width: 150px;
   text-align: center;
+  margin-right: 20px;
 
   @media screen and (max-width: 768px) {
     width: 100px;
@@ -233,8 +236,25 @@ const Circle = styled.div`
     float: right;
   }
 
-  :hover{
+  :hover {
     background-color: var(--color-darkgreen)
   }
+`;
 
+const ProfileImg = styled.div`
+  font-weight: 100;
+  font-family: var(--font-secondary);
+  border: 1px solid #fff;
+  background: #fff;
+  font-size: 20px;
+  border-radius: 100%;
+  width: 100px;
+  height: 100px;
+  margin: 10px;
+  position: relative;
+  z-index: 1; 
+  top: -60px; 
+  left: 50%;
+  transform: translateX(-50%); 
+  box-shadow: 3px 3px 10px #eee;
 `;

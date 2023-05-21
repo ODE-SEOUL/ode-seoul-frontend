@@ -1,10 +1,10 @@
+import KakaoCallback from '@/src/components/Login/KakaoCallback';
 import React from 'react';
-import CourseList from '../src/components/CourseList';
 
 export default function index() {
   return (
     <>
-        <CourseList/>
+        <KakaoCallback />
     </>
   );
 }

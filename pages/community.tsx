@@ -3,8 +3,8 @@ import Community from '../src/components/Community';
 
 export default function index() {
   return (
-    <>
-        <Community/>
-    </>
+    <div style={{ backgroundColor: '#eee' }}>
+      <Community />
+    </div>
   );
 }
