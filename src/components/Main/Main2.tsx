@@ -6,10 +6,15 @@
 // import { faAngleRight } from "@fortawesome/free-solid-svg-icons";
 
 
+<<<<<<< HEAD
 // interface Category {
 //   category_id: number;
 //   category: string;
 // }
+=======
+const Main2 = () => {
+  const [selectedCategory, setSelectedCategory] = useState<number>(1);
+>>>>>>> feat/#4_login
 
 
 // const Main2: React.FC = () => {
@@ -19,9 +24,19 @@
 //     setSelectedCategory(categoryId);
 //   };
 
+<<<<<<< HEAD
 //   const filteredItems: Category[] = category_data.filter(
 //     (item: Category) => item.category_id === selectedCategory
 //   );
+=======
+  return (
+    <>
+      <FlexContainer>
+        <Title>
+          <span>카테고리 별로 서울을 걸어봐요! </span>
+        </Title>
+      </FlexContainer>
+>>>>>>> feat/#4_login
 
 //   const category_list: string[] = [
 //     '#볼거리가 많은',

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import styled from '@emotion/styled';
-import { css } from '@emotion/react';
+import Link from 'next/link';
 import community_data from "../../data/community-data";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAngleRight } from "@fortawesome/free-solid-svg-icons";
@@ -31,6 +31,10 @@ const CommunityItem = () => {
     '#체험',
   ];
 
+  const handlerWrite = () => {
+
+  }
+
   return (
     <>
       <div style={{ background: "white" }}>
@@ -52,7 +56,9 @@ const CommunityItem = () => {
       </div>
 
       <div style={{ justifyContent: "flex-end", display: "flex" }}>
-        <Circle>글 쓰기</Circle>
+        <Circle> 
+          <Link href="/recruit">글쓰기</Link>
+        </Circle>
       </div>
 
       <FlexContainer style={{ background: "#eee" }}>
@@ -258,3 +264,5 @@ const ProfileImg = styled.div`
   transform: translateX(-50%); 
   box-shadow: 3px 3px 10px #eee;
 `;
+
+
