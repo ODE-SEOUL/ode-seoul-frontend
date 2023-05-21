@@ -76,8 +76,8 @@ const Container=styled.div`
 `;
 
 const SlideWrapper = styled(Slider)`
-    width: 65rem;
-    height:3.5rem;
+    width: 80rem;
+    height:4rem;
     position: relative;
    
     // 원래 있던 arrow 감추기
@@ -121,7 +121,7 @@ const CategoryItemContainer=styled.button`
     border:0;
     background-color: transparent;
     width: 10rem;
-    height: 3.5rem;
+    height: 4rem;
     box-sizing: border-box;
     
 `;

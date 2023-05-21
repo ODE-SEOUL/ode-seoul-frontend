@@ -7,6 +7,7 @@ export default function CourseListDetail(){
     return(
         <>
             <Navbar/>
+            <div className="col-lg-12 mt-60" ></div>
             <h1>{name}</h1> 
         </>
 

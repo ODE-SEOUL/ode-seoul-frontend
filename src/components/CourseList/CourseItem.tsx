@@ -1,31 +1,38 @@
 import { ICourseItem } from "../../data/course-data";
 import styled from "@emotion/styled";
 import React from "react";
+import { useState } from "react";
 
+type starProps={
+    url:string,
+}
 
 
 export default function CourseItem({name,image,gugunSummary,description}:ICourseItem){
 
+
     const onClick=(event:React.MouseEvent<HTMLButtonElement>):void=>{
             event.preventDefault();
     };
-
+    
     return(<>
         
-        <CourseItemContainer onClick={onClick}>
-                <div className="col-lg-12 mt-60" ></div>
-                <CourseImage imageUrl={image}/>
-                <div className="mt-40"></div>
+        <CourseItemContainer>
+                <div className="mt-60" ></div>
+                <CourseImage imageUrl={image}>
+                    <CourseStar/>
+                </CourseImage>
+                <div className="mt-20"></div>
                 <Coursename>{name}</Coursename>
                 <div className="mt-20"></div>
                 <CourseItemgugunSummary>
                     <CourseItemgugunSummaryMarker/>
                     <CourseItemgugunSummaryText>{gugunSummary}</CourseItemgugunSummaryText>
                 </CourseItemgugunSummary>
-                <div className="mt-20"></div>
+                <div className="mt-10"></div>
                 <CourseItemdescription>{description.substring(0,100).concat("...")}</CourseItemdescription>
         </CourseItemContainer>
-        <CourseStar/>
+       
         
 
     </>);
@@ -37,19 +44,20 @@ type CourseItemImageProps={
 
 
 
-const CourseItemContainer=styled.button`
-    border:0;
-    outline:0;
-    background-color: transparent;
+const CourseItemContainer=styled.div`
+    
+    margin: auto !important;
     height:32.9375rem;
-    width:18rem; 
+    width:20rem; 
     box-sizing: border-box;
+    
     
 `
 
 const CourseImage=styled('div')`
-    height : 15rem;
-    width: 18rem;
+    position: relative;
+    height : 18rem;
+    width: 20rem;
     background : url(${(props:CourseItemImageProps)=>props.imageUrl});
     box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.1);
     background-size : cover;
@@ -60,7 +68,7 @@ const CourseImage=styled('div')`
 
 const Coursename=styled.div`
     text-align: center;
-    font-weight: 500;
+    font-weight: 700;
     font-size: 20px;
     font-family: var(--font-secondary);
 `
@@ -68,7 +76,7 @@ const Coursename=styled.div`
 const CourseItemdescription=styled.div`
     font-weight:200;
     font-family:  var(--font-secondary);
-    text-align: left;
+    //text-align: left;
 `
 
 const CourseItemgugunSummaryText=styled.div`  
@@ -92,8 +100,21 @@ const CourseItemgugunSummary=styled.div`
 `
 
 const CourseStar=styled.div`
+    position: absolute;
+    top:2%;
+    right:5%;;
     width:38px;
     height: 32px;
     content: url('./assets/img/course_star.svg');
 
 `
+
+const CourseStarFill=styled.div`
+    position: absolute;
+    top:2%;
+    right:5%;;
+    width:38px;
+    height: 32px;
+    content: url('./assets/img/course_star_fill.svg');
+    
+`;
