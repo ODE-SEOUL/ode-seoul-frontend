@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { useRecoilState } from 'recoil';
+import { useRecoilState, useRecoilValue } from 'recoil';
 import styled from '@emotion/styled';
 import Link from 'next/link';
 import useModal from '../../../hooks/useModal';
@@ -9,7 +9,6 @@ import { userAtom } from '../../../recoil/userAtom';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser } from "@fortawesome/free-solid-svg-icons";
 import SignupForm from '../../Login/SignupForm';
-
 
 
 const Navbar = () => {
@@ -78,12 +77,13 @@ const Navbar = () => {
                     <LoginMain />
                   </Modal>
                 )}
+             
               </li>
               <li>
                 <div onClick={handleClick}>회원가입</div>
                 {isShowing && (
                   <Modal isShowing={isShowing} hide={toggle}>
-                    <SignupForm />
+                    <LoginMain />
                   </Modal>
                 )}
               </li>

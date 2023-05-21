@@ -1,7 +1,6 @@
-// KakaoCallback.jsx
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import axios from 'axios';
-import { useRecoilState } from 'recoil';
+import { useRecoilState, useRecoilValue } from 'recoil';
 import { userAtom } from '../../recoil/userAtom';
 import { useRouter } from 'next/router';
 import SignupForm from './SignupForm';
@@ -18,7 +17,7 @@ const KakaoCallback = () => {
 
     const requestData = {
       authorizationCode: code,
-      redirectedUri: "http://localhost:3000/kakao/callback",
+      redirectedUri: process.env.NEXT_PUBLIC_REDIRECT_URI,
     };
 
     axios
@@ -67,10 +66,11 @@ const KakaoCallback = () => {
     console.log(user); // 콘솔에 유저 정보 출력
   }, [user]); // user 추가
 
+
   const handleSignupSuccess = () => {
     setIsSignup(true);
 
-    setUser((prevUser) => ({
+    setUser((prevUser: any) => ({
       ...prevUser,
       isSignup: true,
     }));
@@ -80,7 +80,7 @@ const KakaoCallback = () => {
     return <SignupForm onSuccess={handleSignupSuccess} />;
   }
 
-  return null;
+  // return null;
 };
 
 export default KakaoCallback;

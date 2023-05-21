@@ -7,8 +7,8 @@ const LoginMain = () => {
     const handleLogin = () => {
         console.log('kakao ready!')
 
-        const REDIRECT_URI =  "http://localhost:3000/kakao/callback";
-        const CLIENT_ID = 	"828b489c3b45ecac6071820a70ffbf14";
+        const REDIRECT_URI =  process.env.NEXT_PUBLIC_REDIRECT_URI;
+        const CLIENT_ID = process.env.NEXT_PUBLIC_CLIENT_ID
     
         const KAKAO_AUTH_URL = `https://kauth.kakao.com/oauth/authorize?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=code`;
         window.location.href = KAKAO_AUTH_URL;
