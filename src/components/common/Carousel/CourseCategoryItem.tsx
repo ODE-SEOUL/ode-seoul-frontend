@@ -35,7 +35,7 @@ export default function CourseCategoryItem({color,name,code,select}:ICouresItemP
 const CategoryItem=styled.div`
     display: flex;
     width:10rem;
-    height: 3.2rem;
+    height: 4rem;
     margin: 0 auto;
     box-sizing: border-box;
     box-shadow: 0 2px 3px rgba(0, 0, 0, 0.2), 0 10px 10px rgba(0, 0, 0, 0.02);
@@ -48,7 +48,7 @@ const CategoryText=styled.div<{textStyle:ITextProps}>`
     margin:auto;
     font-weight:${props=>props.textStyle.font_weight};
     font-family:  var(--font-secondary);
-    font-size: 12px;
+    font-size: 15px;
     text-align: center;
     color:${props=>props.textStyle.font_color};
     justify-content: center;

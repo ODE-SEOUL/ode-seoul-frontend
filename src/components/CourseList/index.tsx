@@ -44,35 +44,45 @@ export default function CourseList() {
     <>
 
       <Navbar/>
-      <div className='mt-100'></div>
-      <CourseCategoryBarContainer>
-        <CourseCarousel/>
-      </CourseCategoryBarContainer>
-      <div className='mt-35'></div>
-      <CourseListContainer>
-          {
-            courseData?.slice(0,9).filter(item=>item.categories.includes(selectCategory)).map(course=>
-              <CourseItemBtn key={course.id} onClick={()=>onClick(course)} > 
-                  <CourseItem 
-                    key={course.id} 
-                    id={course.id}
-                    name={course.name}
-                    image={course.image}
-                    gugunSummary={course.gugunSummary}
-                    description={course.description}
+      
+          <div className='mt-100'></div>
+          <CourseCategoryBarContainer>
+            <CourseCarousel/>
+          </CourseCategoryBarContainer>
+          <div className='mt-35'></div>
+          <Container>
+              <CourseListContainer>
+                  {
+                    courseData?.slice(0,12).filter(item=>item.categories.includes(selectCategory)).map(course=>
+                      <CourseItemBtn key={course.id} onClick={()=>onClick(course)} > 
+                          <CourseItem 
+                            key={course.id} 
+                            id={course.id}
+                            name={course.name}
+                            image={course.image}
+                            gugunSummary={course.gugunSummary}
+                            description={course.description}
 
-                  />
-              </CourseItemBtn>
-              )
-          }
-        
-        </CourseListContainer>
-    <Footer/>
+                          />
+                      </CourseItemBtn>
+                      )
+                  }
+                
+              </CourseListContainer>
+          </Container>
+      
+    
+      <Footer/>
 
     </>
   );
 };
 
+const Container=styled.div`
+  display: flex;
+  justify-content: center;
+  
+`
 
 const CourseCategoryBarContainer=styled.div`
   
@@ -82,10 +92,13 @@ const CourseCategoryBarContainer=styled.div`
 `;
 
 const CourseListContainer=styled.div`
-  display: grid;
+  display: inline-grid;
+  grid-auto-flow: row dense;
   grid-template-columns: repeat(4,1fr);
-  margin: 3rem;
- 
+  grid-template-rows: repeat(3,1fr);
+  grid-gap: 0.2rem;
+  
+  
 
   
 `;
@@ -96,8 +109,14 @@ const CourseItemBtn=styled.button`
     background-color: transparent; 
     margin: 1.25rem;
     height:32.9375rem;
-    width:15rem; 
+    width:20rem; 
     box-sizing: border-box;
   
 
 `
+
+const CourseDetailTimeMarker=styled.div`
+    width:20px;
+    height: 20px;
+    content: url("./assets/img/courseDetailTime.svg");
+`;
