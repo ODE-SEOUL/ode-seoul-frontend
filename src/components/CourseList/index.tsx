@@ -53,7 +53,7 @@ export default function CourseList() {
           <Container>
               <CourseListContainer>
                   {
-                    courseData?.slice(0,9).filter(item=>item.categories.includes(selectCategory)).map(course=>
+                    courseData?.slice(0,12).filter(item=>item.categories.includes(selectCategory)).map(course=>
                       <CourseItemBtn key={course.id} onClick={()=>onClick(course)} > 
                           <CourseItem 
                             key={course.id} 
@@ -114,3 +114,9 @@ const CourseItemBtn=styled.button`
   
 
 `
+
+const CourseDetailTimeMarker=styled.div`
+    width:20px;
+    height: 20px;
+    content: url("./assets/img/courseDetailTime.svg");
+`;

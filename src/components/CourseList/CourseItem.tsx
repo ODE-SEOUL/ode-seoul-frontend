@@ -30,6 +30,7 @@ export default function CourseItem({name,image,gugunSummary,description}:ICourse
                     <CourseItemgugunSummaryText>{gugunSummary}</CourseItemgugunSummaryText>
                 </CourseItemgugunSummary>
                 <div className="mt-10"></div>
+                
                 <CourseItemdescription>{description.substring(0,100).concat("...")}</CourseItemdescription>
         </CourseItemContainer>
        
@@ -117,4 +118,10 @@ const CourseStarFill=styled.div`
     height: 32px;
     content: url('./assets/img/course_star_fill.svg');
     
+`;
+
+const CourseDetailTimeMarker=styled.div`
+    width:20px;
+    height: 20px;
+    content: url("./assets/img/courseDetailTime.svg");
 `;
