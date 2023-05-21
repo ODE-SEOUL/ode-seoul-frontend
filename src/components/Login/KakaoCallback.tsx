@@ -3,7 +3,63 @@ import axios from 'axios';
 import { useRecoilState, useRecoilValue } from 'recoil';
 import { userAtom } from '../../recoil/userAtom';
 import { useRouter } from 'next/router';
-import SignupForm from './SignupForm';
+
+const SignupForm = ({ onSuccess }) => {
+  const router = useRouter();
+
+  const [locationCode, setLocationCode] = useState('');
+  const [nickname, setNickname] = useState('');
+
+  const user = useRecoilValue(userAtom);
+
+  const handleSignup = () => {
+    const requestData = {
+      nickname: nickname,
+      locationCode: locationCode,
+    };
+
+    const config = {
+      headers: {
+        Authorization: `Bearer ${user.accessToken}`,
+      },
+    };
+
+    axios
+      .post(`${process.env.REACT_APP_BASE_URI}/auth/accounts/signup`, requestData, config)
+      .then((res) => {
+        if (res.data.code === 200) {
+          console.log('회원가입 성공');
+          onSuccess();
+          console.log(user);
+          router.push('/');
+          
+        } else {
+          // TODO: 회원가입 실패 처리
+        }
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  };
+
+  return (
+    <div>
+      <input
+        type="text"
+        value={nickname}
+        onChange={(e) => setNickname(e.target.value)}
+        placeholder="닉네임"
+      />
+      <input
+        type="text"
+        value={locationCode}
+        onChange={(e) => setLocationCode(e.target.value)}
+        placeholder="지역 코드"
+      />
+      <button onClick={handleSignup}>회원가입</button>
+    </div>
+  );
+};
 
 const KakaoCallback = () => {
   const router = useRouter();
