@@ -3,63 +3,7 @@ import axios from 'axios';
 import { useRecoilState, useRecoilValue } from 'recoil';
 import { userAtom } from '../../recoil/userAtom';
 import { useRouter } from 'next/router';
-
-const SignupForm = ({ onSuccess }) => {
-  const router = useRouter();
-
-  const [locationCode, setLocationCode] = useState('');
-  const [nickname, setNickname] = useState('');
-
-  const user = useRecoilValue(userAtom);
-
-  const handleSignup = () => {
-    const requestData = {
-      nickname: nickname,
-      locationCode: locationCode,
-    };
-
-    const config = {
-      headers: {
-        Authorization: `Bearer ${user.accessToken}`,
-      },
-    };
-
-    axios
-      .post(`${process.env.REACT_APP_BASE_URI}/auth/accounts/signup`, requestData, config)
-      .then((res) => {
-        if (res.data.code === 200) {
-          console.log('회원가입 성공');
-          onSuccess();
-          console.log(user);
-          router.push('/');
-          
-        } else {
-          // TODO: 회원가입 실패 처리
-        }
-      })
-      .catch((error) => {
-        console.error(error);
-      });
-  };
-
-  return (
-    <div>
-      <input
-        type="text"
-        value={nickname}
-        onChange={(e) => setNickname(e.target.value)}
-        placeholder="닉네임"
-      />
-      <input
-        type="text"
-        value={locationCode}
-        onChange={(e) => setLocationCode(e.target.value)}
-        placeholder="지역 코드"
-      />
-      <button onClick={handleSignup}>회원가입</button>
-    </div>
-  );
-};
+import SignupForm from './SignupForm';
 
 const KakaoCallback = () => {
   const router = useRouter();
@@ -73,11 +17,11 @@ const KakaoCallback = () => {
 
     const requestData = {
       authorizationCode: code,
-      redirectedUri: `${process.env.REACT_APP_REDIRECT_URI}`,
+      redirectedUri: process.env.NEXT_PUBLIC_REDIRECT_URI,
     };
 
     axios
-      .post(`${process.env.REACT_APP_BASE_URI}/auth/accounts/login/kakao`, requestData)
+      .post("https://ode-seoul.fly.dev/auth/accounts/login/kakao", requestData)
       .then((res) => {
         if (res.data.code === 200) {
           // 인증 성공, 유저 정보를 Recoil atom에 저장
@@ -98,7 +42,7 @@ const KakaoCallback = () => {
 
           // 회원가입 상태 확인을 위한 GET 요청
           axios
-            .get(`${process.env.REACT_APP_BASE_URI}/users/${userInfo.id}`)
+            .get(`https://ode-seoul.fly.dev/users/${userInfo.id}`)
             .then((response) => {
               if (response.data.result.signupStatus === "REGISTERED") {
                 router.push('/');

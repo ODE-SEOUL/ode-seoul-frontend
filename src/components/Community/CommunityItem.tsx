@@ -1,6 +1,10 @@
 import React, { useState } from 'react';
 import styled from '@emotion/styled';
+<<<<<<< HEAD
 import Link from 'next/link';
+=======
+import { css } from '@emotion/react';
+>>>>>>> feat/#4_login
 import community_data from "../../data/community-data";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAngleRight } from "@fortawesome/free-solid-svg-icons";
