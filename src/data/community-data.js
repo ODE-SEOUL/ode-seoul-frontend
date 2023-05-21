@@ -22,7 +22,7 @@ const community_data = [
       {
         id:3,
         img:'/assets/img/ex1.png',
-        title:'교생쌤들 스트레스를 날려요',
+        title:'교생쌤들 스트레스 날려요',
         writer: '오정민',
         time:'5/10 6시',
         dest: '숭실대학교 정문',

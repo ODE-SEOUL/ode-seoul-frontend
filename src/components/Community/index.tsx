@@ -1,13 +1,12 @@
 import React from 'react';
-import Breadcrumb from '../common/Breadcrumb/Breadcrumb';
+import Nav from '../common/Nav/Nav';
+import CommunityItem from './CommunityItem';
 
 const Communuty = () => {
   return (
     <>
-      <Breadcrumb
-        title={'Communuty'}
-        subTitle={'Communuty입니다'}
-      />
+      <Nav />
+      <CommunityItem />
     </>
   );
 };
