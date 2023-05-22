@@ -25,8 +25,6 @@ export default function CourseListDetail(){
     return(
         <>
             <Navbar/>
-            
-            
             <MainContainer>
                 <Container>
                     <CourseListDescription name={name as string} distance={distance as string}
