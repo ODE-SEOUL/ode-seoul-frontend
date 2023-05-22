@@ -34,7 +34,6 @@ export default function CourseListDetail(){
                     accessway={accessway as string} image={mainImage}
                     />
                     <CourseDetailMap  latitude={+lat} longitude={+lng}/>
-                    
                 </Container>
                 <CommentContainer/>
             </MainContainer>
