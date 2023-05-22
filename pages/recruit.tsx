@@ -1,10 +1,10 @@
 import React from 'react';
-import Nav from '@/src/components/common/Nav/Nav';
+import Recruit from '@/src/components/Community/Recruit'; 
 
 export default function index() {
   return (
     <>
-        <Nav/>
+        <Recruit />
     </>
   );
 }

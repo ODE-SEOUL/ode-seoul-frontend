@@ -3,7 +3,7 @@ import Breadcrumb from '../common/Breadcrumb/Breadcrumb';
 import Navbar from '../common/Nav/Nav';
 import { useQuery } from 'react-query';
 import styled from '@emotion/styled';
-import { getCourseList } from '../../apis/couresList';
+import { getCourseList } from '../../apis/courseList';
 import CourseItem from './CourseItem';
 import axios from 'axios';
 import Footer from '../common/Footer/Footer';
