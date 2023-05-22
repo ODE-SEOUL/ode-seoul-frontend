@@ -32,7 +32,9 @@ export default function CourseList() {
           description:course.description,
           subway:course.nearSubway,
           accessway:course.accessWay,
-          image:course.image
+          image:course.image,
+          lat:course.routes[0][0][0],
+          lng:course.routes[0][0][1]
 
 
         }
@@ -53,7 +55,7 @@ export default function CourseList() {
           <Container>
               <CourseListContainer>
                   {
-                    courseData?.slice(0,12).filter(item=>item.categories.includes(selectCategory)).map(course=>
+                    courseData?.slice(0,15).filter(item=>item.categories.includes(selectCategory)).map(course=>
                       <CourseItemBtn key={course.id} onClick={()=>onClick(course)} > 
                           <CourseItem 
                             key={course.id} 
@@ -62,6 +64,8 @@ export default function CourseList() {
                             image={course.image}
                             gugunSummary={course.gugunSummary}
                             description={course.description}
+                            lat={course.routes[0][0][0]}
+                            lng={course.routes[0][0][1]}
 
                           />
                       </CourseItemBtn>
@@ -115,8 +119,3 @@ const CourseItemBtn=styled.button`
 
 `
 
-const CourseDetailTimeMarker=styled.div`
-    width:20px;
-    height: 20px;
-    content: url("./assets/img/courseDetailTime.svg");
-`;

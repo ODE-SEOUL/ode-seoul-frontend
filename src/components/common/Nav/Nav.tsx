@@ -13,7 +13,7 @@ const Navbar: React.FC = () => {
     <nav className={styles.navbar}>
       <div className={styles['navbar-logo']}>
         <Link href="/">
-        <img src='../assets/img/logo.svg' width="150px"></img>
+        <Image src='../assets/img/logo.svg' width={150} height={100} alt="nav"></Image>
         </Link>
       </div>
       <div className={styles['navbar-links']}>

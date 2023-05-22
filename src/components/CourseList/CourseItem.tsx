@@ -8,7 +8,7 @@ type starProps={
 }
 
 
-export default function CourseItem({name,image,gugunSummary,description}:ICourseItem){
+export default function CourseItem({name,image,gugunSummary,description,lat,lng}:ICourseItem){
 
 
     const onClick=(event:React.MouseEvent<HTMLButtonElement>):void=>{

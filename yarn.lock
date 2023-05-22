@@ -1482,6 +1482,11 @@
   "resolved" "https://registry.npmjs.org/@types/json5/-/json5-0.0.29.tgz"
   "version" "0.0.29"
 
+"@types/kakao-js-sdk@^1.39.1":
+  "integrity" "sha512-kB0nXS97K7zFgIhLi7oDi1zeR7WV6zRNvRwtJ3KxICz8VWcuqnFYwMq1eBzyhOIJsBTCFRhB4tR1IPHKp7qcKw=="
+  "resolved" "https://registry.npmjs.org/@types/kakao-js-sdk/-/kakao-js-sdk-1.39.1.tgz"
+  "version" "1.39.1"
+
 "@types/node@18.16.3":
   "integrity" "sha512-OPs5WnnT1xkCBiuQrZA4+YAV4HEJejmHneyraIaxsbev5yCEr6KMwINNFP9wQeFIw8FWcoTqF3vQsa5CDaI+8Q=="
   "resolved" "https://registry.npmjs.org/@types/node/-/node-18.16.3.tgz"
