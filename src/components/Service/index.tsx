@@ -1,15 +1,15 @@
 import React from 'react';
 import Breadcrumb from '../common/Breadcrumb/Breadcrumb';
 
-const Stampbook = () => {
+const Notices = () => {
   return (
     <>
       <Breadcrumb
-        title={'Stampbook'}
-        subTitle={'Stampbook입니다'}
+        title={'Service'}
+        subTitle={'Service입니다'}
       />
     </>
   );
 };
 
-export default Stampbook;
+export default Notices;

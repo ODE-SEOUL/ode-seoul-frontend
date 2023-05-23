@@ -1,10 +1,10 @@
+import KakaoCallback from '@/src/components/Login/KakaoCallback';
 import React from 'react';
-import Stampbook from '../src/components/Stampbook';
 
 export default function index() {
   return (
     <>
-        <Stampbook/>
+        <KakaoCallback />
     </>
   );
 }

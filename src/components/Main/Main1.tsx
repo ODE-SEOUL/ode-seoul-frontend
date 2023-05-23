@@ -22,6 +22,6 @@ const Container = styled.div`
     font-size:45px;
     margin: auto;
     font-weight: 200;
-    font-family: var(--font-secondary);
+    font-family: var(--font-secondary); 
     text-align: center;
 `;
