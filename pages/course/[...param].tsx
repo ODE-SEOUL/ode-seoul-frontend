@@ -1,7 +1,8 @@
+import CourseListDetail from "@/src/components/CouresListDetail";
 import React from "react";
-import CourseListDetail from "../../src/components/CouresListDetail";
 
-export default function index(){
+
+export default function index(){ 
     return(<>
     <CourseListDetail/>
     
