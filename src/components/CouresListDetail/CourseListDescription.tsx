@@ -6,6 +6,7 @@ import DistanceIcon from '../../../public/assets/img/courseDetailDistance.svg';
 import TimeIcon from '../../../public/assets/img/courseDetailTime.svg'
 import SubwayIcon from '../../../public/assets/img/courseDetailSubway.svg'
 import AccessIcon from '../../../public/assets/img/courseDetailAccess.svg';
+import { useState } from "react";
 
 interface ICourseDetailProps{
     name:string;
@@ -15,18 +16,21 @@ interface ICourseDetailProps{
     subway:string;
     accessway:string;
     image:string;
-    lat:number;
-    lng:number;
+    setReviewClick:React.Dispatch<React.SetStateAction<boolean>>;
+    setCommunityClick:React.Dispatch<React.SetStateAction<boolean>>;
+
 }
 
-export default function CourseListDescription({name,distance,time,description,subway,accessway,image}:ICourseDetailProps){
+export default function CourseListDescription({name,distance,time,description,subway,accessway,image,setReviewClick,setCommunityClick}:ICourseDetailProps){
+    
     
     const onReviewClick=()=>{
-
+        console.log("click");
+        setReviewClick(true);
     }
     
     const onRecruitClick=()=>{
-        
+        setCommunityClick(true);
     }
 
     return(
@@ -95,6 +99,7 @@ type CourseMainImageProps={
 };
 
 const DescriptionTextContainer=styled.div`
+    width:85%;
 `;
 
 const DescriptionButtonContainer=styled.div`
@@ -104,7 +109,7 @@ const DescriptionButtonContainer=styled.div`
 
 
 const CoureMainImg=styled.div`
-    width: 90%;
+    width: 85%;
     height:28rem;
     background-size: cover;
     background-image:url(${(props:CourseMainImageProps)=>props.imageUrl});
@@ -155,7 +160,7 @@ const CourseDetailDescriptionContainer=styled.div`
 `;
 
 const BorderLine=styled.hr`
-    width:90%;
+    width:85%;
     float:left;
     color:#D9D9D9;
 `

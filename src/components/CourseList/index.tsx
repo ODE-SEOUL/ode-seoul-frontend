@@ -26,6 +26,7 @@ export default function CourseList() {
     router.push({
       pathname:`/course/${course.name}`,
       query:{
+          id:course.id,
           name:course.name,
           distance:course.distance,
           time:course.time,
@@ -55,7 +56,7 @@ export default function CourseList() {
           <Container>
               <CourseListContainer>
                   {
-                    courseData?.slice(0,15).filter(item=>item.categories.includes(selectCategory)).map(course=>
+                    courseData?.slice(0,16).filter(item=>item.categories.includes(selectCategory)).map(course=>
                       <CourseItemBtn key={course.id} onClick={()=>onClick(course)} > 
                           <CourseItem 
                             key={course.id} 
