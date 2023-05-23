@@ -18,4 +18,27 @@ export interface ICourseData{
     routes:any;
 }
 
+export interface ICourseCommentData{
+    id:number;
+    courseId:number;
+    userId:number;
+    score:number;
+    content:string;
+    image:string;
+    createdAt:string;
+}
+
+export interface ICourseUserData{
+    id:number;
+    nickname:string;
+    profileImage:string|"";
+    locationCode:string;
+    signupStatus:string;
+
+}
+
 export type GetCourseListDto=ResponseDto<ICourseData[]>;
+
+export type GetCommentListDto=ResponseDto<ICourseCommentData[]>;
+
+export type GetCourseUserDto=ResponseDto<ICourseUserData>;
