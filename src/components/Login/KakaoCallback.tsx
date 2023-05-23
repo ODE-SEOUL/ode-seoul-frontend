@@ -38,7 +38,7 @@ const KakaoCallback = () => {
           };
 
           setUser(userInfo);
-          console.log('일단 로그인 성공');
+          // console.log('일단 로그인 성공');
 
           // 회원가입 상태 확인을 위한 GET 요청
           axios

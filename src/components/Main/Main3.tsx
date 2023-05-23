@@ -9,7 +9,7 @@ const Main3 = () => {
     [true, ...Array(5).fill(false)],
   );
 
-  console.log(categories);
+  // console.log(categories);
 
     return (
       <>
@@ -107,7 +107,7 @@ const Title = styled.div`
 `;
 
 const Img = styled.img`
-    objectFit: "cover"
+    objectFit: "cover";
     height: 400px;
 `;
 
