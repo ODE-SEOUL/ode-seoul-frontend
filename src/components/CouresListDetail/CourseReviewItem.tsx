@@ -36,9 +36,9 @@ export default function CourseReviewItem({userId,score,date,content,mainImg}:ICo
         
         <Container>
                 <ProfileContainer>
-                    <ProfileImg img={courseReviewUserData.profileImage}/>
+                    <ProfileImg img={courseReviewUserData?.profileImage}/>
                     <div className="mr-20"></div>
-                    <Text size={20} weight={500} color={"var(--color-black)"}>{courseReviewUserData.nickname}</Text>
+                    <Text size={20} weight={500} color={"var(--color-black)"}>{courseReviewUserData?.nickname}</Text>
 
                 </ProfileContainer>
                 <div className="mt-20"></div>
