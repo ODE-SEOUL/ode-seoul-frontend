@@ -9,6 +9,7 @@ import CourseDetailMap from "./Map";
 
 
 export default function CourseListDetail(){
+    console.log(process.env.KAKAO_MAP_KEY);
     const router=useRouter();
     const {name,distance,time,description,subway,accessway,image,lat,lng}=router.query;
     const mainImage:string=image as string;

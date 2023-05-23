@@ -9,6 +9,10 @@ const nextConfig = {
 
     return config;
   },
-}
+  env:{
+    KAKAO_MAP_KEY:process.env.KAKAO_MAP_KEY,
+  }
+  
+};
 
 module.exports = nextConfig
