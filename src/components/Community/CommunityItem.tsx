@@ -135,7 +135,7 @@ const CommunityItem = () => {
 
       <div style={{ justifyContent: "flex-end", display: "flex" }}>
         <Circle> 
-          <Link href="/recruit" style={{color: "var(-color--darkgreen)", fontWeight: 300}}>글쓰기</Link>
+          <Link href="community/recruit" style={{color: "var(-color--darkgreen)", fontWeight: 300}}>글쓰기</Link>
         </Circle>
       </div>
 
