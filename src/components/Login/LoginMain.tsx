@@ -5,7 +5,7 @@ import { css } from '@emotion/react';
 const LoginMain = () => {
 
     const handleLogin = () => {
-        console.log('kakao ready!')
+        // console.log('kakao ready!')
 
         const REDIRECT_URI =  process.env.NEXT_PUBLIC_REDIRECT_URI;
         const CLIENT_ID = process.env.NEXT_PUBLIC_CLIENT_ID
