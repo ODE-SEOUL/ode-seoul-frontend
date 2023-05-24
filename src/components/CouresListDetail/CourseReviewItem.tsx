@@ -1,6 +1,6 @@
 import { useQuery } from "react-query";
-import { getCourseUserInfo } from "@/src/apis/couresList";
-import { GetCourseUserInfoParms } from "@/src/apis/couresList";
+import { getCourseUserInfo } from "@/src/apis/courseList";
+import { GetCourseUserInfoParms } from "@/src/apis/courseList";
 import styled from "@emotion/styled";
 interface ICourseReviewItem{
     userId:number;
@@ -36,9 +36,9 @@ export default function CourseReviewItem({userId,score,date,content,mainImg}:ICo
         
         <Container>
                 <ProfileContainer>
-                    <ProfileImg img={courseReviewUserData.profileImage}/>
+                    <ProfileImg img={courseReviewUserData?.profileImage}/>
                     <div className="mr-20"></div>
-                    <Text size={20} weight={500} color={"var(--color-black)"}>{courseReviewUserData.nickname}</Text>
+                    <Text size={20} weight={500} color={"var(--color-black)"}>{courseReviewUserData?.nickname}</Text>
 
                 </ProfileContainer>
                 <div className="mt-20"></div>
@@ -92,7 +92,7 @@ const Text=styled.div<{size:number,weight:number,color:string}>`
     
 `;
 const MainImg=styled.div<{img:string}>`
-    width:280px;
+    width:380px;
     height:230px;
     content: url(${(props)=>props.img});
     border-radius: 10px;

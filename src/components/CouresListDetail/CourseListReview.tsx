@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
 import { useQuery } from "react-query";
-import { GetCourseListCommentParams, getCourseListComment } from "@/src/apis/couresList";
+import { GetCourseListCommentParams, getCourseListComment } from "@/src/apis/courseList";
 import CourseReviewItem from "./CourseReviewItem";
 interface ICourseListProps{
     id:number;
