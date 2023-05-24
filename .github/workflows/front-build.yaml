@@ -6,10 +6,10 @@ on:  # workflow 실행 조건
       - main # 메인 브랜치가 푸쉬된 경우
 
 jobs: # job 설정
-  react: # job id
+  build: # job id
     name: 리액트 build & deploy
     runs-on: ubuntu-latest
-    
+    steps:
       - name: checkout Github Action
         uses: actions/checkout@v2 # github actions 가상 환경에 해당 레포 소스 가져오기
 
