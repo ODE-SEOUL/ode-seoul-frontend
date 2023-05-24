@@ -12,7 +12,7 @@ import { atom, useRecoilValue } from 'recoil';
 import { postComments, deleteComments } from "@/src/apis/RecruitComment";
 import { deleteApplication } from "@/src/apis/application";
 
-interface Application {
+interface ApplicationData {
     id: number;
     member: {
       id: number;
@@ -22,11 +22,12 @@ interface Application {
       signupStatus: string;
     };
     createdAt: string;
-  };
+  }
 
-  interface Props {
-    applications: Application[];
-  };
+  interface CourseListDetailProps {
+    applications: ApplicationData[];
+    user: string;
+  }
 
   interface Comment {
     id: number;
@@ -58,8 +59,7 @@ export default function CourseListDetail(){
       };
 
     const CommentHandler = () => {
-        console.log(id, user.accessToken, Rcontent);
-        postComments(id, user.accessToken, Rcontent);
+        postComments(String(id), user.accessToken, Rcontent);
         setRContent("");
     };
 
@@ -82,7 +82,7 @@ export default function CourseListDetail(){
 
        useEffect(() => {
         // 데이터 가져오기
-        getReceuitDetail(id)
+        getReceuitDetail(Number(id))
           .then((response) => {
             const result = response.result;
             setResult(result);
@@ -170,7 +170,7 @@ export default function CourseListDetail(){
                                 date={String(scheduledAt)}
                                 time={String(scheduledAt)}
                                 dest={String(courseId)}
-                                user={String(host.nickname)}
+                                nickname={host.nickname} 
                                 id={Number(id)}
                                 />
                         </Modal>
@@ -183,7 +183,7 @@ export default function CourseListDetail(){
                             { applicationtoggle && 
                                 <div>
                                         <div>
-                                        {applications.map((application: Application) => (
+                                        {applications.map((application: ApplicationData) => (
                                         <Container3 key={application.id}>
                                             <div className="row" >
                                                 <div className="col-lg-4" >
