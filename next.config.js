@@ -9,6 +9,14 @@ const nextConfig = {
 
     return config;
   },
+  async rewrites() {
+    return [
+      {
+        source: '/:path*',
+        destination: `https://ode-seoul.fly.dev/:path*`,
+      },
+    ];
+  },
   env:{
     KAKAO_MAP_KEY:process.env.KAKAO_MAP_KEY,
   }
