@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
 import { useRouter } from "next/dist/client/router";
 import Navbar from '../../common/Nav/Nav';
 import styled from '@emotion/styled';
@@ -6,13 +6,30 @@ import Footer  from "../../common/Footer/Footer";
 import Modal from "../../../modal/DefaultModal";
 import useModal from '../../../hooks/useModal';
 import Application from './Application';
+import { getReceuitDetail } from '@/src/apis/recruitDetail';
+
+interface Application {
+    id: number;
+    member: {
+      id: number;
+      nickname: string;
+      profileImage: string;
+      locationCode: string | null;
+      signupStatus: string;
+    };
+    createdAt: string;
+  };
+
+  interface Props {
+    applications: Application[];
+  };
        
 export default function CourseListDetail(){
 
-    // const [toggle, setToggle] = useState(false);
-    // const handlerToggle = () => {
-    //     setToggle(!toggle);
-    // };
+    const [applicationtoggle, setApplicationToggle] = useState(false);
+    const handlerToggle = () => {
+        setApplicationToggle(!applicationtoggle);
+    };
     
     const { isShowing, toggle } = useModal();
     const handleClick = () => {
@@ -22,9 +39,30 @@ export default function CourseListDetail(){
 
     const router=useRouter();
     const {courseId,category,title,content,image,maxPeople,scheduledAt,
-        currentPeople,progressStatus, createdAt, id, nickname, profileImage, locationCode, signupStatus   }=router.query;
+        currentPeople,progressStatus, createdAt, id  }=router.query;
 
-    const imageSrc = Array.isArray(image) ? image[0] : image;
+       //detail
+       const [result, setResult] = useState(null); // 결과를 저장할 상태
+
+       useEffect(() => {
+        // 데이터 가져오기
+        getReceuitDetail(id)
+          .then((response) => {
+            const result = response.result;
+            setResult(result); 
+          })
+          .catch((error) => {
+            console.error(error);
+          });
+      }, [id]); 
+
+      const { host, comments, applications } = result || {};
+
+      const imageSrc = Array.isArray(image) ? image[0] : image;
+
+      if (!result) {
+        return null; // 데이터가 로딩 중인 경우에는 null을 반환하여 아무것도 렌더링하지 않음
+      }
 
         return(
         <>
@@ -53,10 +91,10 @@ export default function CourseListDetail(){
                         <Container>
                             <div className="row mb-150">
                                 <div className="col-lg-4">
-                                    <PImg></PImg>
+                                    <PImg src={host.profileImage}></PImg>
                                 </div>
                                 <div className="col-lg-8">
-                                    <StyledSub>{nickname}nickname</StyledSub>
+                                    <StyledTitle2>{host.nickname}</StyledTitle2>
                                     <StyledSub>모임장</StyledSub>
                                 </div>
                             </div>
@@ -69,19 +107,34 @@ export default function CourseListDetail(){
                                 date={String(scheduledAt)}
                                 time={String(scheduledAt)}
                                 dest={String(courseId)}
+                                user={host.nickname}
+                                id={Number(id)}
                                 />
                         </Modal>
                         )}
                         </Container>
                         <Container2 className="row">
                             <Box1 className="col-lg-8" >함께하는 사람</Box1>
-                            <Angle className="col-lg-4"
+                            <Angle onClick={handlerToggle} className="col-lg-4"
                               ></Angle>
-                            { toggle && 
+                            { applicationtoggle && 
                                 <div>
-                                    <Container3></Container3>
-                                    <Container3></Container3>
-                                    <Container3></Container3>
+                                        <div>
+                                        {applications.map((application: Application) => (
+                                        <Container3 key={application.id}>
+                                            <div className="row" >
+                                                <div className="col-lg-4" >
+                                                    <PImg2 src={application.member.profileImage} alt="Profile" />
+                                                </div>
+                                                <div className="col-lg-8">
+                                                    <StyledTitle2>{application.member.nickname} </StyledTitle2>
+                                                    <StyledSub>{application.createdAt}</StyledSub>
+                                                </div>
+                                            </div>
+                                           
+                                        </Container3>
+                                        ))}
+                                    </div>
                                 </div>
                             }
                         </Container2>
@@ -126,6 +179,12 @@ const StyledTitle= styled.div`
     font-size: 30px;
     margin-bottom: 20px;
 `;
+const StyledTitle2= styled.div`
+    font-weight: 400;
+    font-size: 25px;
+    line-height: 40px;
+    margin-bottom: 10px;
+`;
 const StyledSubTitle= styled.div`
     font-weight: 300;
     font-size: 20px;
@@ -150,6 +209,16 @@ const PImg= styled.img`
     height: 80px;
     background: var(--color-green);
     border-radius: 100%;
+    object-fit: cover;
+`;
+const PImg2= styled.img`
+    width: 60px;
+    height: 60px;
+    background: var(--color-green);
+    border-radius: 100%;
+    object-fit: cover;
+    margin: 5px;
+    margin-left: 20px;
 `;
 const Container = styled.div`
    

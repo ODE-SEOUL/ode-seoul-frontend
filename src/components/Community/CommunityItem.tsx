@@ -62,11 +62,7 @@ const CommunityItem = () => {
        currentPeople:recruit.currentPeople,
        progressStatus:recruit.progressStatus,
        createdAt:recruit.createdAt,
-       id:recruit.id, //hostId
-       nickname:recruit.nickname,
-       profileImage:recruit.profileImage,
-       locationCode:recruit.locationCode,
-       signupStatus:recruit.signupStatus,
+       id:recruit.id,
       },
 
        },
@@ -168,9 +164,12 @@ const CommunityItem = () => {
                 maxPeople,
                 progressStatus,
                 createdAt,
+
                 //TODO: 타입 확장 필요
                 host: { hostId, nickname, profileImage, locationCode, signupStatus },
               } = item;
+
+              console.log(hostId, nickname, profileImage, locationCode, signupStatus);
               return (
                 <div key={id} className="col-lg-3 col-sm-12">
                   <Card onClick={()=>DetailHandler(item)}>

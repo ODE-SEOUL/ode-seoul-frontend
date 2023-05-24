@@ -1,14 +1,28 @@
 import React from 'react';
 import styled from '@emotion/styled';
+import { postApplication } from '@/src/apis/application';
+import { userAtom } from '../../../states/UserAtom';
+import { atom, useRecoilValue } from 'recoil';
 
 export interface Props {
+    id: number;
     title: string;
     date: string;
     time: string;
     dest: string;
+    nickname: string;
   }
 
-export const Application = ({ title, date, time, dest }: Props) => {
+
+export const Application = ({ id, title, date, time, dest, nickname }: Props) => {
+
+    const user = useRecoilValue(userAtom);
+    console.log(user);
+    const handleClick = () => {
+        postApplication(id, user.accessToken);
+        alert("신청되었습니다!")
+      };
+
   return (
     <Wrapper>
         <Title>{title}</Title>
@@ -30,7 +44,13 @@ export const Application = ({ title, date, time, dest }: Props) => {
                 {dest}
             </div>
         </div>
-       
+        <div className='row'>
+            <SubTitle className='col-lg-4'>신청자 정보</SubTitle>
+            <div className='col-lg-8'>
+                {nickname}
+            </div>
+        </div>
+        <StyledButton onClick={handleClick}>신청하기</StyledButton>  
     </Wrapper>
   );
 };
@@ -57,4 +77,20 @@ const SubTitle = styled.div`
 
 const Wrapper = styled.div`
     width: 80%;
+`;
+
+const StyledButton = styled.div`
+    padding: 10px;
+    width: 80%;
+    margin: auto;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    line-height: 40px;
+    text-align: center;
+    color: #fff;
+    height: 40px;
+    background: var(--color-green);
+
+    border-radius: 8px;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
 `;
