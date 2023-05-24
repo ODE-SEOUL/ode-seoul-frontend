@@ -7,6 +7,9 @@ import Modal from "../../../modal/DefaultModal";
 import useModal from '../../../hooks/useModal';
 import Application from './Application';
 import { getReceuitDetail } from '@/src/apis/recruitDetail';
+import { userAtom } from '../../../states/UserAtom';
+import { atom, useRecoilValue } from 'recoil';
+import { postComments } from "@/src/apis/RecruitComment";
 
 interface Application {
     id: number;
@@ -23,8 +26,38 @@ interface Application {
   interface Props {
     applications: Application[];
   };
+
+  interface Comment {
+    id: number;
+    user: {
+      id: number;
+      nickname: string;
+      profileImage: string;
+      locationCode: string | null;
+      signupStatus: string;
+    };
+    content: string;
+    createdAt: string;
+  };
+
+
        
 export default function CourseListDetail(){
+
+    const [Rcontent, setRContent] = useState('');
+
+    const user = useRecoilValue(userAtom);
+
+    const handleCommentChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const { value } = e.target;
+        console.log(value);
+        setRContent(value);
+      };
+
+    const CommentHandler = () => {
+        console.log(id, user.accessToken, Rcontent);
+        postComments(id, user.accessToken, Rcontent);
+    };
 
     const [applicationtoggle, setApplicationToggle] = useState(false);
     const handlerToggle = () => {
@@ -84,8 +117,35 @@ export default function CourseListDetail(){
                         <Border></Border>
                         <StyledInput
                             type="text"
-                            placeholder="댓글을 입력해주세요.
-                        "></StyledInput>
+                            placeholder="댓글을 입력해주세요."
+                            value={Rcontent}
+                            onChange={handleCommentChange}
+                        ></StyledInput>
+                        <StyledLight onClick={CommentHandler}>등록하기</StyledLight>
+                        <div>
+                                        {comments.map((comment: Comment) => (
+                                        <Container4 key={comment.id}>
+                                            <div className="row" >
+                                                <div className="col-lg-2" >
+                                                    <PImg2 src={comment.user.profileImage} alt="Profile" />
+                                                </div>
+                                                <div className="col-lg-10">
+                                                    <StyledTitle2>{comment.user.nickname} </StyledTitle2>
+                                                    <StyledSub className="row">
+                                                        <div className="col-lg-12">{comment.content}</div>
+                                                    </StyledSub>
+                                                    <div className="row">
+                                                        <div className="col-lg-10"></div>
+                                                        <Small className="col-lg-2">{comment.createdAt}</Small >
+                                                    </div>
+                                                    
+                                                </div>
+                                            </div>
+                                           
+                                        </Container4>
+                                        ))}
+                                        </div>
+
                     </div>
                     <div className="col-lg-4">
                         <Container>
@@ -107,7 +167,7 @@ export default function CourseListDetail(){
                                 date={String(scheduledAt)}
                                 time={String(scheduledAt)}
                                 dest={String(courseId)}
-                                user={host.nickname}
+                                user={String(host.nickname)}
                                 id={Number(id)}
                                 />
                         </Modal>
@@ -116,7 +176,7 @@ export default function CourseListDetail(){
                         <Container2 className="row">
                             <Box1 className="col-lg-8" >함께하는 사람</Box1>
                             <Angle onClick={handlerToggle} className="col-lg-4"
-                              ></Angle>
+                              >{currentPeople}/{maxPeople}</Angle>
                             { applicationtoggle && 
                                 <div>
                                         <div>
@@ -134,7 +194,7 @@ export default function CourseListDetail(){
                                            
                                         </Container3>
                                         ))}
-                                    </div>
+                                        </div>
                                 </div>
                             }
                         </Container2>
@@ -161,6 +221,11 @@ const Border = styled.hr`
     border: 1px solid #ccc;
 `;
 
+const Small = styled.div`
+    font-weight: 100;
+    font-size: 8px;
+    color: #ccc;
+`;
 
 const StyledCategory= styled.div`
     width: 100px;
@@ -172,6 +237,7 @@ const StyledCategory= styled.div`
     text-align: center;
     margin-bottom: 20px;
     margin-right: 20px;
+    
 `;
 
 const StyledTitle= styled.div`
@@ -191,6 +257,17 @@ const StyledSubTitle= styled.div`
     margin: 50px 0px;
     width: 90%;
 `;
+
+const StyledLight = styled.div`
+    width: 90%;
+    text-align: right;
+    border-radius: 5px;
+    padding: 10px;
+    font-size: 10px;
+    margin-bottom: 0.8rem;
+
+`;
+
 
 const StyledSub= styled.div`
     font-weight: 100;
@@ -252,6 +329,12 @@ const Container3 = styled.div`
     border-top: none;
 `;
 
+const Container4 = styled.div`
+    height: auto;
+    padding: 0.2rem 0.5rem;
+    width: 90%;
+    border-bottom: 1px solid #ccc;
+`;
 
 const StyledButton = styled.div`
     padding: 10px;
@@ -286,7 +369,7 @@ const Angle= styled.button`
 
 const StyledInput = styled.input`
   padding: 1.3rem 0.5rem;
-  margin-bottom: 0.5rem;
+  
   border: 1px solid #ccc;
   width: 90%;
   border-radius: 5px;
