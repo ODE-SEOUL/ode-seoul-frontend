@@ -8,19 +8,25 @@ on:  # workflow 실행 조건
 jobs: # job 설정
   react: # job id
     name: 리액트 build & deploy
-    runs-on: ubuntu-20.04
-    defaults:
-      run:
-        working-directory: ./fe # 기본 워킹 디렉토리 설정
-    steps: 
+    runs-on: ubuntu-latest
+    
       - name: checkout Github Action
-        uses: actions/checkout@v3 # github actions 가상 환경에 해당 레포 소스 가져오기
-      
-      - name: install npm dependencies
-        run: npm install
+        uses: actions/checkout@v2 # github actions 가상 환경에 해당 레포 소스 가져오기
 
-      - name: React build
-        run: npm run build
+      - name: Check Node v            # Node v 확인
+        run: node -v
+
+      - name: Install Dependencies    # 의존 파일 설치
+        run: yarn install --frozen-lockfile
+
+      - name: Build                   # React Build
+        run: yarn build
+      
+      # - name: install npm dependencies
+      #   run: npm install
+
+      # - name: React build
+      #   run: npm run build
 
       # aws user 연결
       - name: Configure AWS credentials 
