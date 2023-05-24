@@ -13,20 +13,20 @@ jobs: # job 설정
       - name: checkout Github Action
         uses: actions/checkout@v2 # github actions 가상 환경에 해당 레포 소스 가져오기
 
-      - name: Check Node v            # Node v 확인
-        run: node -v
+      # - name: Check Node v            # Node v 확인
+      #   run: node -v
 
-      - name: Install Dependencies    # 의존 파일 설치
-        run: yarn install --frozen-lockfile
+      # - name: Install Dependencies    # 의존 파일 설치
+      #   run: yarn install --frozen-lockfile
 
-      - name: Build                   # React Build
-        run: yarn build
+      # - name: Build                   # React Build
+      #   run: yarn build
       
-      # - name: install npm dependencies
-      #   run: npm install
+      - name: install npm dependencies
+        run: npm install
 
-      # - name: React build
-      #   run: npm run build
+      - name: React build
+        run: npm run build
 
       # aws user 연결
       - name: Configure AWS credentials 
