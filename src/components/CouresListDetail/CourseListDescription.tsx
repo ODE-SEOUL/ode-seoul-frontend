@@ -4,7 +4,7 @@ import Navbar from '../common/Nav/Nav';
 import styled from "@emotion/styled";
 import DistanceIcon from '../../../public/assets/img/courseDetailDistance.svg';
 import TimeIcon from '../../../public/assets/img/courseDetailTime.svg';
-import SubwayIcon from '../../../public/assets/img/courseDetailSubway.svg';
+//import SubwayIcon from '../../../public/assets/img/CourseDetailSubway.svg';
 import AccessIcon from '../../../public/assets/img/courseDetailAccess.svg';
 import { useState } from "react";
 
@@ -59,7 +59,7 @@ export default function CourseListDescription({name,distance,time,description,su
                         <Spacing10/>
                         <CourseDetailText>{time}</CourseDetailText>
                         <Spacing20/>
-                        <SubwayIcon/>
+                        
                         <Spacing10/>
                         <CourseDetailText>{subway}</CourseDetailText>
                         
