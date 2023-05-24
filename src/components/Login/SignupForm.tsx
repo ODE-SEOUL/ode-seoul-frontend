@@ -50,7 +50,7 @@ const SignupForm = ({ onSuccess }) => {
   const user = useRecoilValue(userAtom);
 
   const handleSignup = () => {
-    console.log(nickname, locationCode )
+    // console.log(nickname, locationCode )
     const requestData = {
       nickname: nickname,
       locationCode: locationCode,
@@ -66,9 +66,9 @@ const SignupForm = ({ onSuccess }) => {
       .post("https://ode-seoul.fly.dev/auth/accounts/signup", requestData, config)
       .then((res) => {
         if (res.data.code === 200) {
-          console.log('회원가입 성공');
+        //   console.log('회원가입 성공');
           onSuccess();
-          console.log(user);
+        //   console.log(user);
           router.push('/');
         } else {
           // TODO: 회원가입 실패 처리

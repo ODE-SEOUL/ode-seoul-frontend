@@ -1,48 +1,69 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from '@emotion/styled';
+import { atom, useSetRecoilState, useRecoilState, useRecoilValue } from "recoil";
+import { RecruitAtom, RecruitInfo } from '../../recoil/RecruitAtom';
+  
+enum Category {
+    COM_ANIMAL = '#반려동물',
+    COM_HOUSE = '#주부',
+    COM_OFFICE = '#직장인',
+    COM_NEIGHBOR = '#이웃주민',
+    COM_EXERCISE = '#운동',
+    COM_PHOTO = '#사진',
+    COM_EXPER = '#체험',
+  }
 
-const CommunityCategory = () => {
-  const [selectedCategory, setSelectedCategory] = useState<number>(1);
+  const selectedCategoryState = atom<Category | null>({
+    key: 'selectedCategoryState',
+    default: null,
+  });
 
-  const handleCategoryClick = (categoryId: number) => {
-    setSelectedCategory(categoryId);
+  const CommunityCategory = () => {
+    const setRecruitCategory = useSetRecoilState(RecruitAtom);
+    const [selectedCategory, setSelectedCategory] = useRecoilState(selectedCategoryState);
+  
+    const handleCategoryClick = (category: Category) => {
+      setSelectedCategory(category);
+      setRecruitCategory((prevRecruit) => {
+        const categoryValue = Object.keys(Category).find(key => Category[key] === category);
+        return {
+          ...prevRecruit,
+          category: categoryValue || '',
+        };
+      });
+    };
+  
+    const recruit = useRecoilValue(RecruitAtom);
+  
+    // useEffect(() => {
+    //   console.log(recruit);
+    // }, [recruit]);
+  
+  
+    return (
+      <>
+        <div style={{ background: "white" }}>
+          <FlexContainer>
+            {Object.values(Category).map((category: Category, index: number) => {
+              const colorClass = `color-${index + 1}`;
+              return (
+                <Set key={index} >
+                  <CircleButton
+                    isSelected={selectedCategory === category}
+                    onClick={() => handleCategoryClick(category)}
+                    className={colorClass}
+                  />
+                  <div>{category}</div>
+                </Set>
+              );
+            })}
+          </FlexContainer>
+        </div>
+      </>
+    );
   };
-
-  const category_list: string[] = [
-    '#반려동물',
-    '#주부',
-    '#직장인',
-    '#이웃주민',
-    '#운동',
-    '#사진',
-    '#체험',
-  ];
-
-  return (
-    <>
-      <div style={{ background: "white" }}>
-        <FlexContainer>
-          {category_list.map((category: string, index: number) => {
-            const colorClass = `color-${index + 1}`;
-            return (
-              <Set key={index} >
-                <CircleButton
-                  isSelected={selectedCategory === index + 1}
-                  onClick={() => handleCategoryClick(index + 1)}
-                  className={colorClass}
-                />
-                <div>{category}</div>
-              </Set>
-            );
-          })}
-        </FlexContainer>
-      </div>
-    </>
-    
-  );
-};
-
-export default CommunityCategory;
+  
+  export default CommunityCategory;
 
 const FlexContainer = styled.div`
   display: flex;

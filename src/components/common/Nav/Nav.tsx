@@ -31,15 +31,15 @@ const Navbar = () => {
     setUser(null);
   };
 
-  useEffect(() => {
-    console.log(user);
+  // useEffect(() => {
+  //   console.log(user);
 
-    if (user) {
-      console.log('마이페이지');
-    } else {
-      console.log('로그인');
-    }
-  }, [user]);
+  //   if (user) {
+  //     console.log('마이페이지');
+  //   } else {
+  //     console.log('로그인');
+  //   }
+  // }, [user]);
 
   return (
     <NavbarContainer>
@@ -70,7 +70,7 @@ const Navbar = () => {
             <>
               <li>
                 <div onClick={handleClick}>
-                  <img src="/assets/img/login_lock.svg" alt="login_lock" width={20} height={20} className="mr-10" />
+                  <Image src="/assets/img/login_lock.svg" alt="login_lock" width={20} height={20} className="mr-10" />
                   로그인
                 </div>
                 {isShowing && (
@@ -134,6 +134,9 @@ const Logo = styled.div`
   img {
     width: 150px;
   }
+`;
+
+const Image = styled.img`
 `;
 
 const NavbarLinks = styled.div`
