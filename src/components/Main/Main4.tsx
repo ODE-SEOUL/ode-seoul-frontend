@@ -37,7 +37,7 @@ const Main2 = () => {
 
   return (
     <>
-      <FlexContainer>
+      {/* <FlexContainer>
         <Title>
         <span>우리 같이 생태문화길을 걸어요 </span>
         </Title>
@@ -86,7 +86,7 @@ const Main2 = () => {
             })}
           </div>
         </div>
-      </FlexContainer>
+      </FlexContainer> */}
     </>
   );
 };
