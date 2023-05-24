@@ -9,9 +9,9 @@ import CommunityCategory from '../CommunityCategory';
 import Footer from '../../common/Footer/Footer';
 import UploadImg from './UploadImg';
 import { atom, useRecoilValue, useRecoilState, useSetRecoilState } from 'recoil';
-import { RecruitAtom, RecruitInfo } from '../../../recoil/RecruitAtom';
+import { RecruitAtom, RecruitInfo } from '../../../states/RecruitAtom';
 import { uploadImage } from '../../../apis/uploadImg';
-import { userAtom } from '../../../recoil/UserAtom';
+import { userAtom } from '../../../states/UserAtom';
 import axios from 'axios';
 import { postRecruit } from '../../../apis/recruit';
 

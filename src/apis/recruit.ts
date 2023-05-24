@@ -1,6 +1,6 @@
 import { postAsync } from './common';
 import { PostRecruitDatatDto } from '../types/recruits';
-import { RecruitInfo } from '../recoil/RecruitAtom';
+import { RecruitInfo } from '../states/RecruitAtom';
 
 export const postRecruit = async (recruit: RecruitInfo, accessToken: string) => {
   try {

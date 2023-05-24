@@ -2,7 +2,7 @@ import { useQuery, QueryFunction } from 'react-query';
 import { getCourseList } from '../../../apis/courseList';
 import { GetCourseListDto, ICourseData } from '../../../types/courseList';
 import styled from '@emotion/styled';
-import { RecruitAtom, RecruitInfo } from '../../../recoil/RecruitAtom';
+import { RecruitAtom, RecruitInfo } from '../../../states/RecruitAtom';
 import { atom, useRecoilValue, useRecoilState, useSetRecoilState } from 'recoil';
 import { useRouter } from 'next/dist/client/router';
 import { IRecruitData } from '../../../types/recruits';
