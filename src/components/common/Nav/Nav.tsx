@@ -5,7 +5,8 @@ import Link from 'next/link';
 import useModal from '../../../hooks/useModal';
 import Modal from '../../../modal/DefaultModal';
 import LoginMain from '../../Login/LoginMain';
-import { userAtom } from '../../../recoil/userAtom';
+import { userAtom } from '@/src/states/UserAtom';
+import Image from 'next/image';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser } from "@fortawesome/free-solid-svg-icons";
 import SignupForm from '../../Login/SignupForm';
@@ -44,7 +45,7 @@ const Navbar = () => {
     <NavbarContainer>
       <Logo>
         <Link href="/">
-          <Image src="../assets/img/logo.svg" alt="logo" />
+        <Image src='../assets/img/logo.svg' width={150} height={100} alt="nav"></Image>
         </Link>
       </Logo>
       <NavbarLinks>

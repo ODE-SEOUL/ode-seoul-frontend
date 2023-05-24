@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useRecoilState, useRecoilValue } from 'recoil';
-import { userAtom } from '../../recoil/userAtom';
+import { userAtom } from '../../states/UserAtom';
 import { useRouter } from 'next/router';
 import SignupForm from './SignupForm';
 

@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useRecoilState, useRecoilValue } from 'recoil';
-import { userAtom } from '../../recoil/userAtom';
+import { userAtom } from '../../states/UserAtom';
 import { useRouter } from 'next/router';
 import styled from '@emotion/styled';
 import Modal from '../../modal/DefaultModal';

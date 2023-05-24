@@ -10,6 +10,7 @@ import { GetRecruitListDto, IRecruitListData, RecruitItem, HostItem } from '../.
 import { useRouter } from 'next/dist/client/router';
 import { IRecruitData } from '../../types/recruits';
 
+<<<<<<< HEAD
 
 // interface Category {
 //   id : number;
@@ -31,6 +32,21 @@ enum Category {
   COM_PHOTO = '#사진',
   COM_EXPER = '#체험',
 }
+=======
+interface Category {
+  id: number; 
+  category_id: number;
+  category: string;
+  writer: string;
+  title: string;
+  time: string;
+  dest: string;
+  img: string;
+
+}
+
+
+>>>>>>> 786aa3aa6f076095833d56c514b4398c50956915
 const CommunityItem = () => {
 
    //detail
