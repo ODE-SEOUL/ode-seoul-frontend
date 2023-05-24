@@ -12,7 +12,7 @@ const nextConfig = {
   async rewrites() {
     return [
       {
-        source: '/:path*',
+        source: '/api/:path*',
         destination: `https://ode-seoul.fly.dev/:path*`,
       },
     ];

@@ -10,7 +10,7 @@ export const postComments = async (id: string, accessToken: string, contents: st
     };
 
     const response = await postAsync<any, Contents>(
-      `/recruits/${id}/comments`,
+      `/api/recruits/${id}/comments`,
       comment,
       {
         headers: {
