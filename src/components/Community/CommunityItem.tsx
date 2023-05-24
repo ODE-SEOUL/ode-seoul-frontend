@@ -8,7 +8,7 @@ import { useQuery, QueryFunction } from 'react-query';
 import { getReceuitList } from '../../apis/recruitList';
 import { GetRecruitListDto, IRecruitListData, RecruitItem, HostItem } from '../../types/recruitList';
 import { useRouter } from 'next/dist/client/router';
-import { IRecruitData,  } from '../../types/recruits';
+import { IRecruitData } from '../../types/recruits';
 
 
 // interface Category {
