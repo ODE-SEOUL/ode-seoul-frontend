@@ -9,7 +9,7 @@ import Application from './Application';
 import { getReceuitDetail } from '@/src/apis/recruitDetail';
 import { userAtom } from '../../../states/UserAtom';
 import { atom, useRecoilValue } from 'recoil';
-import { postComments } from "@/src/apis/RecruitComment";
+import { postComments, deleteComments } from "@/src/apis/RecruitComment";
 
 interface Application {
     id: number;
@@ -69,7 +69,6 @@ export default function CourseListDetail(){
     const handleClick = () => {
         toggle();
       };
-
 
     const router=useRouter();
     const {courseId,category,title,content,image,maxPeople,scheduledAt,
