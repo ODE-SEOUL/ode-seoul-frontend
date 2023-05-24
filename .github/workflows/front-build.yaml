@@ -41,8 +41,7 @@ jobs: # job 설정
         env:
           BUCKET_NAME: ${{ secrets.AWS_S3_BUCKET_NAME}}
         run: |
-          aws s3 sync \
-            ./build s3://$BUCKET_NAME
+          aws s3 cp --recursive --region ap-northeast-2 build s3://$BUCKET_NAME
         ##
 
       # 업로드한 s3 파일을 각 CDN 캐시 무효화하여 리프레시 하기
