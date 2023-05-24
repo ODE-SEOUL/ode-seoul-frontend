@@ -6,7 +6,6 @@ import useModal from '../../../hooks/useModal';
 import Modal from '../../../modal/DefaultModal';
 import LoginMain from '../../Login/LoginMain';
 import { userAtom } from '@/src/states/UserAtom';
-import Image from 'next/image';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser } from "@fortawesome/free-solid-svg-icons";
 import SignupForm from '../../Login/SignupForm';

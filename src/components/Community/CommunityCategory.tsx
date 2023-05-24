@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import styled from '@emotion/styled';
 import { atom, useSetRecoilState, useRecoilState, useRecoilValue } from "recoil";
-import { RecruitAtom, RecruitInfo } from '../../recoil/RecruitAtom';
+import { RecruitAtom, RecruitInfo } from '../../states/RecruitAtom';
   
 enum Category {
     COM_ANIMAL = '#반려동물',
