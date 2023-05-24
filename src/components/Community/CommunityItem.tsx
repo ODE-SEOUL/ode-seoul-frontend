@@ -6,9 +6,17 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAngleRight } from "@fortawesome/free-solid-svg-icons";
 
 interface Category {
+  id: number; 
   category_id: number;
   category: string;
+  writer: string;
+  title: string;
+  time: string;
+  dest: string;
+  img: string;
+
 }
+
 
 const CommunityItem = () => {
   const [selectedCategory, setSelectedCategory] = useState<number>(1);
@@ -65,7 +73,7 @@ const CommunityItem = () => {
 
         <div className='row col-lg-12 mb-100'>
           <div className="row">
-            {filteredItems.slice(0, 4).map((item: Category) => {
+            {filteredItems.map((item: Category) => {
               const { id, img, title, writer, time, dest, category, category_id } = item;
               return (
                 <div key={id} className="col-lg-3 col-sm-12">
