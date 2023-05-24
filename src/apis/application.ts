@@ -4,7 +4,7 @@ import { postAsync, deleteAsync } from './common';
 export const postApplication = async (id: number, accessToken: string) => {
   try {
     const response = await postAsync<any, null>(
-      `/recruits/${id}/applications`,
+      `/api/recruits/${id}/applications`,
       null,
       {
         headers: {
@@ -33,7 +33,7 @@ interface DeleteResponse {
   export async function deleteApplication(ApplicationId: number, accessToken: string): Promise<DeleteResponse> {
     try {
       const response = await deleteAsync<DeleteResponse, void>(
-        `/recruits/${ApplicationId}/applications/me`,
+        `/api/recruits/${ApplicationId}/applications/me`,
         {
           headers: {
             "Content-Type": "application/json",

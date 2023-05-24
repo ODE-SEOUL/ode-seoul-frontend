@@ -11,7 +11,15 @@ interface MapProps {
 
 export default function CourseDetailMap({latitude, longitude ,routes}: MapProps){
     //const routes=courseData?.slice(1,2)[0].routes[0];
-    const routesArr:number[][]=(JSON.parse(routes));
+  let routesArr:number[][];
+   try{
+      routesArr=(JSON.parse(routes));
+
+   }catch(error){
+      routesArr=[[37,123]]
+   }
+   
+    
     //
     useEffect(() => {
         const mapScript = document.createElement("script");
