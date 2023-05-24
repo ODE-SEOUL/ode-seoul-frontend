@@ -30,6 +30,7 @@ export default function CourseListReview({id,name}:ICourseListProps){
         </FlexBox>
         <div className="mt-30"></div>
         <CommentContainer>
+            
             {courseReviewData?.map((item)=>
                 <CourseReviewItem key={item.id} userId={item.userId} score={item.score}
                 date={item.createdAt} content={item.content} mainImg={item.image}/>
@@ -54,7 +55,9 @@ const FlexBox=styled.div`
 
 const CommentContainer=styled.div`
     background-color: #F9F9F9;
-    width:100%;
-    height: 100%;
+    width:35rem;
+    height: 1300px;
     border-radius: 10px;
+    padding-top: 10px;
+    padding-left: 10px;
 `;

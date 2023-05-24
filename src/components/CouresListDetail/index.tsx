@@ -59,18 +59,19 @@ type CourseMainImageProps={
 }
 const MainContainer=styled.div`
     display: grid;
-    grid-template-columns: 4fr 3fr;
-    
+    grid-template-columns: 3fr 2fr;
+    margin-right: 80px;
+    margin-left: 80px !important;
 `
 
 const CommentContainer=styled.div`
     //background-color: aliceblue;
-    margin-right: 80px;
+    //margin-right: 80px;
     margin-top: 80px;
     
 `;
 const Container=styled.div`
-    margin-left: 80px;
+    //margin-left: 80px;
    
     
 `;
