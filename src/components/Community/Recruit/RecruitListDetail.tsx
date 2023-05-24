@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
 import { useRouter } from "next/dist/client/router";
 import Navbar from '../../common/Nav/Nav';
 import styled from '@emotion/styled';
@@ -6,29 +6,102 @@ import Footer  from "../../common/Footer/Footer";
 import Modal from "../../../modal/DefaultModal";
 import useModal from '../../../hooks/useModal';
 import Application from './Application';
+import { getReceuitDetail } from '@/src/apis/recruitDetail';
+import { userAtom } from '../../../states/UserAtom';
+import { atom, useRecoilValue } from 'recoil';
+import { postComments, deleteComments } from "@/src/apis/RecruitComment";
+import { deleteApplication } from "@/src/apis/application";
+
+interface ApplicationData {
+    id: number;
+    member: {
+      id: number;
+      nickname: string;
+      profileImage: string;
+      locationCode: string | null;
+      signupStatus: string;
+    };
+    createdAt: string;
+  }
+
+  interface CourseListDetailProps {
+    applications: ApplicationData[];
+    user: string;
+  }
+
+  interface Comment {
+    id: number;
+    user: {
+      id: number;
+      nickname: string;
+      profileImage: string;
+      locationCode: string | null;
+      signupStatus: string;
+    };
+    content: string;
+    createdAt: string;
+  };
+
+
        
 export default function CourseListDetail(){
 
-    // const [toggle, setToggle] = useState(false);
-    // const handlerToggle = () => {
-    //     setToggle(!toggle);
-    // };
+    
+
+    const [Rcontent, setRContent] = useState('');
+
+    const user = useRecoilValue(userAtom);
+
+    const handleCommentChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const { value } = e.target;
+        console.log(value);
+        setRContent(value);
+      };
+
+    const CommentHandler = () => {
+        postComments(String(id), user.accessToken, Rcontent);
+        setRContent("");
+    };
+
+    const [applicationtoggle, setApplicationToggle] = useState(false);
+    const handlerToggle = () => {
+        setApplicationToggle(!applicationtoggle);
+    };
     
     const { isShowing, toggle } = useModal();
     const handleClick = () => {
         toggle();
       };
 
-
     const router=useRouter();
     const {courseId,category,title,content,image,maxPeople,scheduledAt,
-        currentPeople,progressStatus, createdAt, id, nickname, profileImage, locationCode, signupStatus   }=router.query;
+        currentPeople,progressStatus, createdAt, id  }=router.query;
 
-    const imageSrc = Array.isArray(image) ? image[0] : image;
+       //detail
+       const [result, setResult] = useState(null); // 결과를 저장할 상태
+
+       useEffect(() => {
+        // 데이터 가져오기
+        getReceuitDetail(Number(id))
+          .then((response) => {
+            const result = response.result;
+            setResult(result);
+          })
+          .catch((error) => {
+            console.error(error);
+          });
+     }, [id, result]); 
+
+      const { host, comments, applications } = result || {};
+
+      const imageSrc = Array.isArray(image) ? image[0] : image;
+
+      if (!result) {
+        return null; // 데이터가 로딩 중인 경우에는 null을 반환하여 아무것도 렌더링하지 않음
+      }
 
         return(
         <>
-            <Navbar/>
             <Wrapper >
                 <div className="row">
                     <StyledCategory>{category}</StyledCategory> 
@@ -46,17 +119,44 @@ export default function CourseListDetail(){
                         <Border></Border>
                         <StyledInput
                             type="text"
-                            placeholder="댓글을 입력해주세요.
-                        "></StyledInput>
+                            placeholder="댓글을 입력해주세요."
+                            value={Rcontent}
+                            onChange={handleCommentChange}
+                        ></StyledInput>
+                        <StyledLight onClick={CommentHandler}>등록하기</StyledLight>
+                        <div>
+                                        {comments.map((comment: Comment) => (
+                                        <Container4 key={comment.id}>
+                                            <div className="row" >
+                                                <div className="col-lg-2" >
+                                                    <PImg2 src={comment.user.profileImage} alt="Profile" />
+                                                </div>
+                                                <div className="col-lg-10">
+                                                    <StyledTitle2>{comment.user.nickname} </StyledTitle2>
+                                                    <StyledSub className="row">
+                                                        <div className="col-lg-12">{comment.content}</div>
+                                                    </StyledSub>
+                                                    <div className="row">
+                                                        <div className="col-lg-10"></div>
+                                                        <Small className="col-lg-2">{comment.createdAt}</Small >
+                                                    </div>
+                                                    
+                                                </div>
+                                            </div>
+                                           
+                                        </Container4>
+                                        ))}
+                                        </div>
+
                     </div>
                     <div className="col-lg-4">
                         <Container>
                             <div className="row mb-150">
                                 <div className="col-lg-4">
-                                    <PImg></PImg>
+                                    <PImg src={host.profileImage}></PImg>
                                 </div>
                                 <div className="col-lg-8">
-                                    <StyledSub>{nickname}nickname</StyledSub>
+                                    <StyledTitle2>{host.nickname}</StyledTitle2>
                                     <StyledSub>모임장</StyledSub>
                                 </div>
                             </div>
@@ -69,19 +169,34 @@ export default function CourseListDetail(){
                                 date={String(scheduledAt)}
                                 time={String(scheduledAt)}
                                 dest={String(courseId)}
+                                nickname={host.nickname} 
+                                id={Number(id)}
                                 />
                         </Modal>
                         )}
                         </Container>
                         <Container2 className="row">
                             <Box1 className="col-lg-8" >함께하는 사람</Box1>
-                            <Angle className="col-lg-4"
-                              ></Angle>
-                            { toggle && 
+                            <Angle onClick={handlerToggle} className="col-lg-4"
+                              >{currentPeople}/{maxPeople}</Angle>
+                            { applicationtoggle && 
                                 <div>
-                                    <Container3></Container3>
-                                    <Container3></Container3>
-                                    <Container3></Container3>
+                                        <div>
+                                        {applications.map((application: ApplicationData) => (
+                                        <Container3 key={application.id}>
+                                            <div className="row" >
+                                                <div className="col-lg-4" >
+                                                    <PImg2 src={application.member.profileImage} alt="Profile" />
+                                                </div>
+                                                <div className="col-lg-8">
+                                                    <StyledTitle2>{application.member.nickname} </StyledTitle2>
+                                                    <StyledSub>{application.createdAt}</StyledSub>
+                                                </div>
+                                            </div>
+                                           
+                                        </Container3>
+                                        ))}
+                                        </div>
                                 </div>
                             }
                         </Container2>
@@ -108,6 +223,11 @@ const Border = styled.hr`
     border: 1px solid #ccc;
 `;
 
+const Small = styled.div`
+    font-weight: 100;
+    font-size: 8px;
+    color: #ccc;
+`;
 
 const StyledCategory= styled.div`
     width: 100px;
@@ -119,6 +239,7 @@ const StyledCategory= styled.div`
     text-align: center;
     margin-bottom: 20px;
     margin-right: 20px;
+    
 `;
 
 const StyledTitle= styled.div`
@@ -126,12 +247,29 @@ const StyledTitle= styled.div`
     font-size: 30px;
     margin-bottom: 20px;
 `;
+const StyledTitle2= styled.div`
+    font-weight: 400;
+    font-size: 25px;
+    line-height: 40px;
+    margin-bottom: 10px;
+`;
 const StyledSubTitle= styled.div`
     font-weight: 300;
     font-size: 20px;
     margin: 50px 0px;
     width: 90%;
 `;
+
+const StyledLight = styled.div`
+    width: 90%;
+    text-align: right;
+    border-radius: 5px;
+    padding: 10px;
+    font-size: 10px;
+    margin-bottom: 0.8rem;
+
+`;
+
 
 const StyledSub= styled.div`
     font-weight: 100;
@@ -150,6 +288,16 @@ const PImg= styled.img`
     height: 80px;
     background: var(--color-green);
     border-radius: 100%;
+    object-fit: cover;
+`;
+const PImg2= styled.img`
+    width: 60px;
+    height: 60px;
+    background: var(--color-green);
+    border-radius: 100%;
+    object-fit: cover;
+    margin: 5px;
+    margin-left: 20px;
 `;
 const Container = styled.div`
    
@@ -183,6 +331,12 @@ const Container3 = styled.div`
     border-top: none;
 `;
 
+const Container4 = styled.div`
+    height: auto;
+    padding: 0.2rem 0.5rem;
+    width: 90%;
+    border-bottom: 1px solid #ccc;
+`;
 
 const StyledButton = styled.div`
     padding: 10px;
@@ -217,7 +371,7 @@ const Angle= styled.button`
 
 const StyledInput = styled.input`
   padding: 1.3rem 0.5rem;
-  margin-bottom: 0.5rem;
+  
   border: 1px solid #ccc;
   width: 90%;
   border-radius: 5px;
