@@ -18,6 +18,17 @@ export interface ICourseData{
     routes:any;
 }
 
+export interface ICourseItem {
+    id:number;
+    image:string;
+    name:string;
+    gugunSummary:string;
+    description:string;
+    lat:number;
+    lng:number;
+    routes:any;  
+  };
+
 export interface ICourseCommentData{
     id:number;
     courseId:number;

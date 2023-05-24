@@ -12,6 +12,7 @@ import { selectCategoryAtom } from '../../states/couresList';
 import { useRecoilState, useRecoilValue } from 'recoil';
 import { useRouter } from 'next/dist/client/router';
 import { ICourseData } from '../../types/courseList';
+import CourseDetailMap from '../CouresListDetail/Map';
 
 
 export default function CourseList() {
@@ -20,9 +21,11 @@ export default function CourseList() {
   const {isLoading,data:courseData}=useQuery("courseList",getCourseList,{
     select:data=>data?.result
   });
+  //console.log(courseData?.slice(1,2)[0].routes[0]);
   const selectCategory=useRecoilValue<string>(selectCategoryAtom);
   const router=useRouter();
   const onClick=(course:ICourseData)=>{
+  
     router.push({
       pathname:`/course/${course.name}`,
       query:{
@@ -35,7 +38,9 @@ export default function CourseList() {
           accessway:course.accessWay,
           image:course.image,
           lat:course.routes[0][0][0],
-          lng:course.routes[0][0][1]
+          lng:course.routes[0][0][1],
+          routes:JSON.stringify(course.routes[0]),
+          
 
 
         }
@@ -67,6 +72,7 @@ export default function CourseList() {
                             description={course.description}
                             lat={course.routes[0][0][0]}
                             lng={course.routes[0][0][1]}
+                            routes={course.routes}
 
                           />
                       </CourseItemBtn>
