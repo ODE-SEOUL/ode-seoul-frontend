@@ -3,8 +3,8 @@ import { useRouter } from "next/dist/client/router";
 import Navbar from '../common/Nav/Nav';
 import styled from "@emotion/styled";
 import DistanceIcon from '../../../public/assets/img/courseDetailDistance.svg';
-import TimeIcon from '../../../public/assets/img/courseDetailTime.svg'
-import SubwayIcon from '../../../public/assets/img/courseDetailSubway.svg'
+import TimeIcon from '../../../public/assets/img/courseDetailTime.svg';
+import SubwayIcon from '../../../public/assets/img/courseDetailSubway.svg';
 import AccessIcon from '../../../public/assets/img/courseDetailAccess.svg';
 import { useState } from "react";
 
