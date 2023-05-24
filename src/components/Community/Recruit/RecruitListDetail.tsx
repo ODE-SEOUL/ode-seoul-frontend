@@ -10,6 +10,7 @@ import { getReceuitDetail } from '@/src/apis/recruitDetail';
 import { userAtom } from '../../../states/UserAtom';
 import { atom, useRecoilValue } from 'recoil';
 import { postComments, deleteComments } from "@/src/apis/RecruitComment";
+import { deleteApplication } from "@/src/apis/application";
 
 interface Application {
     id: number;
@@ -43,6 +44,8 @@ interface Application {
 
        
 export default function CourseListDetail(){
+
+    
 
     const [Rcontent, setRContent] = useState('');
 
