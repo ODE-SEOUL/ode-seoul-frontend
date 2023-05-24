@@ -12,7 +12,7 @@ import { IGuGunListData } from '../../types/gugunList';
 import { getGugunList } from '../../apis/guguns';
 import { useQuery } from 'react-query';
 
-const SignupForm = ({ onSuccess }) => {
+const SignupForm = ({ onSuccess }: { onSuccess: () => void }) => {
 
 
     const [names, setNames] = useState([]);
@@ -67,9 +67,8 @@ const SignupForm = ({ onSuccess }) => {
       .then((res) => {
         if (res.data.code === 200) {
         //   console.log('회원가입 성공');
-          onSuccess();
-        //   console.log(user);
-          router.push('/');
+          onSuccess()
+          router.push('/')
         } else {
           // TODO: 회원가입 실패 처리
         }

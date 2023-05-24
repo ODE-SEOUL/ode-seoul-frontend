@@ -9,7 +9,7 @@ const Main1 = () => {
             <div className='col-lg-12 mt-100 mb-100'>
                 <div>생태문화길을 걸으며,</div>
                 <div  className='mb-50'>서울을 느끼다. </div>
-                <img src='../assets/img/logo.svg' width="50%"></img>
+                <Img src="../assets/img/logo.svg" width="50%"></Img>
             </div>
       </Container>
     </>
@@ -24,4 +24,8 @@ const Container = styled.div`
     font-weight: 200;
     font-family: var(--font-secondary); 
     text-align: center;
+`;
+
+const Img = styled.img`
+
 `;

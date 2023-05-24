@@ -23,6 +23,9 @@ export default function CourseListDetail(){
     const router=useRouter();
     const {courseId,category,title,content,image,maxPeople,scheduledAt,
         currentPeople,progressStatus, createdAt, id, nickname, profileImage, locationCode, signupStatus   }=router.query;
+
+    const imageSrc = Array.isArray(image) ? image[0] : image;
+
         return(
         <>
             <Navbar/>
@@ -37,7 +40,7 @@ export default function CourseListDetail(){
                         <StyledSub className="col-lg-1">{currentPeople}/{maxPeople}</StyledSub>
                     </div>
                     <div className="col-lg-8">
-                        <Img src={image} width="90%"></Img>
+                        <Img src={imageSrc} width="90%"></Img>
                         < StyledSubTitle>{content}</ StyledSubTitle>
                         <StyledSub className="col-lg-4">{createdAt}</StyledSub>
                         <Border></Border>
@@ -50,7 +53,7 @@ export default function CourseListDetail(){
                         <Container>
                             <div className="row mb-150">
                                 <div className="col-lg-4">
-                                    <PImg src={profileImage}></PImg>
+                                    <PImg></PImg>
                                 </div>
                                 <div className="col-lg-8">
                                     <StyledSub>{nickname}nickname</StyledSub>
@@ -61,12 +64,12 @@ export default function CourseListDetail(){
                         <StyledButton onClick={handleClick}>신청하기</StyledButton>  
                         {isShowing && (
                         <Modal isShowing={isShowing} hide={toggle}>
-                            <Application 
-                            title={title} 
-                            date={scheduledAt} 
-                            time={scheduledAt} 
-                            dest={courseId} 
-                            />
+                            <Application
+                                title={String(title)}
+                                date={String(scheduledAt)}
+                                time={String(scheduledAt)}
+                                dest={String(courseId)}
+                                />
                         </Modal>
                         )}
                         </Container>

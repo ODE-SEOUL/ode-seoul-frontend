@@ -13,6 +13,8 @@ enum Category {
     COM_EXPER = '#체험',
   }
 
+  type CategoryKey = keyof typeof Category;
+
   const selectedCategoryState = atom<Category | null>({
     key: 'selectedCategoryState',
     default: null,
@@ -25,7 +27,7 @@ enum Category {
     const handleCategoryClick = (category: Category) => {
       setSelectedCategory(category);
       setRecruitCategory((prevRecruit) => {
-        const categoryValue = Object.keys(Category).find(key => Category[key] === category);
+        const categoryValue = Object.keys(Category).find((key) => Category[key as CategoryKey] === category) as CategoryKey;
         return {
           ...prevRecruit,
           category: categoryValue || '',

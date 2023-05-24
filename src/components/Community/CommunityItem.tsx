@@ -168,6 +168,7 @@ const CommunityItem = () => {
                 maxPeople,
                 progressStatus,
                 createdAt,
+                //TODO: 타입 확장 필요
                 host: { hostId, nickname, profileImage, locationCode, signupStatus },
               } = item;
               return (
