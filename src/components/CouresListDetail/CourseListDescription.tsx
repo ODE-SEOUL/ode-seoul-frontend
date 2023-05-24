@@ -23,14 +23,21 @@ interface ICourseDetailProps{
 
 export default function CourseListDescription({name,distance,time,description,subway,accessway,image,setReviewClick,setCommunityClick}:ICourseDetailProps){
     
+    const router=useRouter();
     
     const onReviewClick=()=>{
         console.log("click");
         setReviewClick(true);
+        
+
     }
     
     const onRecruitClick=()=>{
         setCommunityClick(true);
+        router.push({
+            pathname:"/community/recruit"
+        });
+        setReviewClick(false);
     }
 
     return(

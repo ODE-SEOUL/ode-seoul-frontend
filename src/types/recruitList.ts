@@ -11,7 +11,7 @@ export interface IRecruitListData {
 
 export interface RecruitItem {
     id: number;
-    host : HostItem[];
+    host : HostItem;
     courseId: number;
     category: string;
     title: string;
@@ -25,7 +25,7 @@ export interface RecruitItem {
 }
 
 export interface HostItem {
-    id: number;
+    hostId: number;
     nickname: string;
     profileImage: string;
     locationCode: string;

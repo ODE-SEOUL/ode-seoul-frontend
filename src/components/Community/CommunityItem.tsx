@@ -60,7 +60,7 @@ const CommunityItem = () => {
 
    //detail
    const router=useRouter();
-   const DetailHandler=(recruit:RecruitItem & HostItem)=>{
+   const DetailHandler=(recruit:RecruitItem)=>{
    router.push({
      pathname:`community/recruit/${recruit.title}`,
      query:{
@@ -176,12 +176,11 @@ const CommunityItem = () => {
                 maxPeople,
                 progressStatus,
                 createdAt,
-
+                
                 //TODO: 타입 확장 필요
-                host: { hostId, nickname, profileImage, locationCode, signupStatus },
+                host:{hostId,nickname,profileImage,locationCode,signupStatus}
               } = item;
-
-              console.log(hostId, nickname, profileImage, locationCode, signupStatus);
+            
               const courseName = printCourseName(courseId)
 
               return (

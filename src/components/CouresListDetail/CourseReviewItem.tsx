@@ -36,12 +36,13 @@ export default function CourseReviewItem({userId,score,date,content,mainImg}:ICo
         
         <Container>
                 <ProfileContainer>
+                    <div className="mt-20"></div>
                     <ProfileImg img={courseReviewUserData?.profileImage}/>
                     <div className="mr-20"></div>
                     <Text size={20} weight={500} color={"var(--color-black)"}>{courseReviewUserData?.nickname}</Text>
 
                 </ProfileContainer>
-                <div className="mt-20"></div>
+                <div className="mt-10"></div>
                 <ProfileContainer>
                     <Text size={10} weight={200} color={"var(--color-black)"}>{date.slice(0,10)}</Text>
                 </ProfileContainer>
@@ -49,8 +50,9 @@ export default function CourseReviewItem({userId,score,date,content,mainImg}:ICo
                 <Text size={15} weight={200} color={"var(--color-black)"}>{content}</Text>
                 <div className="mt-20"></div>
                 <MainImg img={mainImg}/>
-                <div className="mt-20"></div>
+                <div className="mt-40"></div>
                 <BorderLine/>
+                <div className="mt-20"></div>
            
 
         </Container>
@@ -67,7 +69,6 @@ type CommentProps={
 const Container=styled.div`
     margin-left: 20px;
     margin-right: 20px;
-    margin-bottom: 50px;
     width: 410px;
     height: 400px;
 `;
@@ -75,6 +76,7 @@ const Container=styled.div`
 
 
 const ProfileContainer=styled.div`
+    margin-top:20px;
     display: flex;
 `
 
@@ -99,7 +101,7 @@ const MainImg=styled.div<{img:string}>`
 `;
 
 const BorderLine=styled.hr`
-    width:100%;
+    width:120%;
     float:left;
     color:#595555;
 `

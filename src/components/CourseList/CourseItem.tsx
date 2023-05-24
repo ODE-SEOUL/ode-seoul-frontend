@@ -1,4 +1,4 @@
-import { ICourseItem } from "../../data/course-data";
+import { ICourseItem } from "@/src/types/courseList";
 import styled from "@emotion/styled";
 import React from "react";
 import { useState } from "react";
