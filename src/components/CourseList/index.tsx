@@ -12,14 +12,11 @@ import { selectCategoryAtom } from '../../states/couresList';
 import { useRecoilState, useRecoilValue } from 'recoil';
 import { useRouter } from 'next/dist/client/router';
 import { ICourseData } from '../../types/courseList';
-
+import { useCourseListQuery } from './courseListQuery';
 
 export default function CourseList() {
-  
- 
-  const {isLoading,data:courseData}=useQuery("courseList",getCourseList,{
-    select:data=>data?.result
-  });
+  const { data: courseData } = useCourseListQuery();
+
   const selectCategory=useRecoilValue<string>(selectCategoryAtom);
   const router=useRouter();
   const onClick=(course:ICourseData)=>{

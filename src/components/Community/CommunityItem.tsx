@@ -9,7 +9,7 @@ import { getReceuitList } from '../../apis/recruitList';
 import { GetRecruitListDto, IRecruitListData, RecruitItem, HostItem } from '../../types/recruitList';
 import { useRouter } from 'next/dist/client/router';
 import { IRecruitData } from '../../types/recruits';
-
+import { useCourseListQuery } from '../CourseList/courseListQuery';
 
 // interface Category {
 //   id : number;
@@ -45,6 +45,18 @@ enum Category {
 
 
 const CommunityItem = () => {
+
+  //courseList
+  const { data: courseData } = useCourseListQuery();
+  //courseId를 courseName으로 바꾸는 함수
+  const printCourseName = (courseId: number) => {
+    const matchingCourse = courseData?.find((course) => course.id === courseId);
+    if (matchingCourse) {
+      return matchingCourse.name;
+    } else {
+      console.log(`Course with id ${courseId} not found.`);
+    }
+  };
 
    //detail
    const router=useRouter();
@@ -170,13 +182,15 @@ const CommunityItem = () => {
               } = item;
 
               console.log(hostId, nickname, profileImage, locationCode, signupStatus);
+              const courseName = printCourseName(courseId)
+
               return (
                 <div key={id} className="col-lg-3 col-sm-12">
                   <Card onClick={()=>DetailHandler(item)}>
                     <Img src={image} alt="이미지" width="100%"  />
                     <div className='row' style={{height: "50px"}}>
                         <div className='col-lg-4'>
-                            <ProfileImg></ProfileImg>
+                            <ProfileImg src={profileImage}></ProfileImg>
                         </div>
                         <div className='col-lg-8'>
                             <Title>{nickname}</Title>
@@ -186,7 +200,7 @@ const CommunityItem = () => {
                       <Body>{title}</Body>
                     </div>
                     <div className="">
-                      <SubBody><FontAwesomeIcon icon={faAngleRight} className="mr-10"/>{courseId}</SubBody>
+                      <SubBody><FontAwesomeIcon icon={faAngleRight} className="mr-10"/>{courseName}</SubBody>
                       <SubBody><FontAwesomeIcon icon={faAngleRight} className="mr-10"/>{scheduledAt}</SubBody>
                     </div>
                   </Card>
@@ -354,10 +368,10 @@ const Circle = styled.div`
   }
 `;
 
-const ProfileImg = styled.div`
+const ProfileImg = styled.img`
   font-weight: 100;
   font-family: var(--font-secondary);
-  border: 1px solid #fff;
+  border: 2px solid #fff;
   background: #fff;
   font-size: 20px;
   border-radius: 100%;
@@ -370,6 +384,7 @@ const ProfileImg = styled.div`
   left: 50%;
   transform: translateX(-50%); 
   box-shadow: 3px 3px 10px #eee;
+  object-fit: cover;
 `;
 
 
