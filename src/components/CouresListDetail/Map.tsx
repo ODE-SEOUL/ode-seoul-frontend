@@ -11,8 +11,8 @@ interface MapProps {
 
 export default function CourseDetailMap({latitude, longitude ,routes}: MapProps){
     //const routes=courseData?.slice(1,2)[0].routes[0];
-    const routesArr=(JSON.parse(routes));
-    
+    const routesArr:number[][]=(JSON.parse(routes));
+    //
     useEffect(() => {
         const mapScript = document.createElement("script");
     
