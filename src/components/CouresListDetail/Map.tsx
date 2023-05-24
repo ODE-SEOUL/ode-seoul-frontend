@@ -34,7 +34,7 @@ export default function CourseDetailMap({latitude, longitude ,routes}: MapProps)
             // 경로 표시
             let linePath:any[]= [];
             
-            routesArr.map((props)=>linePath.push(new window.kakao.maps.LatLng(props[0],props[1])));
+            routesArr.map((props:number[])=>linePath.push(new window.kakao.maps.LatLng(props[0],props[1])));
 
             // 지도에 표시할 선
     
