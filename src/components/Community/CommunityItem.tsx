@@ -96,7 +96,7 @@ const CommunityItem = () => {
   });
 
 
-  const [selectedCategory, setSelectedCategory] = useState<string>("COM_ANIMAL");
+  const [selectedCategory, setSelectedCategory] = useState<string>("#반려동물");
   
 
   const handleCategoryClick = (category: string) => {

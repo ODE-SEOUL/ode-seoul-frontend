@@ -57,6 +57,7 @@ export default function CourseListDetail(){
     const CommentHandler = () => {
         console.log(id, user.accessToken, Rcontent);
         postComments(id, user.accessToken, Rcontent);
+        setRContent("");
     };
 
     const [applicationtoggle, setApplicationToggle] = useState(false);
@@ -82,12 +83,12 @@ export default function CourseListDetail(){
         getReceuitDetail(id)
           .then((response) => {
             const result = response.result;
-            setResult(result); 
+            setResult(result);
           })
           .catch((error) => {
             console.error(error);
           });
-      }, [id]); 
+     }, [id, result]); 
 
       const { host, comments, applications } = result || {};
 
