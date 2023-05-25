@@ -220,7 +220,7 @@ const CircleButton = styled.div<{ isSelected: boolean; onClick?: () => void }>`
 const Circle = styled.div`
   font-weight: 100;
   font-family: var(--font-secondary);
-  border: 1px solid var(--color-darkgreen);
+  border: 1px solid rgb(108, 128, 75);
   font-size: 20px;
   border-radius: 20px;
   padding: 10px;
@@ -234,7 +234,7 @@ const Circle = styled.div`
   }
 
   :hover{
-    background-color: var(--color-darkgreen)
+    background-color: rgb(108, 128, 75)
   }
 
 `;

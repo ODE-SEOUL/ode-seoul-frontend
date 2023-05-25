@@ -11,6 +11,9 @@ import { userAtom } from '../../../states/UserAtom';
 import { atom, useRecoilValue } from 'recoil';
 import { postComments, deleteComments } from "@/src/apis/RecruitComment";
 import { deleteApplication } from "@/src/apis/application";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faAngleRight, faMapLocationDot, faCalendarCheck, faPencil, faUserGroup } from "@fortawesome/free-solid-svg-icons";
+
 
 interface ApplicationData {
     id: number;
@@ -109,9 +112,9 @@ export default function CourseListDetail(){
                     <StyledCategory>{progressStatus}</StyledCategory> 
                     <StyledTitle>{title}</StyledTitle> 
                     <div className="row" style={{display: 'flex', flexWrap: 'wrap'}}>
-                        <StyledSub className="col-lg-1">{courseId}</StyledSub>
-                        <StyledSub className="col-lg-2">{scheduledAt}</StyledSub>
-                        <StyledSub className="col-lg-1">{currentPeople}/{maxPeople}</StyledSub>
+                        <StyledSub className="col-lg-1"><FontAwesomeIcon icon={faMapLocationDot} className="mr-10" style={{color: 'rgb(171, 184, 104)' }}/>{courseId}</StyledSub>
+                        <StyledSub className="col-lg-2"><FontAwesomeIcon icon={faCalendarCheck} className="mr-10" style={{color: 'rgb(171, 184, 104)' }}/>{scheduledAt}</StyledSub>
+                        <StyledSub className="col-lg-1"><FontAwesomeIcon icon={faUserGroup} className="mr-10" style={{color: 'rgb(171, 184, 104)' }}/>{currentPeople}/{maxPeople}</StyledSub>
                     </div>
                     <div className="col-lg-8">
                         <Img src={imageSrc} width="90%"></Img>
@@ -152,7 +155,7 @@ export default function CourseListDetail(){
                     </div>
                     <div className="col-lg-4">
                         <Container>
-                            <div className="row mb-150">
+                            <div className="row mb-10" style={{display: 'flex', flexWrap: 'wrap'}}>
                                 <div className="col-lg-4">
                                     <PImg src={host.profileImage}></PImg>
                                 </div>
@@ -177,9 +180,9 @@ export default function CourseListDetail(){
                         )}
                         </Container>
                         <Container2 className="row" style={{display: 'flex', flexWrap: 'wrap'}}>
-                            <Box1 className="col-lg-8" >함께하는 사람</Box1>
-                            <Angle onClick={handlerToggle} className="col-lg-4"
-                              >{currentPeople}/{maxPeople}</Angle>
+                            <Box1 className="col-lg-7" >함께하는 사람</Box1>
+                            <Angle onClick={handlerToggle} className="col-lg-5"
+                              ><FontAwesomeIcon icon={faUserGroup} className="mr-10" style={{color: 'rgb(171, 184, 104)' }}/>{currentPeople}/{maxPeople}</Angle>
                             { applicationtoggle && 
                                 <div>
                                         <div>
@@ -235,7 +238,7 @@ const StyledCategory= styled.div`
     padding: 5px 10px;
     border-radius: 20px;
     height: 20px;
-    border: 1px solid var(--color-darkgreen);
+    border: 1px solid rgb(108, 128, 75);
     font-weight: 100;
     text-align: center;
     margin-bottom: 20px;
@@ -287,14 +290,14 @@ const Img= styled.img`
 const PImg= styled.img`
     width: 80px;
     height: 80px;
-    background: var(--color-green);
+    background: rgb(171, 184, 104);
     border-radius: 100%;
     object-fit: cover;
 `;
 const PImg2= styled.img`
     width: 60px;
     height: 60px;
-    background: var(--color-green);
+    background: rgb(171, 184, 104);
     border-radius: 100%;
     object-fit: cover;
     margin: 5px;
@@ -349,7 +352,7 @@ const StyledButton = styled.div`
     text-align: center;
     color: #fff;
     height: 40px;
-    background: var(--color-green);
+    background: rgb(171, 184, 104);
 
     border-radius: 8px;
     box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
@@ -362,12 +365,13 @@ const Box1 = styled.div`
 `;
 
 const Angle= styled.button`
-    width: 30px;
+    width: 60px;
     height: 30px;
-    background: var(--color-green);
-    border-radius: 100%;
-    margin: 20px;
+    background: #fff;
+    border-radius: 5px;
     border: none; 
+    margin: auto;
+    margin-top: 20px;
 `;
 
 const StyledInput = styled.input`

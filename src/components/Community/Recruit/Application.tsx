@@ -72,7 +72,7 @@ const SubTitle = styled.div`
     font-weight: 500;
     font-size: 20px;
     margin-bottom: 20px;
-    color: var(--color-darkgreen);
+    color: rgb(108, 128, 75);
 `;
 
 const Wrapper = styled.div`
@@ -89,7 +89,7 @@ const StyledButton = styled.div`
     text-align: center;
     color: #fff;
     height: 40px;
-    background: var(--color-green);
+    background: rgb(171, 184, 104);
 
     border-radius: 8px;
     box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);

@@ -213,7 +213,7 @@ const Title = styled.div`
     font-family: var(--font-secondary);
     font-weight: 300;
     padding: 20px 0px;
-    color: var(--color-darkgreen);
+    color: rgb(108, 128, 75);
     margin: 20px 0px 10px 0px;
     font-weight: 500;
 `
@@ -246,7 +246,7 @@ const Footer = styled.div`
 
 const Circle = styled.div`
   font-weight: 300;
-  background: var(--color-green);
+  background: rgb(171, 184, 104);
   font-weight: 300;
   font-family: var(--font-secondary);
   font-size: 20px;
