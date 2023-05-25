@@ -3,24 +3,15 @@ import styled from '@emotion/styled';
 import Link from 'next/link';
 import community_data from "../../data/community-data";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faAngleRight } from "@fortawesome/free-solid-svg-icons";
+import { faAngleRight, faMapLocationDot, faCalendarCheck, faPencil } from "@fortawesome/free-solid-svg-icons";
 import { useQuery, QueryFunction } from 'react-query';
-import { getReceuitList } from '../../apis/recruitList';
+import { getRecruitList } from '../../apis/recruitList';
 import { GetRecruitListDto, IRecruitListData, RecruitItem, HostItem } from '../../types/recruitList';
 import { useRouter } from 'next/dist/client/router';
 import { IRecruitData } from '../../types/recruits';
 import { useCourseListQuery } from '../CourseList/courseListQuery';
+import { wrap } from 'module';
 
-// interface Category {
-//   id : number;
-//   img: number;
-//   title: number;
-//   writer: number;
-//   time: number;
-//   dest: number;
-//   category_id: number;
-//   category: string;
-// }
 
 enum Category {
   COM_ANIMAL = '#반려동물',
@@ -31,18 +22,6 @@ enum Category {
   COM_PHOTO = '#사진',
   COM_EXPER = '#체험',
 }
-
-// interface Category {
-//   id: number; 
-//   category_id: number;
-//   category: string;
-//   writer: string;
-//   title: string;
-//   time: string;
-//   dest: string;
-//   img: string;
-// }
-
 
 const CommunityItem = () => {
 
@@ -58,9 +37,9 @@ const CommunityItem = () => {
     }
   };
 
-   //detail
+   //detail page
    const router=useRouter();
-   const DetailHandler=(recruit:RecruitItem)=>{
+   const DetailHandler=(recruit:RecruitItem  & HostItem)=>{
    router.push({
      pathname:`community/recruit/${recruit.title}`,
      query:{
@@ -81,59 +60,39 @@ const CommunityItem = () => {
    `community/recruit/${recruit.title}`);
   }
 
-   //detail
- 
-  
-  // useEffect(() => {
-  //   getReceuitList()
-  //   .then((response) => {
-  //     console.log(response.result);
-  //   })
-  //   .catch((error) => {
-  //     console.error(error);
-  //   });
-  // }, []);
+  //recruit api
+  useEffect(() => {
+    getRecruitList()
+    .then((response) => {
+      console.log(response.result);
+    })
+    .catch((error) => {
+      console.error(error);
+    });
+  }, []);
 
+  //recruit api - useQuery
   const queryFunction: QueryFunction<GetRecruitListDto> = async () => {
-    const response = await getReceuitList();
+    const response = await getRecruitList();
     return response;
   };
-
   const { isLoading, data: recruitData } = useQuery('recruitList', queryFunction, {
     select: (data) => {
-   
-        console.log(data.result.recruits);
         return data.result.recruits;
     },
   });
-
-
+ 
+  //카테고리 선택(초기 선택 #반려동물 지정)
   const [selectedCategory, setSelectedCategory] = useState<string>("#반려동물");
-  
-
   const handleCategoryClick = (category: string) => {
     setSelectedCategory(category);
   };
-  
-  
 
-  const filteredItems = recruitData?.filter((item) => {
-    const categoryValue = Category[item.category as keyof typeof Category];
+  const filteredItems = recruitData?.filter((item: any) => {
+    const categoryValue = Category[item.category as keyof typeof Category];// #반려동물 -> COM_ANIMAL로 바꾸는 코드
     return categoryValue === selectedCategory;
   });
   
-
-  const category_list: string[] = [
-    '#반려동물',
-    '#주부',
-    '#직장인',
-    '#이웃주민',
-    '#운동',
-    '#사진',
-    '#체험',
-  ];
-
-
   return (
     <>
       <div style={{ background: "white" }}>
@@ -156,15 +115,15 @@ const CommunityItem = () => {
 
       <div style={{ justifyContent: "flex-end", display: "flex" }}>
         <Circle> 
-          <Link href="community/recruit" style={{color: "var(-color--darkgreen)", fontWeight: 300}}>글쓰기</Link>
+          <Link href="community/recruit" style={{color: "#eee", fontWeight: 300}}><FontAwesomeIcon icon={faPencil} />     모집하기</Link>
         </Circle>
       </div>
 
       <FlexContainer style={{ background: "#eee" }}>
 
         <div className='row col-lg-12 mb-100'>
-          <div className="row">
-            {filteredItems?.map((item) => {
+          <div className="row" style={{display: 'flex', flexWrap: 'wrap'}}>
+            {filteredItems?.map((item: any) => {
               const {
                 id,
                 image,
@@ -187,7 +146,7 @@ const CommunityItem = () => {
                 <div key={id} className="col-lg-3 col-sm-12">
                   <Card onClick={()=>DetailHandler(item)}>
                     <Img src={image} alt="이미지" width="100%"  />
-                    <div className='row' style={{height: "50px"}}>
+                    <div className='row' style={{height: "50px", display: 'flex', flexWrap: 'wrap'}}>
                         <div className='col-lg-4'>
                             <ProfileImg src={profileImage}></ProfileImg>
                         </div>
@@ -199,8 +158,9 @@ const CommunityItem = () => {
                       <Body>{title}</Body>
                     </div>
                     <div className="">
-                      <SubBody><FontAwesomeIcon icon={faAngleRight} className="mr-10"/>{courseName}</SubBody>
-                      <SubBody><FontAwesomeIcon icon={faAngleRight} className="mr-10"/>{scheduledAt}</SubBody>
+                
+                      <SubBody><FontAwesomeIcon icon={faMapLocationDot} className="mr-10" style={{color: 'rgb(171, 184, 104)' }}/>{courseName}</SubBody>
+                      <SubBody><FontAwesomeIcon icon={faCalendarCheck} className="mr-10" style={{color: 'rgb(171, 184, 104)' }}/>{scheduledAt}</SubBody>
                     </div>
                   </Card>
                 </div>
@@ -262,6 +222,7 @@ const Body = styled.div`
   font-family: var(--font-secondary);
   text-align: center;
   margin: 10px;
+  margin-bottom: 15px;
 `;
 
 const SubBody = styled.div`
@@ -348,7 +309,7 @@ const CircleButton = styled.div<{ isSelected: boolean; onClick?: () => void }>`
 const Circle = styled.div`
   font-weight: 100;
   font-family: var(--font-secondary);
-  background-color: var(--color-green);
+  background-color: rgb(171, 184, 104);
   font-size: 20px;
   border-radius: 10px;
   padding: 10px;
@@ -363,7 +324,7 @@ const Circle = styled.div`
   }
 
   :hover {
-    background-color: var(--color-darkgreen)
+    background-color: rgb(108, 128, 75)
   }
 `;
 

@@ -5,7 +5,7 @@ import { RecruitInfo } from '../states/RecruitAtom';
 export const postRecruit = async (recruit: RecruitInfo, accessToken: string) => {
   try {
     const response = await postAsync<PostRecruitDatatDto, RecruitInfo>(
-        'recruits', 
+        '/api/recruits', 
         recruit, 
         {
         headers: {

@@ -26,25 +26,25 @@ export const Application = ({ id, title, date, time, dest, nickname }: Props) =>
   return (
     <Wrapper>
         <Title>{title}</Title>
-        <div className='row'>
+        <div className='row' style={{display: 'flex', flexWrap: 'wrap'}}>
             <SubTitle className='col-lg-4'>만나는 날짜</SubTitle>
             <div className='col-lg-8'>
                 {date}
             </div>
         </div>
-        <div className='row'>
+        <div className='row' style={{ display: 'flex', flexWrap: 'wrap'}}>
             <SubTitle className='col-lg-4'>만나는 시간</SubTitle>
             <div className='col-lg-8'>
                 {time}
             </div>
         </div>
-        <div className='row'>
+        <div className='row' style={{display: 'flex', flexWrap: 'wrap'}}>
             <SubTitle className='col-lg-4'>만나는 장소</SubTitle>
             <div className='col-lg-8'>
                 {dest}
             </div>
         </div>
-        <div className='row'>
+        <div className='row' style={{display: 'flex', flexWrap: 'wrap'}}>
             <SubTitle className='col-lg-4'>신청자 정보</SubTitle>
             <div className='col-lg-8'>
                 {nickname}
@@ -72,7 +72,7 @@ const SubTitle = styled.div`
     font-weight: 500;
     font-size: 20px;
     margin-bottom: 20px;
-    color: var(--color-darkgreen);
+    color: rgb(108, 128, 75);
 `;
 
 const Wrapper = styled.div`
@@ -89,7 +89,7 @@ const StyledButton = styled.div`
     text-align: center;
     color: #fff;
     height: 40px;
-    background: var(--color-green);
+    background: rgb(171, 184, 104);
 
     border-radius: 8px;
     box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
