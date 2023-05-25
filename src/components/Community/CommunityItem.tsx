@@ -5,7 +5,7 @@ import community_data from "../../data/community-data";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAngleRight } from "@fortawesome/free-solid-svg-icons";
 import { useQuery, QueryFunction } from 'react-query';
-import { getReceuitList } from '../../apis/recruitList';
+import { getRecruitList } from '../../apis/recruitList';
 import { GetRecruitListDto, IRecruitListData, RecruitItem, HostItem } from '../../types/recruitList';
 import { useRouter } from 'next/dist/client/router';
 import { IRecruitData } from '../../types/recruits';
@@ -61,7 +61,7 @@ const CommunityItem = () => {
 
   //recruit api
   useEffect(() => {
-    getReceuitList()
+    getRecruitList()
     .then((response) => {
       console.log(response.result);
     })
@@ -72,7 +72,7 @@ const CommunityItem = () => {
 
   //recruit api - useQuery
   const queryFunction: QueryFunction<GetRecruitListDto> = async () => {
-    const response = await getReceuitList();
+    const response = await getRecruitList();
     return response;
   };
   const { isLoading, data: recruitData } = useQuery('recruitList', queryFunction, {
@@ -80,14 +80,13 @@ const CommunityItem = () => {
         return data.result.recruits;
     },
   });
-
+ 
   //카테고리 선택(초기 선택 #반려동물 지정)
   const [selectedCategory, setSelectedCategory] = useState<string>("#반려동물");
   const handleCategoryClick = (category: string) => {
     setSelectedCategory(category);
   };
 
-  
   const filteredItems = recruitData?.filter((item: any) => {
     const categoryValue = Category[item.category as keyof typeof Category];// #반려동물 -> COM_ANIMAL로 바꾸는 코드
     return categoryValue === selectedCategory;
