@@ -11,16 +11,6 @@ import { useRouter } from 'next/dist/client/router';
 import { IRecruitData } from '../../types/recruits';
 import { useCourseListQuery } from '../CourseList/courseListQuery';
 
-// interface Category {
-//   id : number;
-//   img: number;
-//   title: number;
-//   writer: number;
-//   time: number;
-//   dest: number;
-//   category_id: number;
-//   category: string;
-// }
 
 enum Category {
   COM_ANIMAL = '#반려동물',
@@ -32,25 +22,13 @@ enum Category {
   COM_EXPER = '#체험',
 }
 
-// interface Category {
-//   id: number; 
-//   category_id: number;
-//   category: string;
-//   writer: string;
-//   title: string;
-//   time: string;
-//   dest: string;
-//   img: string;
-// }
-
-
 const CommunityItem = () => {
 
   //courseList
   const { data: courseData } = useCourseListQuery();
   //courseId를 courseName으로 바꾸는 함수
   const printCourseName = (courseId: number) => {
-    const matchingCourse = courseData?.find((course) => course.id === courseId);
+    const matchingCourse = courseData.find((course) => course.id === courseId);
     if (matchingCourse) {
       return matchingCourse.name;
     } else {
@@ -58,7 +36,7 @@ const CommunityItem = () => {
     }
   };
 
-   //detail
+   //detail page
    const router=useRouter();
    const DetailHandler=(recruit:RecruitItem & HostItem)=>{
    router.push({
@@ -81,59 +59,40 @@ const CommunityItem = () => {
    `community/recruit/${recruit.title}`);
   }
 
-   //detail
- 
-  
-  // useEffect(() => {
-  //   getReceuitList()
-  //   .then((response) => {
-  //     console.log(response.result);
-  //   })
-  //   .catch((error) => {
-  //     console.error(error);
-  //   });
-  // }, []);
+  //recruit api
+  useEffect(() => {
+    getReceuitList()
+    .then((response) => {
+      console.log(response.result);
+    })
+    .catch((error) => {
+      console.error(error);
+    });
+  }, []);
 
+  //recruit api - useQuery
   const queryFunction: QueryFunction<GetRecruitListDto> = async () => {
     const response = await getReceuitList();
     return response;
   };
-
   const { isLoading, data: recruitData } = useQuery('recruitList', queryFunction, {
     select: (data) => {
-   
-        console.log(data.result.recruits);
         return data.result.recruits;
     },
   });
 
-
+  //카테고리 선택(초기 선택 #반려동물 지정)
   const [selectedCategory, setSelectedCategory] = useState<string>("#반려동물");
-  
-
   const handleCategoryClick = (category: string) => {
     setSelectedCategory(category);
   };
-  
-  
 
-  const filteredItems = recruitData?.filter((item) => {
-    const categoryValue = Category[item.category as keyof typeof Category];
+  
+  const filteredItems = recruitData?.filter((item: any) => {
+    const categoryValue = Category[item.category as keyof typeof Category];// #반려동물 -> COM_ANIMAL로 바꾸는 코드
     return categoryValue === selectedCategory;
   });
   
-
-  const category_list: string[] = [
-    '#반려동물',
-    '#주부',
-    '#직장인',
-    '#이웃주민',
-    '#운동',
-    '#사진',
-    '#체험',
-  ];
-
-
   return (
     <>
       <div style={{ background: "white" }}>
@@ -164,7 +123,7 @@ const CommunityItem = () => {
 
         <div className='row col-lg-12 mb-100'>
           <div className="row">
-            {filteredItems?.map((item) => {
+            {filteredItems?.map((item: any) => {
               const {
                 id,
                 image,
