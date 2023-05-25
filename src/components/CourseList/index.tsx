@@ -16,10 +16,10 @@ import { useCourseListQuery } from './courseListQuery';
 
 export default function CourseList() {
   const { data: courseData } = useCourseListQuery();
-
   const selectCategory=useRecoilValue<string>(selectCategoryAtom);
   const router=useRouter();
   const onClick=(course:ICourseData)=>{
+  
     router.push({
       pathname:`/course/${course.name}`,
       query:{
@@ -32,7 +32,9 @@ export default function CourseList() {
           accessway:course.accessWay,
           image:course.image,
           lat:course.routes[0][0][0],
-          lng:course.routes[0][0][1]
+          lng:course.routes[0][0][1],
+          routes:JSON.stringify(course.routes[0]),
+          
 
 
         }
@@ -64,6 +66,7 @@ export default function CourseList() {
                             description={course.description}
                             lat={course.routes[0][0][0]}
                             lng={course.routes[0][0][1]}
+                            routes={course.routes}
 
                           />
                       </CourseItemBtn>

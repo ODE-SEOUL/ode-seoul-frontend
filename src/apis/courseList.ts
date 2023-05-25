@@ -15,7 +15,7 @@ const DEFAULT_SIZE=10;
 
 export const getCourseList=async()=>{
     const response=await getAsync<GetCourseListDto,undefined>(
-        '/courses',
+        '/api/courses',
     );
     return response;
 
@@ -26,7 +26,7 @@ export const getCourseListComment=async({
     value
 }:GetCourseListCommentParams)=>{
     const response=await getAsync<GetCommentListDto,undefined>(
-        `/courses/reviews?type=${type}&value=${value.toString()}`
+        `/api/courses/reviews?type=${type}&value=${value.toString()}`
     );
     return response;
 }

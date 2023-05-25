@@ -3,8 +3,8 @@ import { useRouter } from "next/dist/client/router";
 import Navbar from '../common/Nav/Nav';
 import styled from "@emotion/styled";
 import DistanceIcon from '../../../public/assets/img/courseDetailDistance.svg';
-import TimeIcon from '../../../public/assets/img/courseDetailTime.svg'
-import SubwayIcon from '../../../public/assets/img/courseDetailSubway.svg'
+import TimeIcon from '../../../public/assets/img/courseDetailTime.svg';
+//import SubwayIcon from '../../../public/assets/img/CourseDetailSubway.svg';
 import AccessIcon from '../../../public/assets/img/courseDetailAccess.svg';
 import { useState } from "react";
 
@@ -23,14 +23,21 @@ interface ICourseDetailProps{
 
 export default function CourseListDescription({name,distance,time,description,subway,accessway,image,setReviewClick,setCommunityClick}:ICourseDetailProps){
     
+    const router=useRouter();
     
     const onReviewClick=()=>{
         console.log("click");
         setReviewClick(true);
+        
+
     }
     
     const onRecruitClick=()=>{
         setCommunityClick(true);
+        router.push({
+            pathname:"/community/recruit"
+        });
+        setReviewClick(false);
     }
 
     return(
@@ -52,7 +59,7 @@ export default function CourseListDescription({name,distance,time,description,su
                         <Spacing10/>
                         <CourseDetailText>{time}</CourseDetailText>
                         <Spacing20/>
-                        <SubwayIcon/>
+                        
                         <Spacing10/>
                         <CourseDetailText>{subway}</CourseDetailText>
                         
