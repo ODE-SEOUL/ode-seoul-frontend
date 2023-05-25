@@ -48,8 +48,20 @@ export interface ICourseUserData{
 
 }
 
+export interface ICourseReview{
+
+    courseId:number;
+    score:number;
+    content:string;
+    image:string;
+
+}
+
 export type GetCourseListDto=ResponseDto<ICourseData[]>;
 
 export type GetCommentListDto=ResponseDto<ICourseCommentData[]>;
 
 export type GetCourseUserDto=ResponseDto<ICourseUserData>;
+
+export type PostCourseReviewResponseDto=ResponseDto<ICourseReview>;
+

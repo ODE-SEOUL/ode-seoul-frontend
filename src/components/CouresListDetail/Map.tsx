@@ -25,7 +25,7 @@ export default function CourseDetailMap({latitude, longitude ,routes}: MapProps)
         const mapScript = document.createElement("script");
     
         mapScript.async = true;
-        mapScript.src = `//dapi.kakao.com/v2/maps/sdk.js?appkey=8922bdf2a7e7d0577e125355ef18a34f&autoload=false`;
+        mapScript.src = `//dapi.kakao.com/v2/maps/sdk.js?appkey=${process.env.NEXT_PUBLIC_KAKAO_MAP_KEY}&autoload=false`;
     
         document.head.appendChild(mapScript);
     

@@ -1,5 +1,5 @@
-import { getAsync } from "./common";
-import { GetCourseListDto ,GetCommentListDto, GetCourseUserDto} from "../types/courseList";
+import { getAsync, postAsync } from "./common";
+import { GetCourseListDto ,GetCommentListDto, GetCourseUserDto, PostCourseReviewResponseDto, ICourseReview} from "../types/courseList";
 
 export interface GetCourseListCommentParams{
     type:string;
@@ -10,6 +10,9 @@ export interface GetCourseListCommentParams{
 export interface GetCourseUserInfoParms{
     id:number;
 }
+
+
+
 
 const DEFAULT_SIZE=10;
 
@@ -35,8 +38,28 @@ export const getCourseUserInfo=async({
     id
 }:GetCourseUserInfoParms)=>{
     const response= await getAsync<GetCourseUserDto,undefined>(
-        `/users/${id}`
+        `/api/users/${id}`
     );
     return response;
 
+}
+/*
+@param T 서버 응답 타입
+* @param D parameter 또는 body로 전달할 데이터의 타입
+*/
+export const postCourseReview=async(accessToken:string,info:ICourseReview)=>{
+
+    const response= await postAsync<PostCourseReviewResponseDto,ICourseReview>(
+       `/api/courses/reviews`,
+       info,
+        {
+            headers:{
+                "Authorization": `Bearer ${accessToken}`,
+
+            }
+        },
+
+    
+    );
+    return response;
 }
