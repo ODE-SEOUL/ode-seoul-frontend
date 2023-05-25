@@ -155,7 +155,7 @@ export default function CourseListDetail(){
                     </div>
                     <div className="col-lg-4">
                         <Container>
-                            <div className="row mb-150">
+                            <div className="row mb-10" style={{display: 'flex', flexWrap: 'wrap'}}>
                                 <div className="col-lg-4">
                                     <PImg src={host.profileImage}></PImg>
                                 </div>
