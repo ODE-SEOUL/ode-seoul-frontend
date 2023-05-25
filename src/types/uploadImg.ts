@@ -6,4 +6,9 @@ export interface IUploadImgData{
 
 }
 
+export interface IUploadImgRequestData{
+  url:string
+}
+
 export type PostUploadImgDataDto=ResponseDto<IUploadImgData[]>;
+export type PostUploadImgDataResponseDto=ResponseDto<IUploadImgRequestData>;

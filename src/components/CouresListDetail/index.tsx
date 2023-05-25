@@ -46,7 +46,7 @@ export default function CourseListDetail(){
                 </Container>
                 <CommentContainer>
                     {
-                        reviewClick? <CourseReviewWriting/>:<CourseListReview id={+id as number} name={name as string}/>
+                        reviewClick? <CourseReviewWriting coursename={name as string} courseId={+id}/>:<CourseListReview id={+id as number} name={name as string}/>
                     }
                 </CommentContainer>
             </MainContainer>
@@ -60,7 +60,7 @@ type CourseMainImageProps={
 }
 const MainContainer=styled.div`
     display: grid;
-    grid-template-columns: 4fr 1fr;
+    grid-template-columns: 4fr 1.5fr;
     margin-right: 80px;
     margin-left: 80px !important;
    

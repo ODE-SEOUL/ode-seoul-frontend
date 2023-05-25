@@ -5,13 +5,13 @@ import community_data from "../../data/community-data";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAngleRight, faMapLocationDot, faCalendarCheck, faPencil } from "@fortawesome/free-solid-svg-icons";
 import { useQuery, QueryFunction } from 'react-query';
-import { getRecruitList } from '../../apis/recruitList';
+import { getCourseList } from '@/src/apis/courseList';
 import { GetRecruitListDto, IRecruitListData, RecruitItem, HostItem } from '../../types/recruitList';
 import { useRouter } from 'next/dist/client/router';
 import { IRecruitData } from '../../types/recruits';
 import { useCourseListQuery } from '../CourseList/courseListQuery';
 import { wrap } from 'module';
-
+import { getRecruitList } from '@/src/apis/recruitList';
 
 enum Category {
   COM_ANIMAL = '#반려동물',
