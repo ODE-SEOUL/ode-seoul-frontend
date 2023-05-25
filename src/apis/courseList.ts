@@ -38,11 +38,9 @@ export const getCourseUserInfo=async({
     id
 }:GetCourseUserInfoParms)=>{
     const response= await getAsync<GetCourseUserDto,undefined>(
-<<<<<<< HEAD
+
         `/api/users/${id}`
-=======
-        `/api//users/${id}`
->>>>>>> dbcca9eb0c9efaa8db29bc9ce1cb03b51febc3b5
+
     );
     return response;
 
