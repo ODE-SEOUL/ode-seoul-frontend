@@ -222,6 +222,7 @@ const Body = styled.div`
   font-family: var(--font-secondary);
   text-align: center;
   margin: 10px;
+  margin-bottom: 15px;
 `;
 
 const SubBody = styled.div`
