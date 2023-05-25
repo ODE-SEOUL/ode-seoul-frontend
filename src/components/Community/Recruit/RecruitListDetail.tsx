@@ -102,6 +102,7 @@ export default function CourseListDetail(){
 
         return(
         <>
+        <Navbar />
             <Wrapper >
                 <div className="row">
                     <StyledCategory>{category}</StyledCategory> 

@@ -35,7 +35,7 @@ export const getCourseUserInfo=async({
     id
 }:GetCourseUserInfoParms)=>{
     const response= await getAsync<GetCourseUserDto,undefined>(
-        `/users/${id}`
+        `/api//users/${id}`
     );
     return response;
 
