@@ -28,7 +28,7 @@ const CommunityItem = () => {
   const { data: courseData } = useCourseListQuery();
   //courseId를 courseName으로 바꾸는 함수
   const printCourseName = (courseId: number) => {
-    const matchingCourse = courseData.find((course) => course.id === courseId);
+    const matchingCourse = courseData?.find((course) => course.id === courseId);
     if (matchingCourse) {
       return matchingCourse.name;
     } else {
