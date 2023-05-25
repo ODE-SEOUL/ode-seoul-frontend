@@ -36,7 +36,7 @@ interface DeleteResponse {
 export async function deleteComments(commentId: number, accessToken: string): Promise<DeleteResponse> {
   try {
     const response = await deleteAsync<DeleteResponse, void>(
-      `/recruits/comments/${commentId}`,
+      `/api/recruits/comments/${commentId}`,
       {
         headers: {
           "Content-Type": "application/json",
