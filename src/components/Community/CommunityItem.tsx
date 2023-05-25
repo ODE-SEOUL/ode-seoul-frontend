@@ -38,7 +38,7 @@ const CommunityItem = () => {
 
    //detail page
    const router=useRouter();
-   const DetailHandler=(recruit:RecruitItem)=>{
+   const DetailHandler=(recruit:RecruitItem  & HostItem)=>{
    router.push({
      pathname:`community/recruit/${recruit.title}`,
      query:{
