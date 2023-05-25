@@ -3,7 +3,7 @@ import styled from '@emotion/styled';
 import Link from 'next/link';
 import community_data from "../../data/community-data";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faAngleRight } from "@fortawesome/free-solid-svg-icons";
+import { faAngleRight, faMapLocationDot, faCalendarCheck, faPencil } from "@fortawesome/free-solid-svg-icons";
 import { useQuery, QueryFunction } from 'react-query';
 import { getRecruitList } from '../../apis/recruitList';
 import { GetRecruitListDto, IRecruitListData, RecruitItem, HostItem } from '../../types/recruitList';
@@ -115,7 +115,7 @@ const CommunityItem = () => {
 
       <div style={{ justifyContent: "flex-end", display: "flex" }}>
         <Circle> 
-          <Link href="community/recruit" style={{color: "var(-color--darkgreen)", fontWeight: 300}}>글쓰기</Link>
+          <Link href="community/recruit" style={{color: "#eee", fontWeight: 300}}><FontAwesomeIcon icon={faPencil} />     모집하기</Link>
         </Circle>
       </div>
 
@@ -158,8 +158,9 @@ const CommunityItem = () => {
                       <Body>{title}</Body>
                     </div>
                     <div className="">
-                      <SubBody><FontAwesomeIcon icon={faAngleRight} className="mr-10"/>{courseName}</SubBody>
-                      <SubBody><FontAwesomeIcon icon={faAngleRight} className="mr-10"/>{scheduledAt}</SubBody>
+                
+                      <SubBody><FontAwesomeIcon icon={faMapLocationDot} className="mr-10" style={{color: 'rgb(171, 184, 104)' }}/>{courseName}</SubBody>
+                      <SubBody><FontAwesomeIcon icon={faCalendarCheck} className="mr-10" style={{color: 'rgb(171, 184, 104)' }}/>{scheduledAt}</SubBody>
                     </div>
                   </Card>
                 </div>
@@ -307,7 +308,7 @@ const CircleButton = styled.div<{ isSelected: boolean; onClick?: () => void }>`
 const Circle = styled.div`
   font-weight: 100;
   font-family: var(--font-secondary);
-  background-color: var(--color-green);
+  background-color: rgb(171, 184, 104);
   font-size: 20px;
   border-radius: 10px;
   padding: 10px;
@@ -322,7 +323,7 @@ const Circle = styled.div`
   }
 
   :hover {
-    background-color: var(--color-darkgreen)
+    background-color: rgb(108, 128, 75)
   }
 `;
 

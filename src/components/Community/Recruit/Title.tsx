@@ -21,7 +21,7 @@ const StyledTitle = styled.div`
     font-family: var(--font-secondary);
     font-weight: 300;
     padding: 20px 0px;
-    color: var(--color-darkgreen);
+    color: rgb(108, 128, 75);
     margin: 100px 0px 20px 0px;
     font-weight: 500;
 

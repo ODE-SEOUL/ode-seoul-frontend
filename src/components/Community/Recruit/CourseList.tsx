@@ -80,7 +80,7 @@ const Li = styled.li<{ active?: boolean }>`
   list-style: none;
   font-weight: ${({ active }) => (active ? 500 : 100)};
   padding-bottom: 40px;
-  color: ${({ active }) => (active ? 'var(--color-darkgreen)' : 'inherit')};
+  color: ${({ active }) => (active ? 'rgb(108, 128, 75)' : 'inherit')};
 `;
 
 const LiSmall = styled.div`
