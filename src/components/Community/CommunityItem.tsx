@@ -10,6 +10,7 @@ import { GetRecruitListDto, IRecruitListData, RecruitItem, HostItem } from '../.
 import { useRouter } from 'next/dist/client/router';
 import { IRecruitData } from '../../types/recruits';
 import { useCourseListQuery } from '../CourseList/courseListQuery';
+import { wrap } from 'module';
 
 
 enum Category {
@@ -121,7 +122,7 @@ const CommunityItem = () => {
       <FlexContainer style={{ background: "#eee" }}>
 
         <div className='row col-lg-12 mb-100'>
-          <div className="row">
+          <div className="row" style={{display: 'flex', flexWrap: 'wrap'}}>
             {filteredItems?.map((item: any) => {
               const {
                 id,
@@ -145,7 +146,7 @@ const CommunityItem = () => {
                 <div key={id} className="col-lg-3 col-sm-12">
                   <Card onClick={()=>DetailHandler(item)}>
                     <Img src={image} alt="이미지" width="100%"  />
-                    <div className='row' style={{height: "50px"}}>
+                    <div className='row' style={{height: "50px", display: 'flex', flexWrap: 'wrap'}}>
                         <div className='col-lg-4'>
                             <ProfileImg src={profileImage}></ProfileImg>
                         </div>

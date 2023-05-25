@@ -23,7 +23,7 @@ const Main3 = () => {
         
         <FlexContainer>
             <div className='row col-lg-12 mb-100'>
-                <div className="row">
+                <div className="row" style={{display: 'flex', flexWrap: 'wrap'}}>
                     {activity_data.slice(0, 3).map((item) => {
                     const { id, img, title, dest, useDate, bookDate } = item;
                     return <div key={id} className="col-lg-4 col-sm-12">

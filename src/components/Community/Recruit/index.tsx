@@ -239,7 +239,6 @@ const Btn = styled.button`
     width:
 `;
 
-
 const StyledInput = styled.input`
   padding: 0.8rem 0rem;
   margin-bottom: 0.5rem;

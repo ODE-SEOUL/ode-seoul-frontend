@@ -55,7 +55,7 @@ interface CourseListProps {
               >
                 {item.name}
               </Li>
-              <LiSmall className='row'>
+              <LiSmall className='row' style={{display: 'flex', flexWrap: 'wrap'}}>
                 <div className='col-lg-8'>{item.routeSummary}</div>
               </LiSmall>
             </StyledLi>

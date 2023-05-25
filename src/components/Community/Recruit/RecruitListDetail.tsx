@@ -104,11 +104,11 @@ export default function CourseListDetail(){
         <>
         <Navbar />
             <Wrapper >
-                <div className="row">
+                <div className="row" style={{display: 'flex', flexWrap: 'wrap'}}>
                     <StyledCategory>{category}</StyledCategory> 
                     <StyledCategory>{progressStatus}</StyledCategory> 
                     <StyledTitle>{title}</StyledTitle> 
-                    <div className="row" >
+                    <div className="row" style={{display: 'flex', flexWrap: 'wrap'}}>
                         <StyledSub className="col-lg-1">{courseId}</StyledSub>
                         <StyledSub className="col-lg-2">{scheduledAt}</StyledSub>
                         <StyledSub className="col-lg-1">{currentPeople}/{maxPeople}</StyledSub>
@@ -128,16 +128,16 @@ export default function CourseListDetail(){
                         <div>
                                         {comments.map((comment: Comment) => (
                                         <Container4 key={comment.id}>
-                                            <div className="row" >
+                                            <div className="row" style={{display: 'flex', flexWrap: 'wrap'}}>
                                                 <div className="col-lg-2" >
                                                     <PImg2 src={comment.user.profileImage} alt="Profile" />
                                                 </div>
                                                 <div className="col-lg-10">
                                                     <StyledTitle2>{comment.user.nickname} </StyledTitle2>
-                                                    <StyledSub className="row">
+                                                    <StyledSub className="row" style={{display: 'flex', flexWrap: 'wrap'}}>
                                                         <div className="col-lg-12">{comment.content}</div>
                                                     </StyledSub>
-                                                    <div className="row">
+                                                    <div className="row" style={{display: 'flex', flexWrap: 'wrap'}}>
                                                         <div className="col-lg-10"></div>
                                                         <Small className="col-lg-2">{comment.createdAt}</Small >
                                                     </div>
@@ -176,7 +176,7 @@ export default function CourseListDetail(){
                         </Modal>
                         )}
                         </Container>
-                        <Container2 className="row">
+                        <Container2 className="row" style={{display: 'flex', flexWrap: 'wrap'}}>
                             <Box1 className="col-lg-8" >함께하는 사람</Box1>
                             <Angle onClick={handlerToggle} className="col-lg-4"
                               >{currentPeople}/{maxPeople}</Angle>
@@ -185,7 +185,7 @@ export default function CourseListDetail(){
                                         <div>
                                         {applications.map((application: ApplicationData) => (
                                         <Container3 key={application.id}>
-                                            <div className="row" >
+                                            <div className="row" style={{display: 'flex', flexWrap: 'wrap'}}>
                                                 <div className="col-lg-4" >
                                                     <PImg2 src={application.member.profileImage} alt="Profile" />
                                                 </div>

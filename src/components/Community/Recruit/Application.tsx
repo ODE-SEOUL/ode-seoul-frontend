@@ -26,25 +26,25 @@ export const Application = ({ id, title, date, time, dest, nickname }: Props) =>
   return (
     <Wrapper>
         <Title>{title}</Title>
-        <div className='row'>
+        <div className='row' style={{display: 'flex', flexWrap: 'wrap'}}>
             <SubTitle className='col-lg-4'>만나는 날짜</SubTitle>
             <div className='col-lg-8'>
                 {date}
             </div>
         </div>
-        <div className='row'>
+        <div className='row' style={{ display: 'flex', flexWrap: 'wrap'}}>
             <SubTitle className='col-lg-4'>만나는 시간</SubTitle>
             <div className='col-lg-8'>
                 {time}
             </div>
         </div>
-        <div className='row'>
+        <div className='row' style={{display: 'flex', flexWrap: 'wrap'}}>
             <SubTitle className='col-lg-4'>만나는 장소</SubTitle>
             <div className='col-lg-8'>
                 {dest}
             </div>
         </div>
-        <div className='row'>
+        <div className='row' style={{display: 'flex', flexWrap: 'wrap'}}>
             <SubTitle className='col-lg-4'>신청자 정보</SubTitle>
             <div className='col-lg-8'>
                 {nickname}
