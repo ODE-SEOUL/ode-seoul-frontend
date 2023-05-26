@@ -39,9 +39,11 @@ interface CourseListProps {
       },
     });
   
-    if (!courseData) {
-      // courseData가 undefined인 경우 처리
-      return <div></div>;
+    if (!courseData || courseData.length === 0) {
+      // courseData가 undefined이거나 filteredItems가 없는 경우 처리
+      return <>
+      <div>해당 지역은 아쉽지만 준비 중이에요.</div>
+      </>;
     }
   
     return (
