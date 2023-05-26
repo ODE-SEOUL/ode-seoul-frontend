@@ -11,14 +11,14 @@ const nextConfig = {
     return config;
   },
   // cors관련
-  async rewrites() {
-    return [
-      {
-        source: '/api/:path*',
-        destination: `https://ode-seoul.fly.dev/:path*`,
-      },
-    ];
-  },
+  // async rewrites() {
+  //   return [
+  //     {
+  //       source: '/api/:path*',
+  //       destination: `https://ode-seoul.fly.dev/:path*`,
+  //     },
+  //   ];
+  // },
   // env 못읽는거
   env:{
     KAKAO_MAP_KEY:process.env.KAKAO_MAP_KEY,

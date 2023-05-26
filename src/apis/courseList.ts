@@ -18,7 +18,7 @@ const DEFAULT_SIZE=10;
 
 export const getCourseList=async()=>{
     const response=await getAsync<GetCourseListDto,undefined>(
-        '/api/courses',
+        '/courses',
     );
     return response;
 
@@ -29,7 +29,7 @@ export const getCourseListComment=async({
     value
 }:GetCourseListCommentParams)=>{
     const response=await getAsync<GetCommentListDto,undefined>(
-        `/api/courses/reviews?type=${type}&value=${value.toString()}`
+        `/courses/reviews?type=${type}&value=${value.toString()}`
     );
     return response;
 }
@@ -39,7 +39,7 @@ export const getCourseUserInfo=async({
 }:GetCourseUserInfoParms)=>{
     const response= await getAsync<GetCourseUserDto,undefined>(
 
-        `/api/users/${id}`
+        `/users/${id}`
 
     );
     return response;
@@ -52,7 +52,7 @@ export const getCourseUserInfo=async({
 export const postCourseReview=async(accessToken:string,info:ICourseReview)=>{
 
     const response= await postAsync<PostCourseReviewResponseDto,ICourseReview>(
-       `/api/courses/reviews`,
+       `/courses/reviews`,
        info,
         {
             headers:{

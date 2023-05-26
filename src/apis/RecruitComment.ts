@@ -10,7 +10,7 @@ export const postComments = async (id: string, accessToken: string, contents: st
     };
 
     const response = await postAsync<any, Contents>(
-      `/api/recruits/${id}/comments`,
+      `/recruits/${id}/comments`,
       comment,
       {
         headers: {
@@ -36,7 +36,7 @@ interface DeleteResponse {
 export async function deleteComments(commentId: number, accessToken: string): Promise<DeleteResponse> {
   try {
     const response = await deleteAsync<DeleteResponse, void>(
-      `/api/recruits/comments/${commentId}`,
+      `/recruits/comments/${commentId}`,
       {
         headers: {
           "Content-Type": "application/json",
