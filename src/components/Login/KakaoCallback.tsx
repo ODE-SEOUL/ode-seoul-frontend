@@ -4,9 +4,10 @@ import { useRecoilState, useRecoilValue } from 'recoil';
 import { userAtom } from '../../states/UserAtom';
 import { useRouter } from 'next/router';
 import SignupForm from './SignupForm';
-import { userInfo } from 'os';
 
 const KakaoCallback = () => {
+
+
   const router = useRouter();
 
   const [user, setUser] = useRecoilState(userAtom);
@@ -34,6 +35,7 @@ const KakaoCallback = () => {
               }
             })
             .then((res) => {
+
               // 유저 정보를 업데이트
               setUser(prevUser => ({
                 ...prevUser,
@@ -84,6 +86,7 @@ const KakaoCallback = () => {
             isLogin: true,
             isSignup: false,
           };
+
 
           setUser(userInfo);
           // console.log('일단 로그인 성공');
