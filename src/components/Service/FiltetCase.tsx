@@ -4,6 +4,7 @@ import { Dispatch } from "react";
 import { SetStateAction } from "react";
 import { ICaseProps } from ".";
 import ServiceItem from "./ServiceItem";
+import { Grid } from "@mui/material";
 
 
 export default function FilterCaseContainer({serviceData,category,gugun}:ICaseProps){
@@ -17,25 +18,25 @@ export default function FilterCaseContainer({serviceData,category,gugun}:ICasePr
         
             </SearchContainer>
             <div className='mt-100'></div>
-            <ItemContainer>
-                {
-                    <ItemContainer>
-                    {
+            <Grid item>
+            {
+                   
+                    
                       serviceData?.filter(service=>service.category==category&&service.guname==gugun).map(service=>
-                        <ItemBtn key={service.uuid}>
+                        <Grid   xs={12} sm={8} md={6} lg={4} key={service.uuid}>
                           <ServiceItem title={service.title} location={service.place}
                           startDate={service.startDate} endDate={service.endDate}
                           useFee={service.useFee} mainImage={service.mainImage}
                           more={service.orgLink}/>
         
-                        </ItemBtn>)
+                        </Grid>)
                       
-                    }
+                    
         
-                  </ItemContainer>
+                  
 
                 }
-            </ItemContainer>
+            </Grid>
 
         
           </Container>

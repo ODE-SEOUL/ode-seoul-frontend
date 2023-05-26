@@ -29,6 +29,20 @@ export interface ICourseItem {
     routes:any;  
   };
 
+  export interface ICourseDetail{
+        id:number;
+        name:string;
+        distance:string;
+        time:string;
+        description:string;
+        nearSubway:string;
+        accessWay:string;
+        image:string;
+        routes:any;
+        lng:number;
+        lat:number;
+  }
+
 export interface ICourseCommentData{
     id:number;
     courseId:number;

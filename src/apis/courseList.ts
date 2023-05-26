@@ -24,6 +24,14 @@ export const getCourseList=async()=>{
 
 }
 
+export const getCourseDetail=async(id:number)=>{
+    const response=await getAsync<GetCourseListDto,undefined>(
+        '/courses',
+    );
+    const target=response.result.filter(item=>item.id===id);
+    return target;
+}
+
 export const getCourseListComment=async({
     type,
     value
@@ -65,3 +73,5 @@ export const postCourseReview=async(accessToken:string,info:ICourseReview)=>{
     );
     return response;
 }
+
+

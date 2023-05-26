@@ -2,7 +2,8 @@ import styled from "@emotion/styled";
 import SearchService from "./SearchService";
 import ServiceItem from "./ServiceItem";
 import { ICaseProps } from ".";
-
+import { Grid } from "@mui/material";
+import { spacing } from '@mui/system';
 
 export default function SearchCaseContainer({searchServiceData,value}:ICaseProps){
   
@@ -16,20 +17,20 @@ export default function SearchCaseContainer({searchServiceData,value}:ICaseProps
       
             </SearchContainer>
             <div className='mt-100'></div>
-            <ItemContainer>
-              {
-                searchServiceData?.
-                map(service=>
-                  <ItemBtn key={service.uuid}>
-                    <ServiceItem title={service.title} location={service.place}
-                    startDate={service.startDate} endDate={service.endDate}
-                    useFee={service.useFee} mainImage={service.mainImage}
-                    more={service.orgLink}/>
-    
-                  </ItemBtn>)
-                
-              }
-            </ItemContainer>
+            <Grid container>
+            {
+                  searchServiceData?.
+                  map(service=>
+                    <Grid xs={12} sm={8} md={4} lg={2}  key={service.uuid}>
+                      <ServiceItem title={service.title} location={service.place}
+                      startDate={service.startDate} endDate={service.endDate}
+                      useFee={service.useFee} mainImage={service.mainImage}
+                      more={service.orgLink}/>
+      
+                    </Grid>)
+                  
+                }
+            </Grid>
           </Container>
         
         </>
