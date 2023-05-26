@@ -18,7 +18,7 @@ export default function DefaultCaseContainer({serviceData}:ICaseProps){
             <Grid container >
               {
                       serviceData?.map(service=>
-                        <Grid item  xs={12} sm={8} md={5} lg={3} key={service.uuid}>
+                        <Grid item  xs={12} sm={8} md={5} lg={4} key={service.uuid}>
                             <ItemBtn key={service.uuid}>
                               <ServiceItem title={service.title} location={service.place}
                               startDate={service.startDate} endDate={service.endDate}
