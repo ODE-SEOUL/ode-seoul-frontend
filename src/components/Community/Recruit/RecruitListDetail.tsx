@@ -45,11 +45,41 @@ interface ApplicationData {
     createdAt: string;
   };
 
-
+  enum Category {
+    COM_ANIMAL = '#반려동물',
+    COM_HOUSE = '#주부',
+    COM_OFFICE = '#직장인',
+    COM_NEIGHBOR = '#이웃주민',
+    COM_EXERCISE = '#운동',
+    COM_PHOTO = '#사진',
+    COM_EXPER = '#체험',
+  }
        
+  const getCategoryLabel = (category: string): string | undefined => {
+    switch (category) {
+      case 'COM_ANIMAL':
+        return Category.COM_ANIMAL;
+      case 'COM_HOUSE':
+        return Category.COM_HOUSE;
+      case 'COM_OFFICE':
+        return Category.COM_OFFICE;
+      case 'COM_NEIGHBOR':
+        return Category.COM_NEIGHBOR;
+      case 'COM_EXERCISE':
+        return Category.COM_EXERCISE;
+      case 'COM_PHOTO':
+        return Category.COM_PHOTO;
+      case 'COM_EXPER':
+        return Category.COM_EXPER;
+      default:
+        return undefined;
+    }
+  };
+
 export default function CourseListDetail(){
 
     
+
 
     const [Rcontent, setRContent] = useState('');
 
@@ -102,13 +132,13 @@ export default function CourseListDetail(){
       if (!result) {
         return null; // 데이터가 로딩 중인 경우에는 null을 반환하여 아무것도 렌더링하지 않음
       }
-
+      const categoryLabel = getCategoryLabel(String(category));
         return(
         <>
         <Navbar />
             <Wrapper >
                 <div className="row" style={{display: 'flex', flexWrap: 'wrap'}}>
-                    <StyledCategory>{category}</StyledCategory> 
+                    <StyledCategory>{categoryLabel}</StyledCategory> 
                     <StyledCategory>{progressStatus}</StyledCategory> 
                     <StyledTitle>{title}</StyledTitle> 
                     <div className="row" style={{display: 'flex', flexWrap: 'wrap'}}>
