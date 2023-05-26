@@ -16,6 +16,8 @@ import axios from 'axios';
 import { postRecruit } from '../../../apis/recruit';
 import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css'; // css import
+import Modal from '../../../modal/LoginError';
+import useModal from '@/src/hooks/useModal';
 
 
 const Recruit = () => {

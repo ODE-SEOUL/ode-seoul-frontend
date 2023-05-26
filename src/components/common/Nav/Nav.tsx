@@ -20,12 +20,7 @@ const Navbar = () => {
   };
 
   const [user, setUser] = useRecoilState(userAtom);
-  const { isShowing, toggle } = useModal();
-
-  const handleClick = () => {
-    toggle();
-  };
-
+c
   const handleLogout = () => {
     setUser(null);
   };
