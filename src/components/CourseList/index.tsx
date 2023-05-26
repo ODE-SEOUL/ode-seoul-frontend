@@ -8,7 +8,7 @@ import CourseItem from './CourseItem';
 import axios from 'axios';
 import Footer from '../common/Footer/Footer';
 import CourseCarousel from '../common/Carousel/CourseCategory';
-import { selectCategoryAtom } from '../../states/couresList';
+import { selectCategoryAtom } from '../../states/CourseAtom';
 import { useRecoilState, useRecoilValue } from 'recoil';
 import { useRouter } from 'next/dist/client/router';
 import { ICourseData } from '../../types/courseList';
@@ -21,7 +21,7 @@ export default function CourseList() {
   const onClick=(course:ICourseData)=>{
   
     router.push({
-      pathname:`/course/${course.name}`,
+      pathname:`/course/${course.id}`,
       query:{
           id:course.id,
           name:course.name,
@@ -39,7 +39,7 @@ export default function CourseList() {
 
         }
     },
-    `/course/${course.name}`);
+    `/course/${course.id}`);
 
   }
   return (

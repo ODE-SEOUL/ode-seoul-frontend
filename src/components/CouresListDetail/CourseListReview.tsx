@@ -26,7 +26,7 @@ export default function CourseListReview({id,name}:ICourseListProps){
         <FlexBox>
             <CourseText size={20} weight={500} color={"var(--color-black)"}>리뷰</CourseText>
             <div className="ml-20"></div>
-            <CourseText size={20} weight={500} color={"var(--color-darkgreen)"}>{courseReviewData?.length}</CourseText>
+            <CourseText size={20} weight={500} color={"rgb(108, 128, 75)"}>{courseReviewData?.length}</CourseText>
         </FlexBox>
         <div className="mt-30"></div>
         <CommentContainer>

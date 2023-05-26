@@ -159,7 +159,7 @@ const NavbarLinks = styled.div`
   }
 
   a:hover {
-    color: var(--color-darkgreen);
+    color: rgb(108, 128, 75);
     font-weight: 300;
   }
 `;
@@ -189,14 +189,14 @@ const AuthSection = styled.div`
   }
 
   a:hover {
-    color: var(--color-darkgreen);
+    color: rgb(108, 128, 75);
     font-weight: 300;
   }
 `;
 
 const DropDown = styled.button`
-  background: var(--color-darkgreen);
-  border: 2px solid var(--color-darkgreen);
+  background: rgb(108, 128, 75);
+  border: 2px solid rgb(108, 128, 75);
   outline:none;
   position: relative;
   border-radius: 100%;

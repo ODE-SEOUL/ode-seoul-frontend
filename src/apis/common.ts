@@ -81,7 +81,7 @@ export async function getAsync<T, D>(
 ): Promise<T> {
   try {
     const response = await axios.get<T, AxiosResponse<T, D>, D>(path, {
-      //baseURL: apiUrl,
+      baseURL: apiUrl,
       responseType: 'json',
       ...config,
     });
@@ -112,7 +112,7 @@ export async function postAsync<T, D>(
 ): Promise<T> {
   try {
     const response = await axios.post<T, AxiosResponse<T, D>, D>(path, data, {
-      //baseURL: apiUrl,
+      baseURL: apiUrl,
       responseType: 'json',
       ...config,
     });
@@ -139,7 +139,7 @@ export async function deleteAsync<T, D>(
 ): Promise<T> {
   try {
     const response = await axios.delete<T, AxiosResponse<T, D>, D>(path, {
-      //baseURL: apiUrl,
+      baseURL: apiUrl,
       responseType: 'json',
       ...config,
     });
@@ -167,7 +167,7 @@ export async function patchAsync<T, D>(
 ): Promise<T> {
   try {
     const response = await axios.patch<T, AxiosResponse<T, D>, D>(path, data, {
-      //baseURL: apiUrl,
+      baseURL: apiUrl,
       responseType: 'json',
       ...config,
     });

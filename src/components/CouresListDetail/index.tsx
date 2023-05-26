@@ -10,8 +10,11 @@ import { useState } from "react";
 import { useRecoilState } from "recoil";
 import CourseListReview from "./CourseListReview";
 import CourseReviewWriting from "./CourseReviewWriting";
+
+import { useCourseListQuery } from "../CourseList/courseListQuery";
 export default function CourseListDetail(){
     const router=useRouter();
+    //const { data: courseData } = useCourseListQuery();
     const {id,name,distance,time,description,subway,accessway,image,lat,lng,routes}=router.query;
     const[reviewClick,setReviewClick]=useState<boolean>(false);
     const[communityClick,setCommunityClick]=useState<boolean>(false);
@@ -46,7 +49,7 @@ export default function CourseListDetail(){
                 </Container>
                 <CommentContainer>
                     {
-                        reviewClick? <CourseReviewWriting/>:<CourseListReview id={+id as number} name={name as string}/>
+                        reviewClick? <CourseReviewWriting coursename={name as string} courseId={+id}/>:<CourseListReview id={+id as number} name={name as string}/>
                     }
                 </CommentContainer>
             </MainContainer>
@@ -55,12 +58,14 @@ export default function CourseListDetail(){
 
     );
 }
+
+
 type CourseMainImageProps={
     imageUrl:string;
 }
 const MainContainer=styled.div`
     display: grid;
-    grid-template-columns: 4fr 1fr;
+    grid-template-columns: 4fr 1.5fr;
     margin-right: 80px;
     margin-left: 80px !important;
    

@@ -57,7 +57,7 @@ interface CourseListProps {
               >
                 {item.name}
               </Li>
-              <LiSmall className='row'>
+              <LiSmall className='row' style={{display: 'flex', flexWrap: 'wrap'}}>
                 <div className='col-lg-8'>{item.routeSummary}</div>
               </LiSmall>
             </StyledLi>
@@ -82,7 +82,7 @@ const Li = styled.li<{ active?: boolean }>`
   list-style: none;
   font-weight: ${({ active }) => (active ? 500 : 100)};
   padding-bottom: 40px;
-  color: ${({ active }) => (active ? 'var(--color-darkgreen)' : 'inherit')};
+  color: ${({ active }) => (active ? 'rgb(108, 128, 75)' : 'inherit')};
 `;
 
 const LiSmall = styled.div`

@@ -359,7 +359,6 @@ const Btn = styled.button`
     border-radius: 5px;
 `;
 
-
 const StyledInput = styled.input`
   padding: 0.8rem 0rem;
   margin-bottom: 0.5rem;

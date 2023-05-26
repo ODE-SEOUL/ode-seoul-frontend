@@ -3,14 +3,15 @@ import styled from '@emotion/styled';
 import Link from 'next/link';
 import community_data from "../../data/community-data";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faAngleRight } from "@fortawesome/free-solid-svg-icons";
+import { faAngleRight, faMapLocationDot, faCalendarCheck, faPencil } from "@fortawesome/free-solid-svg-icons";
 import { useQuery, QueryFunction } from 'react-query';
-import { getRecruitList } from '../../apis/recruitList';
+import { getCourseList } from '@/src/apis/courseList';
 import { GetRecruitListDto, IRecruitListData, RecruitItem, HostItem } from '../../types/recruitList';
 import { useRouter } from 'next/dist/client/router';
 import { IRecruitData } from '../../types/recruits';
 import { useCourseListQuery } from '../CourseList/courseListQuery';
-
+import { wrap } from 'module';
+import { getRecruitList } from '@/src/apis/recruitList';
 
 enum Category {
   COM_ANIMAL = '#반려동물',
@@ -40,7 +41,7 @@ const CommunityItem = () => {
    const router=useRouter();
    const DetailHandler=(recruit:RecruitItem  & HostItem)=>{
    router.push({
-     pathname:`community/recruit/${recruit.title}`,
+     pathname:`recruit/${recruit.id}`,
      query:{
        courseId:recruit.courseId,
        category:recruit.category,
@@ -56,7 +57,7 @@ const CommunityItem = () => {
       },
 
        },
-   `community/recruit/${recruit.title}`);
+   `recruit/${recruit.id}`);
   }
 
   //recruit api
@@ -114,14 +115,14 @@ const CommunityItem = () => {
 
       <div style={{ justifyContent: "flex-end", display: "flex" }}>
         <Circle> 
-          <Link href="community/recruit" style={{color: "var(-color--darkgreen)", fontWeight: 300}}>글쓰기</Link>
+          <Link href="/recruit" style={{color: "#eee", fontWeight: 300}}><FontAwesomeIcon icon={faPencil} />     모집하기</Link>
         </Circle>
       </div>
 
       <FlexContainer style={{ background: "#eee" }}>
 
         <div className='row col-lg-12 mb-100'>
-          <div className="row">
+          <div className="row" style={{display: 'flex', flexWrap: 'wrap'}}>
             {filteredItems?.map((item: any) => {
               const {
                 id,
@@ -145,7 +146,7 @@ const CommunityItem = () => {
                 <div key={id} className="col-lg-3 col-sm-12">
                   <Card onClick={()=>DetailHandler(item)}>
                     <Img src={image} alt="이미지" width="100%"  />
-                    <div className='row' style={{height: "50px"}}>
+                    <div className='row' style={{height: "50px", display: 'flex', flexWrap: 'wrap'}}>
                         <div className='col-lg-4'>
                             <ProfileImg src={profileImage}></ProfileImg>
                         </div>
@@ -157,8 +158,9 @@ const CommunityItem = () => {
                       <Body>{title}</Body>
                     </div>
                     <div className="">
-                      <SubBody><FontAwesomeIcon icon={faAngleRight} className="mr-10"/>{courseName}</SubBody>
-                      <SubBody><FontAwesomeIcon icon={faAngleRight} className="mr-10"/>{scheduledAt}</SubBody>
+                
+                      <SubBody><FontAwesomeIcon icon={faMapLocationDot} className="mr-10" style={{color: 'rgb(171, 184, 104)' }}/>{courseName}</SubBody>
+                      <SubBody><FontAwesomeIcon icon={faCalendarCheck} className="mr-10" style={{color: 'rgb(171, 184, 104)' }}/>{scheduledAt}</SubBody>
                     </div>
                   </Card>
                 </div>
@@ -220,6 +222,7 @@ const Body = styled.div`
   font-family: var(--font-secondary);
   text-align: center;
   margin: 10px;
+  margin-bottom: 15px;
 `;
 
 const SubBody = styled.div`
@@ -306,7 +309,7 @@ const CircleButton = styled.div<{ isSelected: boolean; onClick?: () => void }>`
 const Circle = styled.div`
   font-weight: 100;
   font-family: var(--font-secondary);
-  background-color: var(--color-green);
+  background-color: rgb(171, 184, 104);
   font-size: 20px;
   border-radius: 10px;
   padding: 10px;
@@ -321,7 +324,7 @@ const Circle = styled.div`
   }
 
   :hover {
-    background-color: var(--color-darkgreen)
+    background-color: rgb(108, 128, 75)
   }
 `;
 

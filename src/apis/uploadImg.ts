@@ -1,12 +1,13 @@
 import { postAsync } from "./common";
+import { PostUploadImgDataResponseDto } from "../types/uploadImg";
 
-export const uploadImage = async (file: File, accessToken: string): Promise<any> => {
+export const uploadImage = async (file: File, accessToken: string):Promise<string>  => {
   const formData = new FormData();
   formData.append("file", file);
 
-  try {
-    const response = await postAsync<any, FormData>(
-      "/upload",
+  try{
+    const response = await postAsync<PostUploadImgDataResponseDto, FormData>(
+      "/images",
       formData,
       {
         headers: {
@@ -15,9 +16,10 @@ export const uploadImage = async (file: File, accessToken: string): Promise<any>
         },
       }
     );
-
-    return response;
-  } catch (error) {
-    // Handle error
+    return response.result.url;
+  }catch(e){
+    
   }
+
+  
 };

@@ -23,7 +23,7 @@ const Main3 = () => {
         
         <FlexContainer>
             <div className='row col-lg-12 mb-100'>
-                <div className="row">
+                <div className="row" style={{display: 'flex', flexWrap: 'wrap'}}>
                     {activity_data.slice(0, 3).map((item) => {
                     const { id, img, title, dest, useDate, bookDate } = item;
                     return <div key={id} className="col-lg-4 col-sm-12">
@@ -141,7 +141,7 @@ const SubBody = styled.div`
 const Circle = styled.div`
   font-weight: 100;
   font-family: var(--font-secondary);
-  border: 1px solid var(--color-darkgreen);
+  border: 1px solid rgb(108, 128, 75);
   font-size: 20px;
   border-radius: 20px;
   padding: 10px;
@@ -155,7 +155,7 @@ const Circle = styled.div`
   }
 
   :hover{
-    background-color: var(--color-darkgreen)
+    background-color: rgb(108, 128, 75)
   }
 
 `;
@@ -163,7 +163,7 @@ const Circle = styled.div`
 const Circle2 = styled.div`
   font-weight: 100;
   font-family: var(--font-secondary);
-  border: 1px solid var(--color-darkgreen);
+  border: 1px solid rgb(108, 128, 75);
   font-size: 20px;
   border-radius: 20px;
   padding: 10px;
@@ -171,7 +171,7 @@ const Circle2 = styled.div`
   text-align: center;
   margin: auto;
 
-  background-color: var(--color-green);
+  background-color: rgb(171, 184, 104);
 
   @media screen and (max-width: 768px) {
     width: 100px;

@@ -33,14 +33,14 @@ const YellowColor = styled.div`
 `;
 
 const GreenColor = styled.div`
-  background-color: var(--color-green);
+  background-color: rgb(171, 184, 104);
   font-size: 30px;
   width: 500px;
   padding: 10px;
 `;
 
 const DarkGreenColor = styled.div`
-  background-color: var(--color-darkgreen);
+  background-color: rgb(108, 128, 75);
   font-size: 30px;
   width: 500px;
   padding: 10px;
