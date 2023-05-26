@@ -13,6 +13,7 @@ import { useRecoilState, useRecoilValue } from 'recoil';
 import { useRouter } from 'next/dist/client/router';
 import { ICourseData } from '../../types/courseList';
 import { useCourseListQuery } from './courseListQuery';
+import { Grid } from '@mui/material';
 
 export default function CourseList() {
   const { data: courseData } = useCourseListQuery();
@@ -28,12 +29,12 @@ export default function CourseList() {
           distance:course.distance,
           time:course.time,
           description:course.description,
-          subway:course.nearSubway,
-          accessway:course.accessWay,
+          nearSubway:course.nearSubway,
+          accessWay:course.accessWay,
           image:course.image,
-          lat:course.routes[0][0][0],
-          lng:course.routes[0][0][1],
           routes:JSON.stringify(course.routes[0]),
+          lng:course.routes[0][0][0],
+          lat:course.routes[0][0][1]
           
 
 
@@ -52,29 +53,34 @@ export default function CourseList() {
             <CourseCarousel/>
           </CourseCategoryBarContainer>
           <div className='mt-35'></div>
-          <Container>
-              <CourseListContainer>
-                  {
-                    courseData?.slice(0,16).filter(item=>item.categories.includes(selectCategory)).map(course=>
-                      <CourseItemBtn key={course.id} onClick={()=>onClick(course)} > 
-                          <CourseItem 
-                            key={course.id} 
-                            id={course.id}
-                            name={course.name}
-                            image={course.image}
-                            gugunSummary={course.gugunSummary}
-                            description={course.description}
-                            lat={course.routes[0][0][0]}
-                            lng={course.routes[0][0][1]}
-                            routes={course.routes}
+          <Grid container xs={2} sm={4} md={6} lg={12}>
+                    {
+                      courseData?.slice(0,17).filter(item=>item.categories.includes(selectCategory)).map(
+                        course=>
+                        <Grid item xs key={course.id}>
+                          <CourseItemBtn key={course.id} onClick={()=>onClick(course)} > 
+                            <CourseItem 
+                              key={course.id} 
+                              id={course.id}
+                              name={course.name}
+                              image={course.image}
+                              gugunSummary={course.gugunSummary}
+                              description={course.description}
+                              lat={course.routes[0][0][0]}
+                              lng={course.routes[0][0][1]}
+                              routes={course.routes}
 
-                          />
-                      </CourseItemBtn>
-                      )
-                  }
-                
-              </CourseListContainer>
-          </Container>
+                            />
+                        </CourseItemBtn>
+
+                        
+                        </Grid>
+                          
+                        
+
+                        )
+                    }
+                  </Grid>
       
     
       <Footer/>
@@ -83,11 +89,7 @@ export default function CourseList() {
   );
 };
 
-const Container=styled.div`
-  display: flex;
-  justify-content: center;
-  
-`
+
 
 const CourseCategoryBarContainer=styled.div`
   
@@ -96,25 +98,15 @@ const CourseCategoryBarContainer=styled.div`
   
 `;
 
-const CourseListContainer=styled.div`
-  display: inline-grid;
-  grid-auto-flow: row dense;
-  grid-template-columns: repeat(4,1fr);
-  grid-template-rows: repeat(3,1fr);
-  grid-gap: 0.2rem;
-  
-  
 
-  
-`;
 
 const CourseItemBtn=styled.button`
     border:0;
     outline:0;
     background-color: transparent; 
     margin: 1.25rem;
-    height:32.9375rem;
-    width:20rem; 
+    height:30rem;
+    width:25rem; 
     box-sizing: border-box;
   
 
