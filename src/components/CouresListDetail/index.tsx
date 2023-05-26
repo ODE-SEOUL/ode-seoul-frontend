@@ -10,8 +10,11 @@ import { useState } from "react";
 import { useRecoilState } from "recoil";
 import CourseListReview from "./CourseListReview";
 import CourseReviewWriting from "./CourseReviewWriting";
+
+import { useCourseListQuery } from "../CourseList/courseListQuery";
 export default function CourseListDetail(){
     const router=useRouter();
+    //const { data: courseData } = useCourseListQuery();
     const {id,name,distance,time,description,subway,accessway,image,lat,lng,routes}=router.query;
     const[reviewClick,setReviewClick]=useState<boolean>(false);
     const[communityClick,setCommunityClick]=useState<boolean>(false);
@@ -55,6 +58,8 @@ export default function CourseListDetail(){
 
     );
 }
+
+
 type CourseMainImageProps={
     imageUrl:string;
 }

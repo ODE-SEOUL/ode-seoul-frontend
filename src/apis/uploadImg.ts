@@ -7,7 +7,7 @@ export const uploadImage = async (file: File, accessToken: string):Promise<strin
 
   try{
     const response = await postAsync<PostUploadImgDataResponseDto, FormData>(
-      "/api/images",
+      "/images",
       formData,
       {
         headers: {

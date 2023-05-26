@@ -29,7 +29,7 @@ export default function ServiceItem({title,location,startDate,endDate,useFee,mai
                     
                     <Icon url="./assets/img/serviceLocation.svg" width="19.31px" height="28.6px"/>
                     <div className="mr-10"></div>
-                    <Text weight={600} size={15} color="black">장소명</Text>
+                    <Text weight={600} size={15} color="black">장소</Text>
                     <div className="mr-20"></div>
                     <Text weight={200} size={15} color="black">{location}</Text>
                     
@@ -68,7 +68,7 @@ export default function ServiceItem({title,location,startDate,endDate,useFee,mai
 }
 
 const ItemContainer=styled.div`
-    width:20rem;
+    width:23rem;
     height:33rem;
     border-radius: 10px;
     box-sizing: border-box;
@@ -82,7 +82,7 @@ const Image=styled.div<{url:string}>`
     border-top-right-radius:10px;
     border-top-left-radius: 10px;
     
-    width:20rem;
+    width:23rem;
     height:15rem;
 
     
