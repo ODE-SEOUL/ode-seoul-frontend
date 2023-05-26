@@ -1,11 +1,14 @@
-import Service from '@/src/components/Service';
-import React from 'react';
 
+import React from 'react';
+import Service from '@/src/components/Service';
+import Navbar from '@/src/components/common/Nav/Nav';
 
 export default function index() {
   return (
     <>
-       <Service/>
+        <Navbar/>
+        <Service/>
+       
     </>
   );
 }
