@@ -4,12 +4,60 @@ import { useRecoilState, useRecoilValue } from 'recoil';
 import { userAtom } from '../../states/UserAtom';
 import { useRouter } from 'next/router';
 import SignupForm from './SignupForm';
+import { userInfo } from 'os';
 
 const KakaoCallback = () => {
   const router = useRouter();
 
   const [user, setUser] = useRecoilState(userAtom);
   const [isSignup, setIsSignup] = useState(false);
+
+  const refreshToken = () => {
+    axios
+      .patch(`https://ode-seoul.fly.dev/accounts/token`, null, {
+        headers: {
+          Authorization: `Bearer ${user?.refreshToken}`
+        }
+      })
+      .then((response) => {
+        if (response.data.code === 200) {
+          console.log('refresh 성공', 
+            response.data.result.accessToken, 
+            response.data.result.refreshToken
+          );
+
+          // 새로운 액세스 토큰과 리프레시 토큰으로 유저 정보를 다시 가져오기
+          axios
+            .get(`https://ode-seoul.fly.dev/users/${user.id}`, {
+              headers: {
+                Authorization: `Bearer ${response.data.result.accessToken}`
+              }
+            })
+            .then((res) => {
+              // 유저 정보를 업데이트
+              setUser(prevUser => ({
+                ...prevUser,
+                accessToken: response.data.result.accessToken,
+                refreshToken: response.data.result.refreshToken,
+                // 업데이트된 유저 정보
+                id: Number(res.data.result.id), 
+                name: res.data.result.socialProfile.nickname,
+                photo: res.data.result.socialProfile.profileImage,
+                nickname: res.data.result.socialProfile.nickname,
+                locationCode: '1135000000', // 유저의 위치 코드 정보를 설정 필요
+                isLogin: true,
+                isSignup: false,
+              }));
+            })
+            .catch((error) => {
+              console.error(error);
+            });
+        }
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  };
 
   useEffect(() => {
     const params = new URL(document.location.toString()).searchParams;
@@ -53,8 +101,8 @@ const KakaoCallback = () => {
             .catch((error) => {
               console.error(error);
             });
-        } else {
-          // TODO
+        } else if (res.data.code === 401) {
+          refreshToken();
         }
       })
       .catch((error) => {
@@ -65,7 +113,6 @@ const KakaoCallback = () => {
   useEffect(() => {
     console.log(user); // 콘솔에 유저 정보 출력
   }, [user]); // user 추가
-
 
   const handleSignupSuccess = () => {
     setIsSignup(true);
