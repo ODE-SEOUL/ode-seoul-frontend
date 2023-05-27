@@ -284,8 +284,8 @@ const CircleButton = styled.div<{ isSelected: boolean; onClick?: () => void }>`
   font-size: 20px;
   border-radius: 100%;
   padding: 10px;
-  width: 50px;
-  height: 50px;
+  width: 80px;
+  height: 80px;
   text-align: center;
   margin-bottom: 30px;
   box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.3);
@@ -293,14 +293,17 @@ const CircleButton = styled.div<{ isSelected: boolean; onClick?: () => void }>`
 
   &.color-1 {
     background-color: ${({ isSelected }) => (isSelected ? '#ABB868' : '#eee')};
+    background-image: url('../assets/img/hashtag/반려동물.svg');
   }
 
   &.color-2 {
     background-color: ${({ isSelected }) => (isSelected ? '#FFC3A0' : '#eee')};
+    background-image: url('../assets/img/hashtag/주부.svg');
   }
 
   &.color-3 {
     background-color: ${({ isSelected }) => (isSelected ? '#CDB4DB' : '#eee')};
+    background-image: url('../assets/img/hashtag/직장인2.svg');
   }
 
   &.color-4 {
@@ -309,14 +312,17 @@ const CircleButton = styled.div<{ isSelected: boolean; onClick?: () => void }>`
 
   &.color-5 {
     background-color: ${({ isSelected }) => (isSelected ? '#BDE0FE' : '#eee')};
+    background-image: url('../assets/img/hashtag/운동.svg');
   }
 
   &.color-6 {
     background-color: ${({ isSelected }) => (isSelected ? '#C8E6C9' : '#eee')};
+    background-image: url('../assets/img/hashtag/사진.svg');
   }
 
   &.color-7 {
     background-color: ${({ isSelected }) => (isSelected ? '#FFE0AC' : '#eee')};
+    background-image: url('../assets/img/hashtag/체험.svg');
   }
 
   @media screen and (max-width: 768px) {
