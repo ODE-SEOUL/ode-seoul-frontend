@@ -11,6 +11,8 @@ import { useRouter } from 'next/dist/client/router';
 import { IRecruitData } from '../../types/recruits';
 import { useCourseListQuery } from '../CourseList/courseListQuery';
 import { wrap } from 'module';
+import { useRecoilValue } from 'recoil';
+import { userAtom } from '../../states/UserAtom';
 import { getRecruitList } from '@/src/apis/recruitList';
 
 enum Category {
@@ -25,6 +27,17 @@ enum Category {
 
 const CommunityItem = () => {
 
+  const user = useRecoilValue(userAtom);
+  const handleCircleClick = () => {
+    if (!user) {
+      alert('로그인이 필요한 서비스입니다');
+      router.push('/');
+    }else if(user){
+      window.location.href = '/recruit';
+    }
+  };
+  
+
   //courseList
   const { data: courseData } = useCourseListQuery();
   //courseId를 courseName으로 바꾸는 함수
@@ -37,14 +50,18 @@ const CommunityItem = () => {
     }
   };
 
+  
+
    //detail page
    const router=useRouter();
    const DetailHandler=(recruit:RecruitItem  & HostItem)=>{
+    const courseName = printCourseName(recruit.courseId);
    router.push({
      pathname:`recruit/${recruit.id}`,
      query:{
        courseId:recruit.courseId,
        category:recruit.category,
+       courseName: courseName,
        title:recruit.title,
        content:recruit.content,
        image:recruit.image,
@@ -114,9 +131,12 @@ const CommunityItem = () => {
       </div>
 
       <div style={{ justifyContent: "flex-end", display: "flex" }}>
-        <Circle> 
-          <Link href="/recruit" style={{color: "#eee", fontWeight: 300}}><FontAwesomeIcon icon={faPencil} />     모집하기</Link>
-        </Circle>
+      <Circle onClick={handleCircleClick}>
+        <Link href="/recruit" style={{ color: "#eee", fontWeight: 300 }}>
+          <FontAwesomeIcon icon={faPencil} /> 모집하기
+        </Link>
+      </Circle>
+
       </div>
 
       <FlexContainer style={{ background: "#eee" }}>
