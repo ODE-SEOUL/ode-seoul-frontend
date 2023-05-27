@@ -50,7 +50,7 @@ export default function CourseCarousel(){
       );
 
     return<>
-        <Container>
+        {/* <Container>
           <SlideWrapper>
               <Slider {...settings}>
                       {CourseCategoryArray.map(category=>
@@ -63,7 +63,7 @@ export default function CourseCarousel(){
                       )}
               </Slider>
           </SlideWrapper>
-        </Container>
+        </Container> */}
     </>
 
     
