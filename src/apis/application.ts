@@ -29,7 +29,7 @@ interface DeleteResponse {
     result: boolean;
   }
   
-  // 댓글 삭제 API 호출 함수
+  // 모집글 삭제 API 호출 함수
   export async function deleteApplication(ApplicationId: number, accessToken: string): Promise<DeleteResponse> {
     try {
       const response = await deleteAsync<DeleteResponse, void>(

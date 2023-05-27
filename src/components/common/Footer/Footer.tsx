@@ -15,6 +15,7 @@ const FooterStyle = styled.div`
     font-weight: 100;
     padding: 30px;
     border-top: 1px solid #eee;
+    margin-top: 100px;
 `
 
 export default Footer;

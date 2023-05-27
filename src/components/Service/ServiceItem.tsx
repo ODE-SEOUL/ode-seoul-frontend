@@ -68,13 +68,14 @@ export default function ServiceItem({title,location,startDate,endDate,useFee,mai
 }
 
 const ItemContainer=styled.div`
-    width:23rem;
-    height:33rem;
+    width:30rem;
+    height:35rem; 
     border-radius: 10px;
     box-sizing: border-box;
     //background-color: aliceblue;
     box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.1);
     text-align: center;
+    margin-bottom: 10rem;
 `;
 
 const Image=styled.div<{url:string}>`
@@ -82,7 +83,7 @@ const Image=styled.div<{url:string}>`
     border-top-right-radius:10px;
     border-top-left-radius: 10px;
     
-    width:23rem;
+    width:100%;
     height:15rem;
 
     
