@@ -6,7 +6,6 @@ import { css } from '@emotion/react';
 interface ModalProps {
   isShowing: boolean;
   hide: () => void;
-  children: React.ReactNode;
 }
 
 const Modal = (props: ModalProps) =>{

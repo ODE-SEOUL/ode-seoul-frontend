@@ -13,6 +13,7 @@ import { postComments, deleteComments } from "@/src/apis/RecruitComment";
 import { deleteApplication } from "@/src/apis/application";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAngleRight, faMapLocationDot, faCalendarCheck, faPencil, faUserGroup } from "@fortawesome/free-solid-svg-icons";
+import LModal from '../../../modal/LoginError';
 
 
 interface ApplicationData {
