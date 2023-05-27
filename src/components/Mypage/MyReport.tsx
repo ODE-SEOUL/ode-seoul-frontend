@@ -112,7 +112,8 @@ const MyReport = () => {
 
                 
 
-                const toggleList = options[progressStatus] || [];
+                const toggleList = options[progressStatus as ProgressStatus] || [];
+
                 // const handlerStatus = () => {
                 //   console.log(toggleList);
                 //   handlerStatus(id); // itemId를 전달하여 해당 아이템의 토글 상태 변경
