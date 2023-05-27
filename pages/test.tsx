@@ -2,7 +2,7 @@ import React from 'react';
 import Test from '../src/components/common/test/Test';
 import useModal from "../src/hooks/useModal";
 import Modal from "../src/modal/DefaultModal";
-
+import EModal from "../src/modal/LoginError";
 export default function Index() {
   const { isShowing, toggle } = useModal();
 
@@ -14,9 +14,9 @@ export default function Index() {
     <div className="App">
       <Test text='test'/>
       <button onClick={handleClick}>Test Modal</button>
-      {isShowing && <Modal isShowing={isShowing} hide={toggle}>
+      {isShowing && <EModal isShowing={isShowing} hide={toggle}>
         <Test text='hello world'/>
-      </Modal>}
+      </EModal>}
     </div>
   );
 }
