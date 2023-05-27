@@ -117,7 +117,8 @@ const Prev = styled.div`
   z-index: 3;
 `;
 
-const CategoryItemContainer=styled.button`
+const CategoryItemContainer=styled.div`
+    cursor: pointer;
     border:0;
     background-color: transparent;
     width: 10rem;

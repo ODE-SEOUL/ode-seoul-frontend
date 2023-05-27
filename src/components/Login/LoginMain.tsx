@@ -52,7 +52,8 @@ const Img = styled.img`
 const KakaoLogin = styled.img`
 `
 
-const Login = styled.button`
+const Login = styled.div`
+cursor: pointer;
     border: none;
     background: none;
 `
