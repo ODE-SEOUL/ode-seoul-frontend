@@ -22,25 +22,7 @@ export default function CourseList() {
   const onClick=(course:ICourseData)=>{
   
     router.push({
-      pathname:`/course/${course.id}`,
-      query:{
-          id:course.id,
-          name:course.name,
-          distance:course.distance,
-          time:course.time,
-          description:course.description,
-          nearSubway:course.nearSubway,
-          accessWay:course.accessWay,
-          image:course.image,
-          routes:JSON.stringify(course.routes[0]),
-          lng:course.routes[0][0][0],
-          lat:course.routes[0][0][1]
-          
-
-
-        }
-    },
-    `/course/${course.id}`);
+      pathname:`/course/${course.id}`});
 
   }
   return (
