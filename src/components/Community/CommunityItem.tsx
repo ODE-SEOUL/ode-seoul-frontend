@@ -50,14 +50,18 @@ const CommunityItem = () => {
     }
   };
 
+  
+
    //detail page
    const router=useRouter();
    const DetailHandler=(recruit:RecruitItem  & HostItem)=>{
+    const courseName = printCourseName(recruit.courseId);
    router.push({
      pathname:`recruit/${recruit.id}`,
      query:{
        courseId:recruit.courseId,
        category:recruit.category,
+       courseName: courseName,
        title:recruit.title,
        content:recruit.content,
        image:recruit.image,

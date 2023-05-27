@@ -114,7 +114,7 @@ export default function CourseListDetail(){
       };
 
     const router=useRouter();
-    const {courseId,category,title,content,image,maxPeople,scheduledAt,
+    const {courseId,courseName, category,title,content,image,maxPeople,scheduledAt,
         currentPeople,progressStatus, createdAt, id  }=router.query;
 
        //detail
@@ -149,9 +149,9 @@ export default function CourseListDetail(){
                     <StyledCategory>{progressStatus}</StyledCategory> 
                     <StyledTitle>{title}</StyledTitle> 
                     <div className="row" style={{display: 'flex', flexWrap: 'wrap'}}>
-                        <StyledSub className="col-lg-1"><FontAwesomeIcon icon={faMapLocationDot} className="mr-10" style={{color: 'rgb(171, 184, 104)' }}/>{courseId}</StyledSub>
+                        <StyledSub className="col-lg-2"><FontAwesomeIcon icon={faMapLocationDot} className="mr-10" style={{color: 'rgb(171, 184, 104)' }}/>{courseName}</StyledSub>
                         <StyledSub className="col-lg-2"><FontAwesomeIcon icon={faCalendarCheck} className="mr-10" style={{color: 'rgb(171, 184, 104)' }}/>{scheduledAt}</StyledSub>
-                        <StyledSub className="col-lg-1"><FontAwesomeIcon icon={faUserGroup} className="mr-10" style={{color: 'rgb(171, 184, 104)' }}/>{currentPeople}/{maxPeople}</StyledSub>
+                        <StyledSub className="col-lg-2"><FontAwesomeIcon icon={faUserGroup} className="mr-10" style={{color: 'rgb(171, 184, 104)' }}/>참여 인원 : {currentPeople}/{maxPeople}</StyledSub>
                     </div>
                     <div className="col-lg-8">
                         <Img src={imageSrc} width="90%"></Img>
