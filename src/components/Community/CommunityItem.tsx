@@ -11,6 +11,8 @@ import { useRouter } from 'next/dist/client/router';
 import { IRecruitData } from '../../types/recruits';
 import { useCourseListQuery } from '../CourseList/courseListQuery';
 import { wrap } from 'module';
+import { useRecoilValue } from 'recoil';
+import { userAtom } from '../../states/UserAtom';
 import { getRecruitList } from '@/src/apis/recruitList';
 
 enum Category {
@@ -24,6 +26,17 @@ enum Category {
 }
 
 const CommunityItem = () => {
+
+  const user = useRecoilValue(userAtom);
+  const handleCircleClick = () => {
+    if (!user) {
+      alert('로그인이 필요한 서비스입니다');
+      router.push('/');
+    }else if(user){
+      window.location.href = '/recruit';
+    }
+  };
+  
 
   //courseList
   const { data: courseData } = useCourseListQuery();
@@ -114,9 +127,12 @@ const CommunityItem = () => {
       </div>
 
       <div style={{ justifyContent: "flex-end", display: "flex" }}>
-        <Circle> 
-          <Link href="/recruit" style={{color: "#eee", fontWeight: 300}}><FontAwesomeIcon icon={faPencil} />     모집하기</Link>
-        </Circle>
+      <Circle onClick={handleCircleClick}>
+        <Link href="/recruit" style={{ color: "#eee", fontWeight: 300 }}>
+          <FontAwesomeIcon icon={faPencil} /> 모집하기
+        </Link>
+      </Circle>
+
       </div>
 
       <FlexContainer style={{ background: "#eee" }}>

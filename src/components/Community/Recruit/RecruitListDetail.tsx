@@ -93,8 +93,14 @@ export default function CourseListDetail(){
       };
 
     const CommentHandler = () => {
-        postComments(String(id), user.accessToken, Rcontent);
-        setRContent("");
+        if (!user){
+            alert("로그인이 필요한 서비스입니다.");
+            router.push('/');
+        }else if(user){
+            postComments(String(id), user.accessToken, Rcontent);
+            setRContent("");
+        }
+       
     };
 
     const [applicationtoggle, setApplicationToggle] = useState(false);

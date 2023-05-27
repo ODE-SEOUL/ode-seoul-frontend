@@ -42,7 +42,8 @@ interface CourseListProps {
     if (!courseData || courseData.length === 0) {
       // courseData가 undefined이거나 filteredItems가 없는 경우 처리
       return <>
-      <div>해당 지역은 아쉽지만 준비 중이에요.</div>
+      <div>왼쪽에서 자치구를 선택해주세요. </div>
+      <div>코스가 뜨지 않는다면 해당 지역은 아쉽지만 준비 중이에요.</div>
       </>;
     }
   
