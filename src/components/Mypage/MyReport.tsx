@@ -8,6 +8,7 @@ import { userAtom } from '../../states/UserAtom';
 import { atom, useRecoilValue } from 'recoil';
 import { updateProgressStatus } from '@/src/apis/patchState';
 import { patchAsync } from '@/src/apis/common';
+import { useRouter } from "next/router";
 
 enum Category {
   COM_ANIMAL = '#반려동물',
@@ -38,6 +39,15 @@ const MyReport = () => {
   
   const [mydata, setMydata] = useState([]);
   const user = useRecoilValue(userAtom);
+
+  const router = useRouter();
+
+  if (!user){
+  alert("로그인이 필요한 서비스입니다.");
+  router.push('/');
+  }
+  
+  
   const { data: courseData } = useCourseListQuery();
 
   useEffect(() => {

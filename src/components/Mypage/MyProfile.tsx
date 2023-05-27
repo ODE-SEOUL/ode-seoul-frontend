@@ -3,10 +3,13 @@ import styled from '@emotion/styled';
 import { userAtom } from '../../states/UserAtom';
 import { atom, useRecoilValue } from 'recoil';
 import { getGugunList } from '@/src/apis/guguns';
+import { useRouter } from "next/router"
 
 const MyProfile = () => {
 
   const user = useRecoilValue(userAtom);
+  const router = useRouter();
+
 
   const [nickname, setNickname] = useState('');
     const [location, setLocation] = useState("");

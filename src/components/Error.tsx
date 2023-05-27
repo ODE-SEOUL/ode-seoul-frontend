@@ -6,7 +6,6 @@ import Footer from './common/Footer/Footer';
 const App = () => {
   return (
     <>
-      <Nav />
       <Container>
             <div className='col-lg-12 mt-100 mb-100'>
             
@@ -16,7 +15,6 @@ const App = () => {
                 
             </div>
       </Container> 
-      <Footer />
     </>
   );
 };
