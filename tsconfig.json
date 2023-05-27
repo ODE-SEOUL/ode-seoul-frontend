@@ -19,6 +19,6 @@
     },
     "strictNullChecks":false,
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "src/components/Main/index.tsx", "src/components/Main/index.jsx"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "src/components/Main/index.tsx", "src/components/Main/index.jsx", "src/components/Community/Recruit/CalanderView.js"],
   "exclude": ["node_modules"]
 }

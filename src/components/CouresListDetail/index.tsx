@@ -10,15 +10,63 @@ import { useState } from "react";
 import { useRecoilState } from "recoil";
 import CourseListReview from "./CourseListReview";
 import CourseReviewWriting from "./CourseReviewWriting";
+
+import { useCourseListQuery } from "../CourseList/courseListQuery";
+import { useQueryClient } from "react-query";
+import { getCourseDetail, getCourseList } from "@/src/apis/courseList";
+
+import { useQuery } from "react-query";
+import { useParams } from "react-router";
+import { useSearchParams } from "react-router-dom";
+
+import { GetServerSideProps,NextPageContext } from "next";
+
+import { ParsedUrlQuery } from "querystring";
+import { useEffect } from "react";
+import { courseDetailAtom } from "@/src/states/CourseAtom";
+import { ICourseDetail } from "@/src/types/courseList";
+
+interface IDetailProps{
+    id:number;
+}
+
 export default function CourseListDetail(){
     const router=useRouter();
-    const {id,name,distance,time,description,subway,accessway,image,lat,lng,routes}=router.query;
+    const paramId=+router.query.id;
+    const [data,setData]=useRecoilState(courseDetailAtom);
+    console.log(router.query);
+    
+    // const { data: courseData } = useQuery(["detailCourseData"],getCourseList,{
+    //     select:(data)=>data.result.filter((item)=>+item.id===paramId)[0]
+    // });
+    // setData(courseData);
+   
+
+    
+    const {id,name,distance,time,description,nearSubway,accessWay,image,routes,lng,lat}=router.query;
+   
+    const props:ICourseDetail={
+        id:paramId,
+        name:name as string,
+        distance:distance as string,
+        time:time as string,
+        description:description as string,
+        accessWay:accessWay as string,
+        image:image as string,
+        routes:routes,
+        lng:+lng,
+        lat:+lat,
+        nearSubway:nearSubway as string,
+
+
+
+    }
+    ;
     const[reviewClick,setReviewClick]=useState<boolean>(false);
     const[communityClick,setCommunityClick]=useState<boolean>(false);
 
     const mainImage:string=image as string;
 
-    console.log(routes);
     
     let timeText:string;
     //timeText= +time>=60? (Math.round(+time/60)).toString()+("시간")+(+time%60).toString()+"분":(time as string ).toString();
@@ -38,15 +86,15 @@ export default function CourseListDetail(){
             <MainContainer>
                 <Container>
                     <CourseListDescription name={name as string} distance={distance as string}
-                    time={timeText}  description={description as string} subway={subway as string}
-                    accessway={accessway as string} image={mainImage} setCommunityClick={setCommunityClick}
+                    time={timeText}  description={description as string} subway={nearSubway as string}
+                    accessway={accessWay as string} image={mainImage} setCommunityClick={setCommunityClick}
                     setReviewClick={setReviewClick}
                     />
-                    <CourseDetailMap  latitude={+lat} longitude={+lng} routes={routes as string}/>
+                    <CourseDetailMap  latitude={+lng} longitude={+lat} routes={routes as string}/>
                 </Container>
                 <CommentContainer>
                     {
-                        reviewClick? <CourseReviewWriting/>:<CourseListReview id={+id as number} name={name as string}/>
+                        reviewClick? <CourseReviewWriting coursename={name as string} courseId={+paramId}/>:<CourseListReview id={+id as number} name={name as string}/>
                     }
                 </CommentContainer>
             </MainContainer>
@@ -55,12 +103,14 @@ export default function CourseListDetail(){
 
     );
 }
+
+
 type CourseMainImageProps={
     imageUrl:string;
 }
 const MainContainer=styled.div`
     display: grid;
-    grid-template-columns: 4fr 1fr;
+    grid-template-columns: 4fr 1.5fr;
     margin-right: 80px;
     margin-left: 80px !important;
    

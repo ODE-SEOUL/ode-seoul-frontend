@@ -35,7 +35,7 @@ export default function CourseListDescription({name,distance,time,description,su
     const onRecruitClick=()=>{
         setCommunityClick(true);
         router.push({
-            pathname:"/community/recruit"
+            pathname:"/recruit"
         });
         setReviewClick(false);
     }

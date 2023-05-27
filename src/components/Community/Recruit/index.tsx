@@ -14,8 +14,16 @@ import { uploadImage } from '../../../apis/uploadImg';
 import { userAtom } from '../../../states/UserAtom';
 import axios from 'axios';
 import { postRecruit } from '../../../apis/recruit';
+import Calendar from 'react-calendar';
+import 'react-calendar/dist/Calendar.css'; // css import
+import Modal from '../../../modal/LoginError';
+import useModal from '@/src/hooks/useModal';
+
 
 const Recruit = () => {
+
+  //캘린더
+    const [value, onChange] = useState(new Date());
 
     const user = useRecoilValue(userAtom);
     // console.log(user);
@@ -25,6 +33,7 @@ const Recruit = () => {
     const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setSelectedFile(e.target.files[0]);
     };
+    
     
     const HandlerRecruit = () => {
         postRecruit(recruit, user.accessToken) ;
@@ -95,19 +104,32 @@ const Recruit = () => {
     title: '',
     content: '',
     image: 'https://ik.imagekit.io/njw1204/tr:w-720,h-720,c-at_max/ode-seoul/20230524012509_BTlTBranq',
-    maxPeople: 0,
+    maxPeople: null,
     scheduledAt: '',
   });
 
   const [recruit, setRecruit] = useRecoilState(RecruitAtom);
-
+  const [isOverLimit, setIsOverLimit]= useState(false);
   const handleTitleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { value } = e.target;
+    const truncatedValue = value.slice(0, 15); // 15자로 제한
+    if(value.length > 15){
+      setIsOverLimit(true);
+    } else{
+      setIsOverLimit(false);
+    }
+      
+    
     setState((prevState) => ({
       ...prevState,
-      title: value,
+      title: truncatedValue,
     }));
   };
+  
+  const [isCalender, setIsCalender] = useState(false);
+  const handleClick = (e:any) =>{
+    setIsCalender(true);
+  }
 
   const handleContentChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { value } = e.target;
@@ -117,13 +139,65 @@ const Recruit = () => {
     }));
   };
 
-  const handleScheduledAtChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { value } = e.target;
-    setState((prevState) => ({
-      ...prevState,
-      scheduledAt: value,
-    }));
+   //날짜, 시간 선택
+   const convertTo24HourFormat = (timeString: string) => {
+    const [hours, minutes] = timeString.split(':');
+    let formattedHours = parseInt(hours);
+  
+    if (!isAM && formattedHours < 12) {
+      formattedHours += 12;
+    }
+  
+    if (isAM && formattedHours === 12) {
+      formattedHours = 0;
+    }
+  
+    const formattedTime = `${formattedHours.toString().padStart(2, '0')}:${minutes}`;
+    return formattedTime;
   };
+  
+    
+    const [selectedDate, setSelectedDate] = useState('');
+    const [schedule, setSchedule] = useState(['', '']);
+    
+    const handleTimeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+      setSelectedTime(e.target.value);
+      const timeString = e.target.value;
+      const dateString = selectedDate;
+      const scheduleString = `${dateString}T${timeString}`;
+      setSchedule([dateString, timeString]);
+      setState((prevState) => ({
+        ...prevState,
+        scheduledAt: scheduleString,
+      }));
+    
+      const formattedTime = isAM ? timeString : convertTo24HourFormat(timeString);
+      const formattedDateTime = `${selectedDate}T${formattedTime}:00`;
+      handleScheduledAtChange(new Date(formattedDateTime));
+    };
+    
+    const handleScheduledAtChange = (value: any) => {
+      const dateString = value.toLocaleDateString("ko", {
+        year: "numeric",
+        month: "2-digit",
+        day: "2-digit",
+      });
+      const timeString = selectedTime;
+      const scheduleString = `${dateString}T${timeString}:00`;
+      const date = scheduleString.replace(/\./g, '-');
+      const formattedDate = date.replace(/\s/g, '').replace('-T', 'T');
+      console.log(formattedDate); 
+    
+      setSelectedDate(dateString); // selectedDate 상태 업데이트
+      setState((prevState) => ({
+        ...prevState,
+        scheduledAt: formattedDate,
+      }));
+    
+      setIsCalender(false);
+    };
+  
+
 
   const handleMaxPeopleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { value } = e.target;
@@ -133,14 +207,21 @@ const Recruit = () => {
     }));
   };
 
-
-
   const ShowRecoil = () => {
     console.log(recruit);
   }
   useEffect(() => {
     setRecruit(state); // Recoil 상태 업데이트
   }, [state, setRecruit]);
+
+
+  //시간 선택
+  const [selectedTime, setSelectedTime] = useState('00:00');
+  const [isAM, setIsAM] = useState(true);
+
+  const toggleAMPM = () => {
+    setIsAM(!isAM);
+  };
 
   return (
     <>
@@ -154,6 +235,12 @@ const Recruit = () => {
             onChange={handleTitleChange}
             placeholder='같이 출사하러 가요!'
             />
+            <CharacterCount1>
+              {isOverLimit && <>제목 글자수는 15글자까지 입력할 수 있어요.</>}
+            </CharacterCount1>
+            <CharacterCount2>
+              {state.title.length}/15
+            </CharacterCount2>
             <Title text='내용을 입력해주세요' /> 
             <StyledInput
             type='text'
@@ -179,15 +266,47 @@ const Recruit = () => {
                 </div>
             </Container>
             <Title text='약속 정보를 입력해주세요' />
+            
+             
+              
                 <SearchInput>
                     <Input
-                        type="text"
-                        value={state.scheduledAt}
-                        onChange={handleScheduledAtChange}
-                        placeholder="약속 날짜와 시간을 정해주세요"
+                          type="text"
+                          onClick={handleClick}
+                          onChange={handleScheduledAtChange}
+                          placeholder="약속 날짜를 정해주세요"
+                          value={state.scheduledAt}
                     />
                     <SearchIcon />
                 </SearchInput>
+
+               {isCalender &&
+               <>
+                <Container>
+                  <Calendar onChange={handleScheduledAtChange} value={value} />
+                </Container>
+                <div>
+                  
+                </div>
+               </>
+              
+               }
+
+              
+              <SearchInput>
+                <Btn onClick={toggleAMPM}>{isAM ? 'AM' : 'PM'}</Btn>
+                <Input
+                type="text"
+                value={selectedTime}
+                onChange={handleTimeChange}
+                placeholder="시간을 입력해주세요 (HH:MM)">
+                </Input>
+                
+              </SearchInput>
+               
+
+
+               
                 <SearchInput>
                     <Input
                         type="number"
@@ -235,8 +354,11 @@ const Wrapper = styled.div`
 `;
 
 const Btn = styled.button`
-    margin: 
-    width:
+    width:10%;
+    padding: 0.5rem 0.3rem;
+    margin: 0rem 0.2rem;
+    border:  1px solid #eee;
+    border-radius: 5px;
 `;
 
 const StyledInput = styled.input`
@@ -268,6 +390,23 @@ const Container = styled.div`
     align-items: center;
     }
 
+`;
+
+const CharacterCount1 = styled.div`
+font-family: var(--font-secondary);
+font-weight: 100;
+font-size: 12px;
+    color: #bbb;
+    display: inline;
+`;
+
+const CharacterCount2 = styled.div`
+float: right;
+font-family: var(--font-secondary);
+font-weight: 100;
+font-size: 12px;
+    color: #bbb;
+    display: inline;
 `;
 
 const Container2 = styled.div`

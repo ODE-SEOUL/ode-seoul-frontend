@@ -7,7 +7,7 @@ import { useMemo,useRef,useCallback,useState } from "react";
 import React from "react";
 import { CourseCategoryArray } from "./CourseCategoryArray";
 import { useSetRecoilState } from "recoil";
-import { selectCategoryAtom } from "../../../states/couresList";
+import { selectCategoryAtom } from "../../../states/CourseAtom";
 
 
 

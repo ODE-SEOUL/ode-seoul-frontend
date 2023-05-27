@@ -27,12 +27,15 @@
     "@types/react-slick": "^0.23.10",
     "autoprefixer": "10.4.14",
     "axios": "^1.4.0",
+    "cors": "^2.8.5",
     "eslint": "8.39.0",
     "eslint-config-next": "13.3.4",
     "next": "13.3.4",
     "postcss": "8.4.23",
     "react": "^18.2.0",
+    "react-calendar": "^4.2.1",
     "react-dom": "18.2.0",
+    "react-hook-form": "^7.43.9",
     "react-icons": "^4.8.0",
     "react-query": "^3.39.3",
     "react-router": "^6.11.2",
@@ -51,6 +54,7 @@
   },
   "devDependencies": {
     "@emotion/babel-plugin": "^11.11.0",
-    "@svgr/webpack": "^8.0.1"
+    "@svgr/webpack": "^8.0.1",
+    "@types/cors": "^2.8.13"
   }
 }

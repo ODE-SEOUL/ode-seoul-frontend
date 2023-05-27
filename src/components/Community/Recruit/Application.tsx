@@ -3,6 +3,8 @@ import styled from '@emotion/styled';
 import { postApplication } from '@/src/apis/application';
 import { userAtom } from '../../../states/UserAtom';
 import { atom, useRecoilValue } from 'recoil';
+import Modal from '../../../modal/LoginError';
+import useModal from '@/src/hooks/useModal';
 
 export interface Props {
     id: number;
@@ -18,6 +20,10 @@ export const Application = ({ id, title, date, time, dest, nickname }: Props) =>
 
     const user = useRecoilValue(userAtom);
     console.log(user);
+    if(!user){
+      
+        
+    }
     const handleClick = () => {
         postApplication(id, user.accessToken);
         alert("신청되었습니다!")
