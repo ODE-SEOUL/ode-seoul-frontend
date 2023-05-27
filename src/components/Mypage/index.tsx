@@ -3,17 +3,28 @@ import styled from '@emotion/styled';
 import Navbar from '../common/Nav/Nav';
 import MypageLayout from './MypageLayout';
 import Footer from '../common/Footer/Footer';
+import { userAtom } from '../../states/UserAtom';
+import { atom, useRecoilValue } from 'recoil';
+import { useRouter } from "next/router"
+import Error from '../Error';
 
 const Mypage = () => {
+  const user = useRecoilValue(userAtom);
+
   return (
     <>
       <Navbar />
-      <Box />
-      <Wrapper>
-        <MypageLayout />
-      </Wrapper>
+      {user ? (
+        <>
+          <Box />
+          <Wrapper>
+            <MypageLayout />
+          </Wrapper>
+        </>
+      ) : (
+        <Error />
+      )}
       <Footer />
-      
     </>
   );
 };

@@ -22,10 +22,7 @@ export const Application = ({ id, title, date, time, dest, nickname }: Props) =>
     const router = useRouter();
     const user = useRecoilValue(userAtom);
     console.log(user);
-    if(!user){
-      
-        
-    }
+
     const handleClick = () => {
         if (!user){
             alert("로그인이 필요한 서비스입니다.");
