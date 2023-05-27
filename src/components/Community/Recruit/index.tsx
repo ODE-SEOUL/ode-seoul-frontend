@@ -259,7 +259,7 @@ const Recruit = () => {
             placeholder='서로의 모델과 작가가 되어줄 사람 구합니다!'
             />
             <Title text='생태 문화길을 선택해주세요' />
-            <Container className='row' >
+            <Container className='row' style={{display: 'flex', flexWrap: 'wrap'}}>
                 <div className='col-lg-4 col-sm-12'>
                     < ListContainer  >
                         <Ul>

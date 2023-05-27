@@ -12,7 +12,7 @@ const MypageLayout: React.FC = () => {
   
     return (
       <>
-        <div className='row'>
+        <div className='row' style={{display: 'flex', flexWrap: 'wrap'}}>
           <div className='col-lg-3'>
             <Menu handleMenuClick={handleMenuClick} />
           </div>
