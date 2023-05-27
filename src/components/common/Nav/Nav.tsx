@@ -96,9 +96,9 @@ const Navbar = () => {
                       <FontAwesomeIcon icon={faUser} style={{ color: "#fff",  justifyContent:"center", alignItems:"center"}} size="2x" color="black"/>
                   <ListContainer>
                   <Ul>
-                    <Li> <Link href="/">내가 찜한 코스</Link></Li>
-                    <Li>  <Link href="/">내 모집글</Link></Li>
-                    <Li> <Link href="/">내 약속</Link></Li>
+                    <Li> <Link href="/mypage">프로필</Link></Li>
+                    <Li> <Link href="/mypage">내 활동</Link></Li>
+                    <Li> <Link href="/mypage">스탬프 북</Link></Li>
                     <Li onClick={handleLogout}>로그아웃 </Li>
                   </Ul>
                   </ListContainer>
