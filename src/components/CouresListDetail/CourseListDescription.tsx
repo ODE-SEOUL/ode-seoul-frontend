@@ -10,7 +10,7 @@ import { useState } from "react";
 
 interface ICourseDetailProps{
     name:string;
-    distance:string;
+    distance:number;
     time:string;
     description:string;
     subway:string;

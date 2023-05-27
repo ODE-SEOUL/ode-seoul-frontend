@@ -3,6 +3,7 @@ import { AppProps } from 'next/app';
 import { QueryClient, QueryClientProvider } from 'react-query';
 import { RecoilRoot } from 'recoil';
 import '../styles/index.css';
+import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import Script from 'next/script';
 
 const queryClient = new QueryClient();

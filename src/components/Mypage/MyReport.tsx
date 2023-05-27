@@ -245,7 +245,7 @@ const Card = styled.div`
   height: 200px;
   overflow: hidden;
   background: #fff;
-  border-bottom: 1px solid ##eee;
+  border-bottom: 1px solid #eee;
   `;
   
 
