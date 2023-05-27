@@ -21,7 +21,7 @@ export default function SearchCaseContainer({searchServiceData,value}:ICaseProps
             {
                   searchServiceData?.
                   map(service=>
-                    <Grid xs={12} sm={8} md={4} lg={2}  key={service.uuid}>
+                    <Grid xs={12} sm={8} md={6} lg={4}  key={service.uuid}>
                       <ServiceItem title={service.title} location={service.place}
                       startDate={service.startDate} endDate={service.endDate}
                       useFee={service.useFee} mainImage={service.mainImage}
@@ -41,8 +41,8 @@ export default function SearchCaseContainer({searchServiceData,value}:ICaseProps
 }
 const Container=styled.div`
     
-   width:30%;
-   margin: 0 auto;
+   /* width:30%;
+   margin: 0 auto; */
 `
 
 const SelectionContainer=styled.div`

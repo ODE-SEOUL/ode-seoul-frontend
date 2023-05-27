@@ -49,8 +49,8 @@ export default function FilterCaseContainer({serviceData,category,gugun}:ICasePr
 }
 const Container=styled.div`
     
-   width:30%;
-   margin: 0 auto;
+   /* width:30%;
+   margin: 0 auto; */
 `
 
 const SelectionContainer=styled.div`
