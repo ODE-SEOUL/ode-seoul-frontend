@@ -18,14 +18,19 @@ import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css'; // css import
 import Modal from '../../../modal/LoginError';
 import useModal from '@/src/hooks/useModal';
+import { useRouter } from 'next/router';
 
 
 const Recruit = () => {
 
+  
+
+  const router = useRouter();
   //캘린더
     const [value, onChange] = useState(new Date());
 
     const user = useRecoilValue(userAtom);
+   
     // console.log(user);
     const [selectedFile, setSelectedFile] = useState(null);
     const setRecruitImg = useSetRecoilState(RecruitAtom);
@@ -36,7 +41,12 @@ const Recruit = () => {
     
     
     const HandlerRecruit = () => {
+        if (!user){
+          alert("로그인이 필요한 서비스입니다.");
+          router.push('/');
+      }else{
         postRecruit(recruit, user.accessToken) ;
+      }
       };
 
     const handleUpload = async () => {

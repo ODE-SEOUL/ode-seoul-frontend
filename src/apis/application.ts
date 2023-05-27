@@ -33,7 +33,7 @@ interface DeleteResponse {
   export async function deleteApplication(ApplicationId: number, accessToken: string): Promise<DeleteResponse> {
     try {
       const response = await deleteAsync<DeleteResponse, void>(
-        `recruits/${ApplicationId}/applications/me`,
+        `/recruits/${ApplicationId}/applications/me`,
         {
           headers: {
             "Content-Type": "application/json",

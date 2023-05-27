@@ -5,6 +5,7 @@ import { userAtom } from '../../../states/UserAtom';
 import { atom, useRecoilValue } from 'recoil';
 import Modal from '../../../modal/LoginError';
 import useModal from '@/src/hooks/useModal';
+import { useRouter } from 'next/router';
 
 export interface Props {
     id: number;
@@ -18,6 +19,7 @@ export interface Props {
 
 export const Application = ({ id, title, date, time, dest, nickname }: Props) => {
 
+    const router = useRouter();
     const user = useRecoilValue(userAtom);
     console.log(user);
     if(!user){
@@ -25,8 +27,14 @@ export const Application = ({ id, title, date, time, dest, nickname }: Props) =>
         
     }
     const handleClick = () => {
-        postApplication(id, user.accessToken);
-        alert("신청되었습니다!")
+        if (!user){
+            alert("로그인이 필요한 서비스입니다.");
+            router.push('/');
+        }else{
+            postApplication(id, user.accessToken);
+            alert("신청되었습니다!");
+        }
+        
       };
 
   return (
