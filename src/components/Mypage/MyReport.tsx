@@ -93,7 +93,7 @@ const MyReport = () => {
         {!mydata ? (
           <div>잠시만 기다려주세요...</div>
         ) : (
-          <div className='row col-lg-12 mb-100'>
+          <div className='row col-lg-12 mb-100' style={{display: 'flex', flexWrap: 'wrap'}}>
             <div className="row">
               {mydata?.map((item: any) => {
                 const {
@@ -119,13 +119,10 @@ const MyReport = () => {
                 //   handlerStatus(id); // itemId를 전달하여 해당 아이템의 토글 상태 변경
                 // };
 
-            
-
-                
                 return (
                   <div key={id}>
                     <Card>
-                      <div className='row'>
+                      <div className='row' style={{display: 'flex', flexWrap: 'wrap'}}>
                         <div className='col-lg-8'><Title>{title}</Title></div>
                         <div className='col-lg-4'>
                         <Circle onClick={() => handlerStatus(id)}>
