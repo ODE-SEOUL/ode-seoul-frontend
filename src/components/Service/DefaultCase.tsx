@@ -15,7 +15,7 @@ export default function DefaultCaseContainer({serviceData}:ICaseProps){
       
             </SearchContainer>
             <div className='mt-100'></div>
-            <Grid container >
+            <Grid container spacing={30} >
               {
                       serviceData?.map(service=>
                         <Grid item  xs={12} sm={8} md={6} lg={4} key={service.uuid}>
