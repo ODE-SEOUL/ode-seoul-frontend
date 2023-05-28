@@ -162,7 +162,7 @@ const CourseDetailDescriptionText=styled.div`
 `;
 
 const CourseDetailDescriptionContainer=styled.div`
-    width:70%;
+    width:90%;
     
 `;
 
