@@ -20,7 +20,6 @@ export default function ServiceItem({title,location,startDate,endDate,useFee,mai
 
     return(
         <>
-            <ItemContainer>
                 <Image url={mainImage}/>
                 <div className="mt-20"></div>
                 <Text weight={600} size={18} color="black">{title}</Text>
@@ -57,11 +56,11 @@ export default function ServiceItem({title,location,startDate,endDate,useFee,mai
                     
                 </FlexBox>
                 <div className="mt-25"></div>
-                <Button onClick={onClick}>
-                    <Text weight={300} size={15} color="white">더보기</Text>
-                </Button>
-
-            </ItemContainer>
+                <div style={{textAlign:"center"}}>
+                    <Button onClick={onClick}>
+                            <Text weight={300} size={15} color="white">더보기</Text>
+                    </Button>
+                </div>
         </>
 
     );
@@ -75,7 +74,7 @@ const ItemContainer=styled.div`
     //background-color: aliceblue;
     box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.1);
     text-align: center;
-    margin-bottom: 10rem;
+    //margin: auto;
 `;
 
 const Image=styled.div<{url:string}>`
@@ -109,9 +108,10 @@ const Button=styled.button`
     width:10rem;
     height:2.323rem;
     border-radius: 20px;
-    background-color: var(--color-green);
-    position: static;
+    background-color: #ABB868;
+    margin: auto;
     box-shadow:10px 10px 20px rgba(0, 0, 0, 0.1);
+    display: inline-block;
 `;
 
 const FlexBox=styled.div`

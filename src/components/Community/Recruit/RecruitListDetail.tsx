@@ -6,7 +6,7 @@ import Footer  from "../../common/Footer/Footer";
 import Modal from "../../../modal/DefaultModal";
 import useModal from '../../../hooks/useModal';
 import Application from './Application';
-import { getReceuitDetail } from '@/src/apis/recruitDetail';
+import { getRecruitDetail } from '@/src/apis/recruitDetail';
 import { userAtom } from '../../../states/UserAtom';
 import { atom, useRecoilValue } from 'recoil';
 import { postComments, deleteComments } from "@/src/apis/RecruitComment";
@@ -122,7 +122,7 @@ export default function CourseListDetail(){
 
        useEffect(() => {
         // 데이터 가져오기
-        getReceuitDetail(Number(id))
+        getRecruitDetail(Number(id))
           .then((response) => {
             const result = response.result;
             setResult(result);

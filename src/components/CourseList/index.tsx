@@ -13,7 +13,7 @@ import { useRecoilState, useRecoilValue } from 'recoil';
 import { useRouter } from 'next/dist/client/router';
 import { ICourseData } from '../../types/courseList';
 import { useCourseListQuery } from './courseListQuery';
-import { Grid } from '@mui/material';
+
 
 export default function CourseList() {
   const { data: courseData } = useCourseListQuery();
@@ -28,44 +28,47 @@ export default function CourseList() {
   return (
     <>
 
-      <Navbar/>
+          <Navbar/>
       
           <div className='mt-100'></div>
           <CourseCategoryBarContainer>
             <CourseCarousel/>
           </CourseCategoryBarContainer>
           <div className='mt-35'></div>
-          <Grid container xs={2} sm={4} md={6} lg={12}>
-                    {
-                      courseData?.slice(0,17).filter(item=>item.categories.includes(selectCategory)).map(
-                        course=>
-                        <Grid item xs key={course.id}>
-                          <CourseItemBtn key={course.id} onClick={()=>onClick(course)} > 
-                            <CourseItem 
-                              key={course.id} 
-                              id={course.id}
-                              name={course.name}
-                              image={course.image}
-                              gugunSummary={course.gugunSummary}
-                              description={course.description}
-                              lat={course.routes[0][0][0]}
-                              lng={course.routes[0][0][1]}
-                              routes={course.routes}
+          <div className='row col-lg-12'>
+              <div className="row" style={{display:'flex',flexWrap:'wrap'}}>
+              {
+                          courseData?.slice(0,17).filter(item=>item.categories.includes(selectCategory)).map(
+                            course=>
+                            <div className='col-lg-3 col-sm-12' key={course.id}>
+                              <CourseItemBtn onClick={()=>onClick(course)} > 
+                                <CourseItem 
+                                  key={course.id} 
+                                  id={course.id}
+                                  name={course.name}
+                                  image={course.image}
+                                  gugunSummary={course.gugunSummary}
+                                  description={course.description}
+                                  lat={course.routes[0][0][0]}
+                                  lng={course.routes[0][0][1]}
+                                  routes={course.routes}
 
-                            />
-                        </CourseItemBtn>
+                                />
+                              </CourseItemBtn>
 
-                        
-                        </Grid>
-                          
-                        
+                            
+                            </div>
+                              
+                            
 
-                        )
-                    }
-                  </Grid>
-      
+                            )
+                        }
+
+              </div>
+          
+          </div>
     
-      <Footer/>
+        <Footer/>
 
     </>
   );
@@ -82,11 +85,9 @@ const CourseCategoryBarContainer=styled.div`
 
 
 
-const CourseItemBtn=styled.button`
-    border:0;
-    outline:0;
-    background-color: transparent; 
-    margin: 1.25rem;
+const CourseItemBtn=styled.div`
+    cursor:pointer;
+    margin: auto;
     height:30rem;
     width:25rem; 
     box-sizing: border-box;
@@ -94,3 +95,7 @@ const CourseItemBtn=styled.button`
 
 `
 
+const CourseCategoryItemContainer=styled.div`
+  display:flex;
+  flex-wrap: wrap;
+`

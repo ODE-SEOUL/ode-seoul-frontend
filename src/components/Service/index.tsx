@@ -17,7 +17,7 @@ import { useRecoilValue } from 'recoil';
 import { GetServiceSearchParams } from '@/src/apis/service';
 import { useEffect } from 'react';
 import { useServiceSearchQuery } from './serviceQuery';
-import Wait from '../Error/Wait';
+import Wait from '../Error/Loading';
 
 enum EventCategory{
   SHOW="공연",
