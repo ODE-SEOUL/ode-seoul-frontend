@@ -4,7 +4,7 @@ import { getStamps } from '@/src/apis/getStamps';
 import { userAtom } from '../../states/UserAtom';
 import { atom, useRecoilValue } from 'recoil';
 import { useCourseListQuery } from '../../components/CourseList/courseListQuery';
-import { data } from 'autoprefixer';
+
 const MyStamp = () => {
 
   const user = useRecoilValue(userAtom);

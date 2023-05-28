@@ -1,11 +1,18 @@
 import { ResponseDto } from "./common";
 
-export interface IGuGunListData{
+export interface IStampData{
 
     code: string;
     message: string;
-    result: [];
+    result: ResultData[];
 
 }
 
-export type GetGuGunListDto=ResponseDto<IGuGunListData[]>;
+export interface ResultData{
+
+    courseId: number,
+    createdAt: string;
+
+}
+
+export type GetIStampDataDto=ResponseDto<IStampData>;
