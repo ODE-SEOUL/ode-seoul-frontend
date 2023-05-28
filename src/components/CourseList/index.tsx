@@ -40,7 +40,7 @@ export default function CourseList() {
               {
                           courseData?.slice(0,17).filter(item=>item.categories.includes(selectCategory)).map(
                             course=>
-                            <div className='col-lg-3 col-sm-12' key={course.id}>
+                            <div className='col-lg-4 col-sm-12' key={course.id}>
                               <CourseItemBtn onClick={()=>onClick(course)} > 
                                 <CourseItem 
                                   key={course.id} 
