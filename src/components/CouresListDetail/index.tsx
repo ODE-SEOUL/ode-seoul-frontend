@@ -29,8 +29,11 @@ export default function CourseListDetail(){
     }else{
             
             const {id,name,distance,time,description,nearSubway,accessWay,image,routes}=courseDetailData;
-            const lng=routes[0][0][0];
-            const lat=routes[0][0][1];
+            console.log("routes");
+            console.log(routes);
+            const lat=routes[0][0][0];
+            const lng=routes[0][0][1];
+            
 
             const mainImage:string=image as string;
 
@@ -57,7 +60,7 @@ export default function CourseListDetail(){
                             accessway={accessWay as string} image={mainImage} setCommunityClick={setCommunityClick}
                             setReviewClick={setReviewClick}
                             />
-                            <CourseDetailMap  latitude={+lng} longitude={+lat} routes={routes as string}/>
+                            <CourseDetailMap  latitude={lat} longitude={lng} routes={routes}/>
                         </Container>
                         <CommentContainer>
                             {
