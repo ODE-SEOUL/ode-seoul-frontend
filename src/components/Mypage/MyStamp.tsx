@@ -48,7 +48,7 @@ const MyStamp = () => {
   useEffect(() => {
     getStamps(user?.id)
       .then((response) => {
-        const result = response.result.map((item) => ({
+        const result = response.result.result.map((item) => ({
           ...item,
         }));
         setMydata(result);
