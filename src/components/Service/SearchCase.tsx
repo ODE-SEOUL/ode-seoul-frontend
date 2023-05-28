@@ -22,7 +22,7 @@ export default function SearchCaseContainer({searchServiceData,value}:ICaseProps
               {
                   searchServiceData?.
                   map(service=>
-                    <div className='col-lg-4 col-sm-12 mb-80' key={service.uuid}>
+                    <div className='col-lg-5 col-sm-12 mb-80' key={service.uuid}>
                       <ItemBtn key={service.uuid}> 
                         <ServiceItem title={service.title} location={service.place}
                         startDate={service.startDate} endDate={service.endDate}
