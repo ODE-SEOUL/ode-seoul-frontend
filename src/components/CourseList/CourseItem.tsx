@@ -19,7 +19,7 @@ export default function CourseItem({name,image,gugunSummary,description,lat,lng}
         
                  <div className="mt-60" ></div>
                 <CourseImage imageUrl={image}>
-                    <CourseStar/>
+                    
                 </CourseImage>
                 <div className="mt-20"></div>
                 <Coursename>{name}</Coursename>
@@ -90,25 +90,6 @@ const CourseItemgugunSummary=styled.div`
     
 `
 
-const CourseStar=styled.div`
-    position: absolute;
-    top:2%;
-    right:5%;;
-    width:38px;
-    height: 32px;
-    content: url('./assets/img/course_star.svg');
-
-`
-
-const CourseStarFill=styled.div`
-    position: absolute;
-    top:2%;
-    right:5%;;
-    width:38px;
-    height: 32px;
-    content: url('./assets/img/course_star_fill.svg');
-    
-`;
 
 const CourseDetailTimeMarker=styled.div`
     width:20px;
