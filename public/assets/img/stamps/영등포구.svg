@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 27.4.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="레이어_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px"
+	 y="0px" viewBox="0 0 762.52 822.05" style="enable-background:new 0 0 762.52 822.05;" xml:space="preserve">
+<style type="text/css">
+	.st0{fill:none;stroke:#463C33;stroke-width:3;stroke-miterlimit:10;}
+	.st1{fill:none;stroke:#463C33;stroke-width:3;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:3.0072,6.0144;}
+	.st2{fill:none;stroke:#463C33;stroke-width:4;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;}
+	.st3{fill:none;stroke:#463C33;stroke-width:4;stroke-miterlimit:10;}
+	.st4{fill:none;stroke:#463C33;stroke-width:3;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;}
+	.st5{fill:none;}
+	.st6{fill:#ABB868;}
+</style>
+<g>
+	<g>
+		<ellipse class="st0" cx="381.26" cy="411.02" rx="318.22" ry="312.94"/>
+		<ellipse class="st0" cx="381.26" cy="411.02" rx="249.09" ry="244.96"/>
+		<ellipse class="st0" cx="381.26" cy="411.02" rx="224.06" ry="220.35"/>
+		<g>
+			<ellipse class="st1" cx="381.26" cy="411.02" rx="235.98" ry="232.07"/>
+		</g>
+	</g>
+	<g>
+		<rect x="228.04" y="367.43" class="st2" width="310.07" height="37.07"/>
+		<rect x="205.46" y="478.16" class="st2" width="354.89" height="37.07"/>
+		<polyline class="st2" points="274.74,367.43 274.74,340.97 478.31,340.97 478.31,367.43 		"/>
+		<path class="st2" d="M245.58,404.49c-1.24,5.52,0,73.66,0,73.66"/>
+		<path class="st2" d="M261.05,404.49c-0.41,5.52,0,73.66,0,73.66"/>
+		<line class="st2" x1="320.26" y1="404.49" x2="320.26" y2="478.16"/>
+		<line class="st2" x1="337.49" y1="404.49" x2="337.49" y2="478.16"/>
+		<line class="st2" x1="421.45" y1="404.49" x2="421.45" y2="478.16"/>
+		<line class="st2" x1="437.8" y1="404.49" x2="438.32" y2="476"/>
+		<path class="st2" d="M500.59,404.49c1.2,5.52,0.21,71.51,0.21,71.51"/>
+		<line class="st2" x1="517.79" y1="404.49" x2="518.3" y2="476"/>
+		<path class="st2" d="M290.65,478.16"/>
+		<path class="st2" d="M290.65,404.49"/>
+		<path class="st2" d="M297.72,404.49c-1.24,5.52-1.86,71.51-1.86,71.51"/>
+		<line class="st2" x1="463.31" y1="404.74" x2="464.32" y2="478.16"/>
+		<path class="st2" d="M465.55,404.98c0.49-1.56,0.55,72.73,2,73"/>
+		<path class="st3" d="M281.82,340.97c0,0,34.5-71.72,93.02-71.61c0,0,62.89-1.7,96.55,71.61"/>
+		<path class="st3" d="M374.83,269.36c-35.71,8.41-29.47,59.73-33.81,71.61"/>
+		<path class="st3" d="M413.8,337.61"/>
+		<path class="st3" d="M413.8,340.97c0,0,7.02-49.26-22.97-68.91"/>
+	</g>
+	<path class="st4" d="M294.95,405.51c-1.19,5.27-0.4,70.47-0.4,70.47"/>
+	<path id="SVGID_x5F_1_x5F_" class="st5" d="M639.63,410.54c0,141.12-116.32,255.51-259.82,255.51s-259.82-114.4-259.82-255.51
+		s116.32-255.51,259.82-255.51S639.63,269.42,639.63,410.54z"/>
+	<text>	<textPath  xlink:href="#SVGID_x5F_1_x5F_" startOffset="96.289%">
+<tspan  style="fill:#463C33; font-family:'CenturyGothic-Bold'; font-size:44.5389px;">ODE? SEOUL ODE? SEOUL ODE? SEOUL ODE? SEOUL ODE? SEOUL ODE? SEOUL</tspan>	</textPath>
+</text>
+	<path class="st6" d="M531.38,350.07c-14.97,8.66-37.14-1.08-37.14-1.08s2.11-23.79,17.08-32.45c14.97-8.66,37.14,1.08,37.14,1.08
+		S546.35,341.41,531.38,350.07z"/>
+	<path class="st6" d="M497.04,305.81c6.11,12.15-2.04,28.36-2.04,28.36s-18.05-3.48-24.16-15.63s2.04-28.36,2.04-28.36
+		S490.93,293.67,497.04,305.81z"/>
+</g>
+</svg>
