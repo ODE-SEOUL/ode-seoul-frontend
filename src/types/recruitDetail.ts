@@ -25,6 +25,6 @@ export interface IHostData{
     signupStatus:string;
 }
 
-export type GetRecruitDetailDto=ResponseDto<IRecruitDetailData[]>;
+export type GetRecruitDetailDto=ResponseDto<IRecruitDetailData>;
 
 export type GetHostDto=ResponseDto<IHostData>;

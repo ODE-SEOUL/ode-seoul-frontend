@@ -12,7 +12,7 @@ import CourseListReview from "./CourseListReview";
 import CourseReviewWriting from "./CourseReviewWriting";
 
 import { useCourseListQuery } from "../CourseList/courseListQuery";
-import Wait from "../Error/Wait";
+import Loading from "../Error/Loading";
 
 export default function CourseListDetail(){
     const router=useRouter();
@@ -20,12 +20,13 @@ export default function CourseListDetail(){
     const[communityClick,setCommunityClick]=useState<boolean>(false);
     const paramId=+router.query.id;
     const {isLoading,data:courseListData}=useCourseListQuery();
-    console.log(isLoading);
+    console.log(router);
+    
     const courseDetailData=courseListData
     ? courseListData.find((course) => course.id === paramId)
     : undefined;
     if(isLoading){
-        return (<Wait/>)
+        return (<Loading/>)
     }else{
             
             const {id,name,distance,time,description,nearSubway,accessWay,image,routes}=courseDetailData;

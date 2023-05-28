@@ -6,7 +6,7 @@ import Footer from '../common/Footer/Footer';
 import { userAtom } from '../../states/UserAtom';
 import { atom, useRecoilValue } from 'recoil';
 import { useRouter } from "next/router"
-import Error from '../Error';
+import Error from '../Error/Error';
 
 const Mypage = () => {
   const user = useRecoilValue(userAtom);

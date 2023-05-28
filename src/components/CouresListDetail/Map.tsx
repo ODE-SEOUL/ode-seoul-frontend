@@ -15,7 +15,7 @@ export default function CourseDetailMap({latitude, longitude ,routes}: MapProps)
  
   //Object.entries(routes[0]).map(([key,value])=>console.log(value[0]))
   
-   //console.log(routesArr);
+   console.log(routes);
    
     
     //

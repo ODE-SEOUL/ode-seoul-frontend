@@ -17,20 +17,24 @@ export default function SearchCaseContainer({searchServiceData,value}:ICaseProps
       
             </SearchContainer>
             <div className='mt-100'></div>
-            <Grid container>
-            {
+            <div className='row col-lg-12'>
+              <div className="row" style={{display:'flex',flexWrap:'wrap'}}>
+              {
                   searchServiceData?.
                   map(service=>
-                    <Grid xs={12} sm={8} md={6} lg={4}  key={service.uuid}>
-                      <ServiceItem title={service.title} location={service.place}
-                      startDate={service.startDate} endDate={service.endDate}
-                      useFee={service.useFee} mainImage={service.mainImage}
-                      more={service.orgLink}/>
+                    <div className='col-lg-4 col-sm-12 mb-80' key={service.uuid}>
+                      <ItemBtn key={service.uuid}> 
+                        <ServiceItem title={service.title} location={service.place}
+                        startDate={service.startDate} endDate={service.endDate}
+                        useFee={service.useFee} mainImage={service.mainImage}
+                        more={service.orgLink}/>
+                      </ItemBtn>
       
-                    </Grid>)
+                    </div>)
                   
                 }
-            </Grid>
+                </div>
+            </div>
           </Container>
         
         </>
@@ -40,36 +44,26 @@ export default function SearchCaseContainer({searchServiceData,value}:ICaseProps
       );
 }
 const Container=styled.div`
+  text-align: center;
     
    /* width:30%;
    margin: 0 auto; */
-`
-
-const SelectionContainer=styled.div`
-  
 `;
 const SearchContainer=styled.div`
-  justify-content: center;
-  align-items: center;
+  display: inline-block;
   
 `;
 
-const ItemContainer=styled.div`
-  justify-content: center;
-  align-items: center;
-  width:1000px;
-  height:500px;
-  width:100%;
-  height:800px;
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  grid-gap: 50px;
 
-  
-`;
 
-const ItemBtn=styled.button`
-    border:0;
-    outline: 0;
-    background-color: transparent;
+
+const ItemBtn=styled.div`
+      cursor:pointer;
+      margin: auto;
+      width:30rem;
+      height:35rem; 
+      border-radius: 10px;
+      box-sizing: border-box;
+      //background-color: aliceblue;
+      box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.1);
 `;

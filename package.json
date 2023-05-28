@@ -43,6 +43,7 @@
     "react-router-dom": "^6.11.2",
     "react-scrollama": "^2.3.2",
     "react-slick": "^0.29.0",
+    "react-spinners": "^0.13.8",
     "recoil": "^0.7.7",
     "slick-carousel": "^1.8.1",
     "styled-components": "^5.3.10",

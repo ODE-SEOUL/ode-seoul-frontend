@@ -18,25 +18,29 @@ export default function FilterCaseContainer({serviceData,category,gugun}:ICasePr
         
             </SearchContainer>
             <div className='mt-100'></div>
-            <Grid item>
-            {
-                   
+            <div className='row col-lg-12'>
+              <div className="row" style={{display:'flex',flexWrap:'wrap'}}>
+              {
                     
-                      serviceData?.filter(service=>service.category==category&&service.guname==gugun).map(service=>
-                        <Grid   xs={12} sm={8} md={5} lg={2} key={service.uuid}>
-                          <ServiceItem title={service.title} location={service.place}
-                          startDate={service.startDate} endDate={service.endDate}
-                          useFee={service.useFee} mainImage={service.mainImage}
-                          more={service.orgLink}/>
-        
-                        </Grid>)
                       
+                        serviceData?.filter(service=>service.category==category&&service.guname==gugun).map(service=>
+                          <div className='col-lg-3 col-sm-12 mb-80' key={service.uuid}>
+                            <ServiceItem title={service.title} location={service.place}
+                            startDate={service.startDate} endDate={service.endDate}
+                            useFee={service.useFee} mainImage={service.mainImage}
+                            more={service.orgLink}/>
+          
+                          </div>
+                          
+                          )
+                        
+                      
+          
                     
-        
-                  
 
-                }
-            </Grid>
+                  }
+            </div>
+          </div>
 
         
           </Container>
