@@ -50,6 +50,9 @@ const Navbar = () => {
       <NavbarLinks>
         <ul>
           <li>
+            <Link href="/odeseoul">오디서울</Link>
+          </li>
+          <li>
             <Link href="/course">코스 추천</Link>
           </li>
           <li>
@@ -57,9 +60,6 @@ const Navbar = () => {
           </li>
           <li>
             <Link href="/community">같이 걸어요</Link>
-          </li>
-          <li>
-            <Link href="/notices">공지사항</Link>
           </li>
         </ul>
       </NavbarLinks>
@@ -127,6 +127,7 @@ const NavbarContainer = styled.nav`
   padding: 0 50px;
   font-weight: 100;
   font-family: var(--font-secondary);
+  
 `;
 
 const Logo = styled.div`
@@ -139,6 +140,7 @@ const Image = styled.img`
 `;
 
 const NavbarLinks = styled.div`
+ 
   ul {
     display: flex;
     justify-content: space-between;
