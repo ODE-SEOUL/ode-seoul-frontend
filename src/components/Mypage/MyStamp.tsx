@@ -67,8 +67,8 @@ const MyStamp = () => {
     <>
       <Container>
        
-          <div className='row col-lg-12 mb-100' style={{display: 'flex', flexWrap: 'wrap'}}>
-            <div className="row">
+          <div className='row col-lg-12 mb-100' >
+            <div className="row" style={{display: 'flex', flexWrap: 'wrap'}}>
               {mydata?.map((item: any) => {
                 const {
                   id,

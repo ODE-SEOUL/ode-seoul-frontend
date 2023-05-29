@@ -94,6 +94,7 @@ const MyReport = () => {
       .catch((error) => {
         console.error(error);
       });   
+
   }
 
   
@@ -266,6 +267,7 @@ const Card = styled.div`
 
 const Li = styled.li`
   list-style: none;
+  cursor: pointer;
   font-weight: 300;
   border-bottom: 1px solid #eee;
   width: 100%;
