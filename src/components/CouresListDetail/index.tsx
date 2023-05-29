@@ -12,96 +12,72 @@ import CourseListReview from "./CourseListReview";
 import CourseReviewWriting from "./CourseReviewWriting";
 
 import { useCourseListQuery } from "../CourseList/courseListQuery";
-import { useQueryClient } from "react-query";
-import { getCourseDetail, getCourseList } from "@/src/apis/courseList";
-
-import { useQuery } from "react-query";
-import { useParams } from "react-router";
-import { useSearchParams } from "react-router-dom";
-
-import { GetServerSideProps,NextPageContext } from "next";
-
-import { ParsedUrlQuery } from "querystring";
-import { useEffect } from "react";
-import { courseDetailAtom } from "@/src/states/CourseAtom";
-import { ICourseDetail } from "@/src/types/courseList";
-
-interface IDetailProps{
-    id:number;
-}
+import Loading from "../Error/Loading";
 
 export default function CourseListDetail(){
     const router=useRouter();
-    const paramId=+router.query.id;
-    const [data,setData]=useRecoilState(courseDetailAtom);
-    console.log(router.query);
-    
-    // const { data: courseData } = useQuery(["detailCourseData"],getCourseList,{
-    //     select:(data)=>data.result.filter((item)=>+item.id===paramId)[0]
-    // });
-    // setData(courseData);
-   
-
-    
-    const {id,name,distance,time,description,nearSubway,accessWay,image,routes,lng,lat}=router.query;
-   
-    const props:ICourseDetail={
-        id:paramId,
-        name:name as string,
-        distance:distance as string,
-        time:time as string,
-        description:description as string,
-        accessWay:accessWay as string,
-        image:image as string,
-        routes:routes,
-        lng:+lng,
-        lat:+lat,
-        nearSubway:nearSubway as string,
-
-
-
-    }
-    ;
     const[reviewClick,setReviewClick]=useState<boolean>(false);
     const[communityClick,setCommunityClick]=useState<boolean>(false);
-
-    const mainImage:string=image as string;
-
+    const paramId=+router.query.id;
+    const {isLoading,data:courseListData}=useCourseListQuery();
+    console.log(router);
     
-    let timeText:string;
-    //timeText= +time>=60? (Math.round(+time/60)).toString()+("시간")+(+time%60).toString()+"분":(time as string ).toString();
-    if(+time%60>=1 && +time%60!=0){
-        timeText=(Math.round(+time/60)).toString()+("시간 ")+(+time%60).toString()+"분";
+    const courseDetailData=courseListData
+    ? courseListData.find((course) => course.id === paramId)
+    : undefined;
+    if(isLoading){
+        return (<Loading/>)
+    }else{
+            
+            const {id,name,distance,time,description,nearSubway,accessWay,image,routes}=courseDetailData;
+            console.log("routes");
+            console.log(routes);
+            const lat=routes[0][0][0];
+            const lng=routes[0][0][1];
+            
+
+            const mainImage:string=image as string;
+
+            
+            let timeText:string;
+            //timeText= +time>=60? (Math.round(+time/60)).toString()+("시간")+(+time%60).toString()+"분":(time as string ).toString();
+            if(+time%60>=1 && +time%60!=0){
+                timeText=(Math.round(+time/60)).toString()+("시간 ")+(+time%60).toString()+"분";
+            }
+            if(+time%60>=1 && +time%60==0){
+                timeText=(Math.round(+time/60)).toString()+("시간");
+            }else if(+time%60<1){
+                timeText=(+time).toString()+(" 분");
+            }
+
+
+            return(
+                <>
+                    <Navbar/>
+                    <MainContainer>
+                        <Container>
+                            <CourseListDescription name={name} distance={distance}
+                            time={timeText}  description={description} subway={nearSubway}
+                            accessway={accessWay as string} image={mainImage} setCommunityClick={setCommunityClick}
+                            setReviewClick={setReviewClick}
+                            />
+                            <CourseDetailMap  latitude={lat} longitude={lng} routes={routes}/>
+                        </Container>
+                        <CommentContainer>
+                            {
+                                reviewClick? <CourseReviewWriting coursename={name as string} courseId={+paramId}/>:<CourseListReview id={+id as number} name={name as string}/>
+                            }
+                        </CommentContainer>
+                    </MainContainer>
+
+                </>
+
+            );
+
     }
-    if(+time%60>=1 && +time%60==0){
-        timeText=(Math.round(+time/60)).toString()+("시간");
-    }else if(+time%60<1){
-        timeText=(+time).toString()+(" 분");
-    }
-
-
-    return(
-        <>
-            <Navbar/>
-            <MainContainer>
-                <Container>
-                    <CourseListDescription name={name as string} distance={distance as string}
-                    time={timeText}  description={description as string} subway={nearSubway as string}
-                    accessway={accessWay as string} image={mainImage} setCommunityClick={setCommunityClick}
-                    setReviewClick={setReviewClick}
-                    />
-                    <CourseDetailMap  latitude={+lng} longitude={+lat} routes={routes as string}/>
-                </Container>
-                <CommentContainer>
-                    {
-                        reviewClick? <CourseReviewWriting coursename={name as string} courseId={+paramId}/>:<CourseListReview id={+id as number} name={name as string}/>
-                    }
-                </CommentContainer>
-            </MainContainer>
-
-        </>
-
-    );
+    
+    
+    
 }
 
 

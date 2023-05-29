@@ -17,6 +17,7 @@ import { useRecoilValue } from 'recoil';
 import { GetServiceSearchParams } from '@/src/apis/service';
 import { useEffect } from 'react';
 import { useServiceSearchQuery } from './serviceQuery';
+import Wait from '../Error/Loading';
 
 enum EventCategory{
   SHOW="공연",
@@ -52,12 +53,12 @@ export default function Service(){
   // 검색 설정시 value
   const value=useRecoilValue(searchValueAtom);
 
-  const {data:serviceData}=useQuery("serviceList",getServiceList,{
+  const {isLoading:defaultLoading,data:serviceData}=useQuery("serviceList",getServiceList,{
     select: (data)=>data.result.events
   })
 
   
-  const {data:searchServiceData}=useQuery("searchServiceList",()=>getServiceSearchList(value),{
+  const {isLoading:searchLoading,data:searchServiceData}=useQuery("searchServiceList",()=>getServiceSearchList(value),{
     select:(data)=>data.result.events
   });
   
@@ -73,13 +74,13 @@ export default function Service(){
       
   }
   else if(!filter&&search){
-    return (<SearchCaseContainer 
+    return (searchLoading?<Wait/>:<SearchCaseContainer 
       
       
-      searchServiceData={searchServiceData}
-      value={value}/>);
+    searchServiceData={searchServiceData}
+    value={value}/>);
   }else if(!filter&&!search){
-    return(<DefaultCaseContainer  serviceData={serviceData}/>);
+    return(defaultLoading?<Wait/>:<DefaultCaseContainer  serviceData={serviceData}/>);
   }
          
      

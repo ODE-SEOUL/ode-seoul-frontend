@@ -10,7 +10,7 @@ import { useState } from "react";
 
 interface ICourseDetailProps{
     name:string;
-    distance:string;
+    distance:number;
     time:string;
     description:string;
     subway:string;
@@ -162,7 +162,7 @@ const CourseDetailDescriptionText=styled.div`
 `;
 
 const CourseDetailDescriptionContainer=styled.div`
-    width:70%;
+    width:90%;
     
 `;
 

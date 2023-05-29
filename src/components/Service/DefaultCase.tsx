@@ -9,16 +9,17 @@ export default function DefaultCaseContainer({serviceData}:ICaseProps){
         <>
           <Container>
             <div className='mt-90'></div>
-            <SearchContainer>
+            <SearchContainer style={{margin:"auto"}}>
       
                 <SearchService />
       
             </SearchContainer>
             <div className='mt-100'></div>
-            <Grid container >
+            <div className='row col-lg-12'>
+             <div className="row" style={{display:'flex',flexWrap:'wrap'}}>
               {
                       serviceData?.map(service=>
-                        <Grid item  xs={12} sm={8} md={5} lg={4} key={service.uuid}>
+                        <div className='col-lg-4 col-sm-12 mb-80' key={service.uuid}>
                             <ItemBtn key={service.uuid}>
                               <ServiceItem title={service.title} location={service.place}
                               startDate={service.startDate} endDate={service.endDate}
@@ -27,11 +28,12 @@ export default function DefaultCaseContainer({serviceData}:ICaseProps){
             
                           </ItemBtn>
 
-                        </Grid>)
+                        </div>)
                       
                     }
 
-              </Grid>
+                </div>
+              </div>
           
 
          
@@ -46,28 +48,22 @@ export default function DefaultCaseContainer({serviceData}:ICaseProps){
 }
 const Container=styled.div`
     
-   /* width:30%;
-   margin: 0 auto; */
+   text-align: center;
 `
-
-const SelectionContainer=styled.div`
-  
-`;
 const SearchContainer=styled.div`
-  justify-content: center;
-  align-items: center;
+  display: inline-block;
   
 `;
 
-const ItemContainer=styled.div`
-  width:90%;
-  margin:0 auto;
 
-  
-`;
-
-const ItemBtn=styled.button`
-    border:0;
-    outline: 0;
-    background-color: transparent;
+const ItemBtn=styled.div`
+      cursor:pointer;
+      margin: auto;
+      width:30rem;
+      height:35rem; 
+      border-radius: 10px;
+      box-sizing: border-box;
+      //background-color: aliceblue;
+      box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.1);
+     
 `;

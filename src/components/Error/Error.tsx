@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import styled from '@emotion/styled';
-import Nav from './common/Nav/Nav';
-import Footer from './common/Footer/Footer';
+import Nav from '../common/Nav/Nav';
+import Footer from '../common/Footer/Footer';
 
 const App = () => {
   return (

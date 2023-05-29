@@ -14,6 +14,7 @@ import { wrap } from 'module';
 import { useRecoilValue } from 'recoil';
 import { userAtom } from '../../states/UserAtom';
 import { getRecruitList } from '@/src/apis/recruitList';
+import Loading from '../Error/Loading';
 
 enum Category {
   COM_ANIMAL = '#반려동물',
@@ -57,7 +58,7 @@ const CommunityItem = () => {
    const DetailHandler=(recruit:RecruitItem  & HostItem)=>{
     const courseName = printCourseName(recruit.courseId);
    router.push({
-     pathname:`recruit/${recruit.id}`,
+     pathname:`/recruit/${recruit.id}`,
      query:{
        courseId:recruit.courseId,
        category:recruit.category,
@@ -74,7 +75,7 @@ const CommunityItem = () => {
       },
 
        },
-   `recruit/${recruit.id}`);
+   `/recruit/${recruit.id}`);
   }
 
   //recruit api
@@ -110,89 +111,99 @@ const CommunityItem = () => {
     return categoryValue === selectedCategory;
   });
   
-  return (
-    <>
-      <div style={{ background: "white" }}>
-      <FlexContainer>
-        {Object.values(Category).map((category: string, index: number) => {
-          const colorClass = `color-${index + 1}`;
-          return (
-            <div key={index}>
-              <CircleButton
-                isSelected={selectedCategory === category}
-                onClick={() => handleCategoryClick(category)}
-                className={colorClass}
-              />
-              {category}
-            </div>
-          );
-        })}
-      </FlexContainer>
-      </div>
+  if(isLoading){
+    return(
+      <>
+        <Loading/>
+      </>
 
-      <div style={{ justifyContent: "flex-end", display: "flex" }}>
-      <Circle onClick={handleCircleClick}>
-        <Link href="/recruit" style={{ color: "#eee", fontWeight: 300 }}>
-          <FontAwesomeIcon icon={faPencil} /> 모집하기
-        </Link>
-      </Circle>
+    );
 
-      </div>
-
-      <FlexContainer style={{ background: "#eee" }}>
-
-        <div className='row col-lg-12 mb-100'>
-          <div className="row" style={{display: 'flex', flexWrap: 'wrap'}}>
-            {filteredItems?.map((item: any) => {
-              const {
-                id,
-                image,
-                title,
-                scheduledAt,
-                courseId,
-                category,
-                currentPeople,
-                maxPeople,
-                progressStatus,
-                createdAt,
-                
-                //TODO: 타입 확장 필요
-                host:{hostId,nickname,profileImage,locationCode,signupStatus}
-              } = item;
-            
-              const courseName = printCourseName(courseId)
-
-              return (
-                <div key={id} className="col-lg-3 col-sm-12">
-                  <Card onClick={()=>DetailHandler(item)}>
-                    <Img src={image} alt="이미지" width="100%"  />
-                    <div className='row' style={{height: "50px", display: 'flex', flexWrap: 'wrap'}}>
-                        <div className='col-lg-4'>
-                            <ProfileImg src={profileImage}></ProfileImg>
-                        </div>
-                        <div className='col-lg-8'>
-                            <Title>{nickname}</Title>
-                        </div>
-                    </div>
-                    <div className="">
-                      <Body>{title}</Body>
-                    </div>
-                    <div className="">
-                
-                      <SubBody><FontAwesomeIcon icon={faMapLocationDot} className="mr-10" style={{color: 'rgb(171, 184, 104)' }}/>{courseName}</SubBody>
-                      <SubBody><FontAwesomeIcon icon={faCalendarCheck} className="mr-10" style={{color: 'rgb(171, 184, 104)' }}/>{scheduledAt}</SubBody>
-                    </div>
-                  </Card>
-                </div>
-              );
-            })}
-          </div>
+  }else{
+    return (
+      <>
+        <div style={{ background: "white" }}>
+        <FlexContainer>
+          {Object.values(Category).map((category: string, index: number) => {
+            const colorClass = `color-${index + 1}`;
+            return (
+              <div key={index}>
+                <CircleButton
+                  isSelected={selectedCategory === category}
+                  onClick={() => handleCategoryClick(category)}
+                  className={colorClass}
+                />
+                {category}
+              </div>
+            );
+          })}
+        </FlexContainer>
         </div>
-      </FlexContainer>
-
-    </>
-    
-  );
+  
+        <div style={{ justifyContent: "flex-end", display: "flex" }}>
+        <Circle onClick={handleCircleClick}>
+          <Link href="/recruit" style={{ color: "#eee", fontWeight: 300 }}>
+            <FontAwesomeIcon icon={faPencil} /> 모집하기
+          </Link>
+        </Circle>
+  
+        </div>
+  
+        <FlexContainer style={{ background: "#eee" }}>
+  
+          <div className='row col-lg-12 mb-100'>
+            <div className="row" style={{display: 'flex', flexWrap: 'wrap'}}>
+              {filteredItems?.map((item: any) => {
+                const {
+                  id,
+                  image,
+                  title,
+                  scheduledAt,
+                  courseId,
+                  category,
+                  currentPeople,
+                  maxPeople,
+                  progressStatus,
+                  createdAt,
+                  
+                  //TODO: 타입 확장 필요
+                  host:{hostId,nickname,profileImage,locationCode,signupStatus}
+                } = item;
+              
+                const courseName = printCourseName(courseId)
+  
+                return (
+                  <div key={id} className="col-lg-3 col-sm-12">
+                    <Card onClick={()=>DetailHandler(item)}>
+                      <Img src={image} alt="이미지" width="100%"  />
+                      <div className='row' style={{height: "50px", display: 'flex', flexWrap: 'wrap'}}>
+                          <div className='col-lg-4'>
+                              <ProfileImg src={profileImage}></ProfileImg>
+                          </div>
+                          <div className='col-lg-8'>
+                              <Title>{nickname}</Title>
+                          </div>
+                      </div>
+                      <div className="">
+                        <Body>{title}</Body>
+                      </div>
+                      <div className="">
+                  
+                        <SubBody><FontAwesomeIcon icon={faMapLocationDot} className="mr-10" style={{color: 'rgb(171, 184, 104)' }}/>{courseName}</SubBody>
+                        <SubBody><FontAwesomeIcon icon={faCalendarCheck} className="mr-10" style={{color: 'rgb(171, 184, 104)' }}/>{scheduledAt}</SubBody>
+                      </div>
+                    </Card>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+        </FlexContainer>
+  
+      </>);
+  }
+  
+  
 };
 
 
