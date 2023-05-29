@@ -48,11 +48,15 @@ const MyStamp = () => {
   useEffect(() => {
     getStamps(user?.id)
       .then((response) => {
-        const result = response.result.result.map((item) => ({
-          ...item,
-        }));
-        setMydata(result);
-        console.log(result);
+        if (Array.isArray(response.result)) { // 배열인지 확인
+          const result = response.result.map((item: any) => ({
+            ...item,
+          }));
+          setMydata(result);
+          console.log('내 스탬프', result);
+        } else {
+          console.log('response.result is not an array');
+        }
       })
       .catch((error) => {
         console.error(error);

@@ -19,7 +19,7 @@ import { useParams } from 'react-router-dom';
 import { useRecruitListQuery } from './RecruitListDetailQuery';
 import { IHostData } from "@/src/types/recruitDetail";
 import { useCourseListQuery } from '../../CourseList/courseListQuery';
-
+import usePatchRefresh from '../../../apis/usePatchRefresh';
 
 interface ApplicationData {
     id: number;
@@ -106,6 +106,16 @@ export default function CourseListDetail(){
     
     //----
 
+     //formatDate
+    function formatDate(dateString: string) {
+    const date = new Date(dateString);
+        const year = date.getFullYear();
+        const month = date.getMonth() + 1;
+        const day = date.getDate();
+        
+        return `${year}년 ${month}월 ${day}일`;
+    }
+
     const [Rcontent, setRContent] = useState('');
     const user = useRecoilValue(userAtom);
     const handleCommentChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -119,7 +129,15 @@ export default function CourseListDetail(){
             alert("로그인이 필요한 서비스입니다.");
             router.push('/');
         }else if(user){
-            postComments(String(id), user.accessToken, Rcontent);
+            postComments(String(id), user.accessToken, Rcontent)
+            .then((response) => {
+                if (response.data.code === 401) {
+                    //TODO
+                }
+              })
+            .catch((error) => {
+                console.error(error);
+            });
             setRContent("");
         }
        
@@ -158,16 +176,13 @@ export default function CourseListDetail(){
         applications = [];
         host = undefined;
       }
-      
-    
-    
 
-    
-    
+      const formattedDate = formatDate(result?.scheduledAt);
 
       if (!isLoading && result) {
         const categoryLabel = getCategoryLabel(String(result.category));
         return(
+        
         <>
         <Navbar />
             <Wrapper >
@@ -177,7 +192,7 @@ export default function CourseListDetail(){
                     <StyledTitle>{result.title}</StyledTitle> 
                     <div className="row" style={{display: 'flex', flexWrap: 'wrap'}}>
                         <StyledSub className="col-lg-2"><FontAwesomeIcon icon={faMapLocationDot} className="mr-10" style={{color: 'rgb(171, 184, 104)' }}/>{courseName}</StyledSub>
-                        <StyledSub className="col-lg-2"><FontAwesomeIcon icon={faCalendarCheck} className="mr-10" style={{color: 'rgb(171, 184, 104)' }}/>{result.scheduledAt}</StyledSub>
+                        <StyledSub className="col-lg-2"><FontAwesomeIcon icon={faCalendarCheck} className="mr-10" style={{color: 'rgb(171, 184, 104)' }}/>{formattedDate}</StyledSub>
                         <StyledSub className="col-lg-2"><FontAwesomeIcon icon={faUserGroup} className="mr-10" style={{color: 'rgb(171, 184, 104)' }}/>참여 인원 : {result.currentPeople}/{result.maxPeople}</StyledSub>
                     </div>
                     <div className="col-lg-8">

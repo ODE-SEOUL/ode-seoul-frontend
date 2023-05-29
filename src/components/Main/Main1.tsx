@@ -6,11 +6,14 @@ const Main1 = () => {
   return (
     <>
       <Container>
-            <div className='col-lg-12 mt-100 mb-100'>
-                <div>생태문화길을 걸으며,</div>
-                <div  className='mb-50'>서울을 느끼다. </div>
-                <Img src="../assets/img/logo.svg" width="50%"></Img>
-            </div>
+            <ImgContainer className='col-lg-12 mb-100'>
+              <TitleContainer>
+                <Title>생태문화길을 걸으며,</Title>
+                <Title>서울을 느끼다.</Title>
+              </TitleContainer>
+              
+                <Img src="../assets/img/main/2.svg" ></Img>
+            </ImgContainer>
       </Container>
     </>
   );
@@ -20,12 +23,38 @@ export default Main1;
 
 const Container = styled.div`
     font-size:45px;
-    margin: auto;
+    right: 0px;
+
+
     font-weight: 200;
     font-family: var(--font-secondary); 
-    text-align: center;
+`;
+
+const ImgContainer = styled.div`
+height: 668px;
+`;
+
+const TitleContainer = styled.div`
+margin: 120px 20px 30px 120px;
+
 `;
 
 const Img = styled.img`
+position: absolute;
+right: 0;
+top: -100px;
+width:85%;
+z-index: -1;
 
+`;
+
+const Title = styled.div`
+  font-size: 45px;
+  font-family: var(--font-secondary);
+  
+
+  @media screen and (max-width: 768px) {
+    font-size: 25px;
+    font-weight: 200;
+  }
 `;

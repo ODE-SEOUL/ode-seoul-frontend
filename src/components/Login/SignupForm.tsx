@@ -15,18 +15,17 @@ import { useQuery } from 'react-query';
 const SignupForm = ({ onSuccess }: { onSuccess: () => void }) => {
 
 
-    const [names, setNames] = useState([]);
+    const [names, setNames] = useState([]); //지역이름 뭉텅이
     const [location, setLocation] = useState("");
-    
-    const handleLocationSelect = (name: string) => {
-        setLocation(name);
-        setIsDropdownOpen(false);
-      };
+    const [locationCode, setLocationCode] = useState('');
+    const [result, setResult] = useState<any[]>([]); 
+
 
     useEffect(() => {
         getGugunList()
           .then((response) => {
             const result = response.result;
+            setResult(result);
             const names = result.map((item) => item.name);
             setNames(names);
           })
@@ -35,6 +34,12 @@ const SignupForm = ({ onSuccess }: { onSuccess: () => void }) => {
           });
       }, []);
 
+      const handleLocationSelect = (name: string) => {
+        setLocation(name);
+        const selectedLocation = result.find((item) => item.name === name);
+        setLocationCode(selectedLocation?.code || '');
+        setIsDropdownOpen(false);
+      };
 
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
@@ -44,7 +49,6 @@ const SignupForm = ({ onSuccess }: { onSuccess: () => void }) => {
 
   const router = useRouter();
 
-  const [locationCode, setLocationCode] = useState('');
   const [nickname, setNickname] = useState('');
 
   const user = useRecoilValue(userAtom);
@@ -142,35 +146,34 @@ export default SignupForm;
 
 
 const OutSide = styled.div`
-position: fixed;
-display: flex;
-align-items: center;
-width: 100%;
-left: 0;
-top: 0;
-bottom: 0;
-overflow-y: auto;
-background-color: rgba(0, 0, 0, 0.2);
+  position: fixed;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  overflow-y: auto;
+  background-color: rgba(0, 0, 0, 0.2);
 `;
 
 const ModalLayOut = styled.div`
-padding: 20px;
-width: 600px;
-height: 700px;
-margin: auto;
-background-color: white;
-box-sizing: border-box;
-display: flex;
-flex-direction: column;
-align-items: center;
-border-radius: 5%;
-box-shadow: 0 2px 30px 0 rgba(0, 0, 0, 0.2);
+  padding: 20px;
+  width: 500px;
+  height: 600px;
+  margin: auto;
+  background-color: white;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  border-radius: 15px;
+  box-shadow: 0 2px 30px 0 rgba(0, 0, 0, 0.2);
 `;
 
 const CloseButton = styled.div`
-margin: 10px;
-text-align: right;
-cursor: pointer;
+  margin: 10px;
+  cursor: pointer;
+  text-align: right !important;
 `;
 
 const SearchInput = styled.div`
@@ -179,7 +182,6 @@ const SearchInput = styled.div`
   padding: 0.5rem 0.8rem;
   border:  1px solid #999999;
   border-radius: 5px;
-  width: 100%;
 
 `;
 
@@ -204,8 +206,12 @@ const Header = styled.div`
     font-family: var(--font-secondary);
     font-weight: 300;
     text-align: center;
-    padding: 20px;
+    padding-bottom: 20px;
     border-bottom: solid 1px #aaa;
+`
+
+const Img = styled.img`
+    width: 80%;
 `
 const Title = styled.div`
     font-size: 23px;
@@ -222,7 +228,7 @@ const StyledInput = styled.input`
   margin-bottom: 0.5rem;
   border:  1px solid #999999;
   border-radius: 5px;
-  width: 100%;
+  width: 93%;
 
   ::placeholder {
     color: #ccc;
@@ -232,6 +238,7 @@ const StyledInput = styled.input`
 
 const Wrapper = styled.div`
 width: 80%;
+margin: auto;
 `;
 
 const Footer = styled.div` 
@@ -239,8 +246,23 @@ const Footer = styled.div`
     font-family: var(--font-secondary);
     font-weight: 300;
     text-align: center;
-    margin: 40px;
+    padding: 20px;
 `
+
+const Container = styled.div`
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  margin: 80px;
+  text-align: center;
+  font-family: var(--font-secondary);
+  font-weight: 200;
+  @media screen and (max-width: 768px) {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+`;
 
 
 
@@ -283,7 +305,7 @@ const Circle = styled.div`
   margin-top: 15px;
   position: absolute;
   display:none;
-  width:440px;
+  width:330px;
   right: -10px;
 
   ${DropDown}:focus & {

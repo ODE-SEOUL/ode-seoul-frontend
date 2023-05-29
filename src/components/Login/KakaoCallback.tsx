@@ -4,6 +4,7 @@ import { useRecoilState, useRecoilValue } from 'recoil';
 import { userAtom } from '../../states/UserAtom';
 import { useRouter } from 'next/router';
 import SignupForm from './SignupForm';
+import Loading from '../Error/Loading';
 
 const KakaoCallback = () => {
   const router = useRouter();
@@ -38,7 +39,6 @@ const KakaoCallback = () => {
           };
 
           setUser(userInfo);
-          // console.log('일단 로그인 성공');
 
           // 회원가입 상태 확인을 위한 GET 요청
           axios
@@ -53,7 +53,25 @@ const KakaoCallback = () => {
             .catch((error) => {
               console.error(error);
             });
-        } else {
+        } else if (res.data.code === 401) {
+          axios.patch("https://ode-seoul.fly.dev/auth/accounts/token", requestData, { withCredentials: true })
+            .then((response) => {
+              if (response.data.code === 200) {
+                const { accessToken, refreshToken } = response.data.result;
+    
+                setUser((prevUser) => ({
+                  ...prevUser,
+                  accessToken,
+                  refreshToken,
+                }));
+              } else {
+                // TODO: 오류 처리 로직
+              }
+            })
+            .catch((error) => {
+              console.error(error);
+            });
+          }else {
           // TODO
         }
       })
@@ -80,7 +98,9 @@ const KakaoCallback = () => {
     return <SignupForm onSuccess={handleSignupSuccess} />;
   }
 
-  // return null;
+  return(
+    <Loading />
+  )
 };
 
 export default KakaoCallback;
