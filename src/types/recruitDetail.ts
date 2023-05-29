@@ -9,7 +9,7 @@ export interface IRecruitDetailData{
     content: string;
     image: string;
     currentPeople:number;
-    maxPeoPle:number;
+    maxPeople:number;
     scheduledAt:string;
     progressStatus: string;
     createdAt: string;
