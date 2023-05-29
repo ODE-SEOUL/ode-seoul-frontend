@@ -23,14 +23,14 @@ const Main3 = () => {
       
         
         <FlexContainer >
-            <div className='row col-lg-12 mb-100'>
-                <div className="row" style={{display: 'flex', flexWrap: 'wrap', margin: 'auto', width: "80%"}}>
-                    <div className='col-lg-6'><SImg src="../assets/img/breadcrumb/봄.svg"></SImg></div>
-                    <div className='col-lg-6'><SImg src="../assets/img/breadcrumb/여름.svg"></SImg></div>
-                    <div className='col-lg-6'><SImg src="../assets/img/breadcrumb/가을.svg"></SImg></div>
-                    <div className='col-lg-6'><SImg src="../assets/img/breadcrumb/겨울.svg"></SImg></div>
+            
+                <div className="row" style={{display: 'flex', flexWrap: 'wrap'}}>
+                    <div className='col-lg-3'><SImg src="../assets/img/breadcrumb/봄.png"></SImg></div>
+                    <div className='col-lg-3'><SImg src="../assets/img/breadcrumb/여름.png"></SImg></div>
+                    <div className='col-lg-3'><SImg src="../assets/img/breadcrumb/가을.png"></SImg></div>
+                    <div className='col-lg-3'><SImg src="../assets/img/breadcrumb/겨울.png"></SImg></div>
                 </div>
-            </div>
+           
         </FlexContainer>
       </>
     );
@@ -46,6 +46,12 @@ const FlexContainer = styled.div`
   justify-content: space-between;
   align-items: center;
   margin-bottom: 20px;
+  border: 2px solid #eee;
+  border-radius: 10px;
+  width: 80%;
+  margin: auto;
+  padding: 20px;
+  height: 250px;
 
   @media screen and (max-width: 768px) {
     margin: 10px;
@@ -86,6 +92,6 @@ const SubTitle = styled.div`
 
 
 const SImg = styled.img`
-   
+    width: 280px;
 `;
 

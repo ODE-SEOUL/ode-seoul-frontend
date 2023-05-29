@@ -23,8 +23,8 @@ const Main3 = () => {
         
             <Container>
        
-              <div className='row col-lg-12 mb-100' style={{display: 'flex', flexWrap: 'wrap'}}>
-                <div className="row">
+              <div className='row col-lg-12 mb-100' style={{display: 'flex', flexWrap: 'wrap', }}>
+                <div className="row" style={{display: 'flex', flexWrap: 'wrap'}}>
                     {stamp_data.map((item) => {
                     const { id, gugun, description } = item;
                   
@@ -131,9 +131,10 @@ const Title = styled.div`
   color: rgb(108, 128, 75);
   font-size: 30px;
   font-weight: 500;
-  margin-top: 100px;
+  
   width: 80%;
   margin: auto;
+  margin-top: 100px;
   font-family: var(--font-secondary);
   text-align: left;
 
