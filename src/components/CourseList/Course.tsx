@@ -14,11 +14,11 @@ import { useRouter } from 'next/dist/client/router';
 import { ICourseData } from '../../types/courseList';
 import { useCourseListQuery } from './courseListQuery';
 
-interface CourseListWrapperProps {
+export interface CourseListWrapperProps {
   limit: number;
 }
 
-export default function CourseList({ limit = 17 }: CourseListWrapperProps) {
+export default function CourseForMain({ limit = 17 }: CourseListWrapperProps) {
   const { data: courseData } = useCourseListQuery();
   const selectCategory=useRecoilValue<string>(selectCategoryAtom);
   const router=useRouter();
@@ -33,6 +33,7 @@ export default function CourseList({ limit = 17 }: CourseListWrapperProps) {
 
   return (
     <>
+          <div className='mt-100'></div>
           <CourseCategoryBarContainer>
             <CourseCarousel/>
           </CourseCategoryBarContainer>
