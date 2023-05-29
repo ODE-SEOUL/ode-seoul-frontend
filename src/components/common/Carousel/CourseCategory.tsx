@@ -77,7 +77,7 @@ const Container=styled.div`
 `;
 
 const SlideWrapper = styled(Slider)`
-    width: 130rem;
+    width: 100%;
     height:10rem;
     position: relative;
    
@@ -105,7 +105,7 @@ const NextTo = styled.div`
   width: 45px;
   height: 45px;
   position: absolute;
-  right: 1%;
+  right: 0.5%;
   z-index:3;
 `;
 
@@ -113,7 +113,7 @@ const Prev = styled.div`
   width: 45px;
   height: 45px;
   position: absolute;
-  left:1%;
+  left:0.5%;
   z-index: 3;
 `;
 
