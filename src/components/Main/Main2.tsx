@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from '@emotion/styled';
 import { css } from '@emotion/react';
-import CourseList from '../CourseList/Course';
+import CourseForMain from '../CourseList/Course';
 import Link from 'next/link';
 
 const Main2 = () => {
@@ -18,7 +18,7 @@ const Main2 = () => {
         </Circle>
       </FlexContainer>
       <Container>
-        <CourseList limit= {5} />
+        <CourseForMain limit= {5} />
       </Container>
     </>
   );
@@ -30,7 +30,7 @@ const FlexContainer = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 20px;
+  margin-bottom: 50px;
   margin: 0px 100px;
 
   @media screen and (max-width: 768px) {
