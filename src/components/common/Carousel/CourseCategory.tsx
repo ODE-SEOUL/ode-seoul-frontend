@@ -9,10 +9,13 @@ import { CourseCategoryArray } from "./CourseCategoryArray";
 import { useSetRecoilState } from "recoil";
 import { selectCategoryAtom } from "../../../states/CourseAtom";
 
+export type carouselClcick=React.MouseEvent<HTMLButtonElement>;
 
 
 export default function CourseCarousel(){
   
+    
+
     const [select,setSelect]=useState(CourseCategoryArray[0].code);
     const setterCategoryFn=useSetRecoilState(selectCategoryAtom);
     const onClick=(params:string,event:React.MouseEvent<HTMLButtonElement>)=>{
@@ -50,7 +53,7 @@ export default function CourseCarousel(){
       );
 
     return<>
-        {/* <Container>
+        <Container>
           <SlideWrapper>
               <Slider {...settings}>
                       {CourseCategoryArray.map(category=>
@@ -63,7 +66,7 @@ export default function CourseCarousel(){
                       )}
               </Slider>
           </SlideWrapper>
-        </Container> */}
+        </Container> 
     </>
 
     

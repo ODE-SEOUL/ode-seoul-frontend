@@ -59,8 +59,8 @@ const SearchContainer=styled.div`
 const ItemBtn=styled.div`
       cursor:pointer;
       margin: auto;
-      width:30rem;
-      height:35rem; 
+      width:28rem;
+      height:32rem; 
       border-radius: 10px;
       box-sizing: border-box;
       //background-color: aliceblue;

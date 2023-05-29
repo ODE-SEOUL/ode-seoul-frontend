@@ -14,7 +14,7 @@ import { useRouter } from 'next/dist/client/router';
 import { ICourseData } from '../../types/courseList';
 import { useCourseListQuery } from './courseListQuery';
 
-interface CourseListWrapperProps {
+export interface CourseListWrapperProps {
   limit: number;
 }
 
