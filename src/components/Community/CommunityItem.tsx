@@ -57,26 +57,10 @@ const CommunityItem = () => {
    const router=useRouter();
    const DetailHandler=(recruit:RecruitItem  & HostItem)=>{
     const courseName = printCourseName(recruit.courseId);
+    console.log('이거이거', recruit.id);
    router.push({
-     pathname:`/recruit/${recruit.id}`,
-     query:{
-       courseId:recruit.courseId,
-       category:recruit.category,
-       courseName: courseName,
-       title:recruit.title,
-       content:recruit.content,
-       image:recruit.image,
-       maxPeople:recruit.maxPeople,
-       scheduledAt:recruit.scheduledAt,
-       currentPeople:recruit.currentPeople,
-       progressStatus:recruit.progressStatus,
-       createdAt:recruit.createdAt,
-       id:recruit.id,
-      },
-
-       },
-   `/recruit/${recruit.id}`);
-  }
+     pathname:`/recruit/${recruit.id}`});
+    }
 
   //recruit api
   useEffect(() => {
@@ -94,7 +78,7 @@ const CommunityItem = () => {
     const response = await getRecruitList();
     return response;
   };
-  const { isLoading, data: recruitData } = useQuery('recruitList', queryFunction, {
+  const { isLoading, data: recruitData } = useQuery('RecruitDetail', queryFunction, {
     select: (data) => {
         return data.result.recruits;
     },
