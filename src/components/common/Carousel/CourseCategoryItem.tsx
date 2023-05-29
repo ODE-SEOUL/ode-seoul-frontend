@@ -34,8 +34,8 @@ export default function CourseCategoryItem({color,name,code,select}:ICouresItemP
 
 const CategoryItem=styled.div`
     display: flex;
-    width:10rem;
-    height: 4rem;
+    width:12rem;
+    height: 4em;
     margin: 0 auto;
     box-sizing: border-box;
     box-shadow: 0 2px 3px rgba(0, 0, 0, 0.2), 0 10px 10px rgba(0, 0, 0, 0.02);
