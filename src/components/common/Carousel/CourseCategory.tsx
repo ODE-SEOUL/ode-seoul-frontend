@@ -14,12 +14,10 @@ export type carouselClcick=React.MouseEvent<HTMLButtonElement>;
 
 export default function CourseCarousel(){
   
-    
-
     const [select,setSelect]=useState(CourseCategoryArray[0].code);
     const setterCategoryFn=useSetRecoilState(selectCategoryAtom);
-    const onClick=(params:string,event:React.MouseEvent<HTMLButtonElement>)=>{
-          //event.preventDefault();
+    const onClick=(params:string)=>{
+          
           setSelect(params);
           setterCategoryFn(params);  
 
@@ -58,7 +56,7 @@ export default function CourseCarousel(){
               <Slider {...settings}>
                       {CourseCategoryArray.map(category=>
                     
-                        <CategoryItemContainer  onClick={(e)=>onClick(category.code as string,e)} key={category.id}>
+                        <CategoryItemContainer  onClick={(e)=>onClick(category.code as string)} key={category.id}>
                           
                           <CourseCategoryItem color={category.color} name={category.name} code={category.code!} select={select!}/>
                           
