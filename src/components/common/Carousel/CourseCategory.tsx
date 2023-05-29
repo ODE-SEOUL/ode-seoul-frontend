@@ -50,7 +50,7 @@ export default function CourseCarousel(){
       );
 
     return<>
-        <Container>
+        {/* <Container>
           <SlideWrapper>
               <Slider {...settings}>
                       {CourseCategoryArray.map(category=>
@@ -63,7 +63,7 @@ export default function CourseCarousel(){
                       )}
               </Slider>
           </SlideWrapper>
-        </Container>
+        </Container> */}
     </>
 
     
@@ -117,7 +117,8 @@ const Prev = styled.div`
   z-index: 3;
 `;
 
-const CategoryItemContainer=styled.button`
+const CategoryItemContainer=styled.div`
+    cursor: pointer;
     border:0;
     background-color: transparent;
     width: 10rem;
