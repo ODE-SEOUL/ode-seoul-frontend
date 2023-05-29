@@ -77,8 +77,8 @@ const Container=styled.div`
 `;
 
 const SlideWrapper = styled(Slider)`
-    width: 80rem;
-    height:4rem;
+    width: 130rem;
+    height:10rem;
     position: relative;
    
     // 원래 있던 arrow 감추기
@@ -105,8 +105,7 @@ const NextTo = styled.div`
   width: 45px;
   height: 45px;
   position: absolute;
-  position: absolute;
-  right:2%;
+  right: 1%;
   z-index:3;
 `;
 
