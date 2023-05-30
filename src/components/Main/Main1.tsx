@@ -25,7 +25,7 @@ const Container = styled.div`
     font-size:45px;
     right: 0px;
 
-
+    margin-bottom: 30px;
     font-weight: 200;
     font-family: var(--font-secondary); 
 `;

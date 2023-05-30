@@ -9,14 +9,15 @@ import { CourseCategoryArray } from "./CourseCategoryArray";
 import { useSetRecoilState } from "recoil";
 import { selectCategoryAtom } from "../../../states/CourseAtom";
 
+export type carouselClcick=React.MouseEvent<HTMLButtonElement>;
 
 
 export default function CourseCarousel(){
   
     const [select,setSelect]=useState(CourseCategoryArray[0].code);
     const setterCategoryFn=useSetRecoilState(selectCategoryAtom);
-    const onClick=(params:string,event:React.MouseEvent<HTMLButtonElement>)=>{
-          //event.preventDefault();
+    const onClick=(params:string)=>{
+          
           setSelect(params);
           setterCategoryFn(params);  
 
@@ -50,12 +51,12 @@ export default function CourseCarousel(){
       );
 
     return<>
-        {/* <Container>
+        <Container>
           <SlideWrapper>
               <Slider {...settings}>
                       {CourseCategoryArray.map(category=>
                     
-                        <CategoryItemContainer  onClick={(e)=>onClick(category.code as string,e)} key={category.id}>
+                        <CategoryItemContainer  onClick={(e)=>onClick(category.code as string)} key={category.id}>
                           
                           <CourseCategoryItem color={category.color} name={category.name} code={category.code!} select={select!}/>
                           
@@ -63,7 +64,7 @@ export default function CourseCarousel(){
                       )}
               </Slider>
           </SlideWrapper>
-        </Container> */}
+        </Container> 
     </>
 
     
@@ -76,8 +77,8 @@ const Container=styled.div`
 `;
 
 const SlideWrapper = styled(Slider)`
-    width: 80rem;
-    height:4rem;
+    width: 100%;
+    height:10rem;
     position: relative;
    
     // 원래 있던 arrow 감추기
@@ -104,8 +105,7 @@ const NextTo = styled.div`
   width: 45px;
   height: 45px;
   position: absolute;
-  position: absolute;
-  right:2%;
+  right: 0.5%;
   z-index:3;
 `;
 
@@ -113,7 +113,7 @@ const Prev = styled.div`
   width: 45px;
   height: 45px;
   position: absolute;
-  left:1%;
+  left:0.5%;
   z-index: 3;
 `;
 

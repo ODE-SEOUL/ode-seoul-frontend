@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import styled from '@emotion/styled';
 import Link from 'next/link';
+import ServiceForMain from '../Service/Service';
 
 const Main3 = () => {
 
@@ -17,6 +18,7 @@ const Main3 = () => {
           </Link>
         </Circle>
     </FlexContainer>
+    <ServiceForMain limit={3}/>
   </>
 
 )
@@ -32,7 +34,7 @@ const FlexContainer = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 20px;
+  margin-bottom: 200px;
   margin: 100px;
 
   @media screen and (max-width: 768px) {

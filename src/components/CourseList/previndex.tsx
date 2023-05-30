@@ -15,7 +15,7 @@ import { ICourseData } from '../../types/courseList';
 import { useCourseListQuery } from './courseListQuery';
 
 
-export default function CourseList() {
+export default function PrevIndex() {
   const { data: courseData } = useCourseListQuery();
   const selectCategory=useRecoilValue<string>(selectCategoryAtom);
   const router=useRouter();
@@ -84,8 +84,8 @@ const CourseCategoryBarContainer=styled.div`
 const CourseItemBtn=styled.div`
     cursor:pointer;
     margin: auto;
-    height:30rem;
-    width:25rem; 
+    height:42rem;
+    width:30rem; 
     box-sizing: border-box;
   
 

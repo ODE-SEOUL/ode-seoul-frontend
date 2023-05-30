@@ -1,24 +1,28 @@
 import styled from "@emotion/styled";
 import SearchService from "./SearchService";
-import { ICaseProps } from ".";
+import { useQuery } from "react-query";
+import { getServiceList } from "@/src/apis/service";
 import ServiceItem from "./ServiceItem";
-import { Grid } from "@mui/material";
+export interface ServiceListWrapperProps {
+    limit: number;
+  }
+  
 
-export default function DefaultCaseContainer({serviceData}:ICaseProps){
+export default function ServiceForMain({limit=20}:ServiceListWrapperProps){
+
+    const {isLoading:defaultLoading,data:serviceData}=useQuery("serviceList",getServiceList,{
+        select: (data)=>data.result.events
+      })
+
+    const limitedServiceData =serviceData?.slice(0, limit); 
     return(
         <>
           <Container>
             <div className='mt-90'></div>
-            <SearchContainer style={{margin:"auto"}}>
-      
-                <SearchService />
-      
-            </SearchContainer>
-            <div className='mt-100'></div>
             <div className='row col-lg-12'>
              <div className="row" style={{display:'flex',flexWrap:'wrap'}}>
               {
-                      serviceData?.map(service=>
+                      limitedServiceData?.map(service=>
                         <div className='col-lg-4 col-sm-12 mb-80' key={service.uuid}>
                             <ItemBtn key={service.uuid}>
                               <ServiceItem title={service.title} location={service.place}
@@ -46,6 +50,7 @@ export default function DefaultCaseContainer({serviceData}:ICaseProps){
     
       );
 }
+
 const Container=styled.div`
     
    text-align: center;
@@ -66,4 +71,4 @@ const ItemBtn=styled.div`
       //background-color: aliceblue;
       box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.1);
      
-`;
+`
