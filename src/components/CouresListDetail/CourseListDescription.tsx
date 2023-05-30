@@ -4,7 +4,7 @@ import Navbar from '../common/Nav/Nav';
 import styled from "@emotion/styled";
 import DistanceIcon from '../../../public/assets/img/courseDetailDistance.svg';
 import TimeIcon from '../../../public/assets/img/courseDetailTime.svg';
-//import SubwayIcon from '../../../public/assets/img/CourseDetailSubway.svg';
+import SubwayIcon from '../../../public/assets/img/CourseDetailSubway.svg';
 import AccessIcon from '../../../public/assets/img/courseDetailAccess.svg';
 import { useState } from "react";
 
@@ -53,13 +53,13 @@ export default function CourseListDescription({name,distance,time,description,su
                     <CourseDetailSubContainer>
                         <DistanceIcon/>
                         <Spacing10/>
-                        <CourseDetailText>{distance}</CourseDetailText>
+                        <CourseDetailText>{(distance/1000)+"km"}</CourseDetailText>
                         <Spacing20/>
                         <TimeIcon/>
                         <Spacing10/>
                         <CourseDetailText>{time}</CourseDetailText>
                         <Spacing20/>
-                        
+                        <SubwayIcon/>
                         <Spacing10/>
                         <CourseDetailText>{subway}</CourseDetailText>
                         
@@ -106,7 +106,7 @@ type CourseMainImageProps={
 };
 
 const DescriptionTextContainer=styled.div`
-    width:85%;
+    width:100%;
 `;
 
 const DescriptionButtonContainer=styled.div`
