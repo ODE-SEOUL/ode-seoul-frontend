@@ -10,7 +10,7 @@ const Main3 = () => {
   <>
     <FlexContainer>
       <Title>
-          <span>더해서 다양한 체험 정보를 제공해드릴게요.</span>
+          <span>더해서 다양한 체험 정보를 확인해보세요.</span>
       </Title>
       <Circle> 
           <Link href="/service" >
@@ -22,7 +22,6 @@ const Main3 = () => {
   </>
 
 )
-   
   };
   
 
@@ -34,8 +33,8 @@ const FlexContainer = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 200px;
-  margin: 100px;
+  margin: 200px 100px 0px 100px;
+  
 
   @media screen and (max-width: 768px) {
     margin: 10px;
