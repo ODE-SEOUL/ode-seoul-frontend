@@ -7,6 +7,8 @@ import Nav from '../common/Nav/Nav';
 import Footer from '../common/Footer/Footer';
 
 const App = () => {
+  // const accessToken = localStorage.getItem("token");
+
   return (
     <>
       <Nav />

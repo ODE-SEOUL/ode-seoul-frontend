@@ -18,7 +18,7 @@ const Navbar = () => {
   const handleDropdownToggle = () => {
     setIsDropdownOpen(!isDropdownOpen);
   };
-
+  
   const [user, setUser] = useRecoilState(userAtom);
   const { isShowing, toggle } = useModal();
 
@@ -27,9 +27,23 @@ const Navbar = () => {
   };
 
   const handleLogout = () => {
+    localStorage.removeItem('user');
     setUser(null);
   };
 
+  useEffect(() => {
+    const storedUser = localStorage.getItem('user');
+    
+    if (storedUser) {
+      setUser(JSON.parse(storedUser));
+    }
+  }, []);
+  
+  const setUserAndLocalStorage = (userData: any) => {
+    localStorage.setItem('user', JSON.stringify(userData));
+    setUser(userData);
+  };
+  
   // useEffect(() => {
   //   console.log(user);
 

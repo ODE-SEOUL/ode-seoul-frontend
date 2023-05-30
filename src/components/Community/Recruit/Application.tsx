@@ -20,9 +20,13 @@ export interface Props {
 
 export const Application = ({ id, title, date, time, dest, nickname, host }: Props) => {
 
+
+   
+
     const router = useRouter();
     const user = useRecoilValue(userAtom);
     console.log(user);
+    const accessToken = localStorage.getItem("token") || (user && user.accessToken);
 
     const handleClick = () => {
         console.log('dsfsdd', host, nickname);
@@ -32,7 +36,7 @@ export const Application = ({ id, title, date, time, dest, nickname, host }: Pro
         }else if(host === nickname ){
             alert("내 모집글에는 신청할 수 없습니다.");
         }else{
-            postApplication(id, user.accessToken);
+            postApplication(id, accessToken);
             alert("신청되었습니다!");
         }
         
