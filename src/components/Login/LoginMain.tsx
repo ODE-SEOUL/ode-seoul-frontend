@@ -25,7 +25,7 @@ const LoginMain = () => {
         <Footer>
             {/* 일단 이미지로 대체하고 api 구현시, 버튼 수정 예정 */}
             <Login onClick={handleLogin}>
-                <KakaoLogin src='../assets/img/kakao_login.png' />
+                <KakaoLogin src='../assets/img/kakao_login.svg' />
             </Login>
             
         </Footer>
@@ -50,7 +50,7 @@ const Img = styled.img`
 `
 
 const KakaoLogin = styled.img`
-width: 80%;
+width: 70%;
 margin: auto;
 `
 
