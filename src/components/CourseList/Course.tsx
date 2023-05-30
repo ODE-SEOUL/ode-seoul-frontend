@@ -41,7 +41,7 @@ export default function CourseForMain({ limit = 17 }: CourseListWrapperProps) {
           <div className='row col-lg-12'>
               <div className="row" style={{display:'flex',flexWrap:'wrap'}}>
               {
-                          limitedCourseData?.filter(item=>item.categories.includes(selectCategory)).map(
+                          courseData?.slice(0,limit).filter(item=>item.categories.includes(selectCategory)).map(
                             course=>
                             <div className='col-lg-4 col-sm-12' key={course.id}>
                               <CourseItemBtn onClick={()=>onClick(course)} > 
