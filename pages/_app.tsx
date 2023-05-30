@@ -3,7 +3,10 @@ import { AppProps } from 'next/app';
 import { QueryClient, QueryClientProvider } from 'react-query';
 import { RecoilRoot } from 'recoil';
 import '../styles/index.css';
+import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import Script from 'next/script';
+import '../styles/reset.css'
+
 
 const queryClient = new QueryClient();
 declare global { // Kakao 함수를 전역에서 사용할 수 있도록 선언

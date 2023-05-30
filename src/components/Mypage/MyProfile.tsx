@@ -1,35 +1,40 @@
 import React, { useState, useEffect } from 'react';
 import styled from '@emotion/styled';
 import { userAtom } from '../../states/UserAtom';
-import { atom, useRecoilValue } from 'recoil';
+import { atom, useRecoilValue, useSetRecoilState } from 'recoil';
 import { getGugunList } from '@/src/apis/guguns';
 import { useRouter } from "next/router"
+import { updateUser } from '../../apis/patchUser';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faAngleRight, faMapLocationDot, faCalendarCheck, faPencil } from "@fortawesome/free-solid-svg-icons";
 
 const MyProfile = () => {
 
-  const user = useRecoilValue(userAtom);
-  const router = useRouter();
-
-
-  const [nickname, setNickname] = useState('');
+  const [names, setNames] = useState([]); //지역이름 뭉텅이
     const [location, setLocation] = useState("");
-    
-    const handleLocationSelect = (name: string) => {
-        setLocation(name);
-        setIsDropdownOpen(false);
-      };
+    const [locationCode, setLocationCode] = useState('');
+    const [result, setResult] = useState<any[]>([]); 
+
 
     useEffect(() => {
         getGugunList()
           .then((response) => {
             const result = response.result;
+            setResult(result);
             const names = result.map((item) => item.name);
+            setNames(names);
           })
           .catch((error) => {
             console.error(error);
           });
       }, []);
 
+      const handleLocationSelect = (name: string) => {
+        setLocation(name);
+        const selectedLocation = result.find((item) => item.name === name);
+        setLocationCode(selectedLocation?.code || '');
+        setIsDropdownOpen(false);
+      };
 
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
@@ -37,6 +42,33 @@ const MyProfile = () => {
   setIsDropdownOpen(!isDropdownOpen);
   };
 
+  const router = useRouter();
+
+  const [nickname, setNickname] = useState('');
+
+  const user = useRecoilValue(userAtom);
+  const setUser = useSetRecoilState(userAtom); 
+
+  const handleSignup = () =>{
+   
+    updateUser(nickname, locationCode, user.accessToken)
+    .then((res: any) => {
+      console.log(res);
+      if (res.code === 200) {
+          setUser((prevUser) => ({
+            ...prevUser,
+            nickname: nickname,
+            locationCode: locationCode,
+          }));
+          alert(`${nickname}, ${locationCode}로 변경되었습니다.`);
+          console.log(user);
+        } else{
+        alert('정보가 성공적으로 업데이트 되지 않았습니다. 다시 시도해주세요.')
+      }
+    });
+  
+    
+  }
   
   return (
     <>
@@ -63,19 +95,20 @@ const MyProfile = () => {
                         />
                         <Li>
                         <DropDown onClick={handleDropdownToggle}>
+                            <FontAwesomeIcon icon={faPencil}></FontAwesomeIcon>
                             <ListContainer>
                             <Ul>
-                                {/* {names?.map((name, index) => (
+                                {names?.map((name, index) => (
                                 <Li key={index} onClick={() => handleLocationSelect(name)}>
                                     {name}
                                 </Li>
-                                ))} */}
+                                ))}
                             </Ul>
                             </ListContainer>
                         </DropDown>
                         </Li>
                     </SearchInput>
-                  <StyledButton>저장하기</StyledButton>
+                  <StyledButton onClick={handleSignup}>저장하기</StyledButton>
 
       </Container>
 
@@ -153,7 +186,7 @@ padding: 10px 15px;
 margin-top: 15px;
 position: absolute;
 display:none;
-width:440px;
+width:200px;
 right: -10px;
 
 ${DropDown}:focus & {

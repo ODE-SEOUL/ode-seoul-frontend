@@ -17,15 +17,15 @@ const LoginMain = () => {
   return (
     <>
         <Header>로그인 또는 회원가입</Header>
-        <FlexContainer>
+        <Container>
             <Img src='../assets/img/logo.svg'></Img>
-            <div>에 오신것을 환영합니다!</div>
-        </FlexContainer>
+            <div>오디서울에 오신것을 환영합니다!</div>
+        </Container>
         
         <Footer>
             {/* 일단 이미지로 대체하고 api 구현시, 버튼 수정 예정 */}
             <Login onClick={handleLogin}>
-                <KakaoLogin src='../assets/img/kakao_login.png' />
+                <KakaoLogin src='../assets/img/kakao_login.svg' />
             </Login>
             
         </Footer>
@@ -41,33 +41,35 @@ const Header = styled.div`
     font-family: var(--font-secondary);
     font-weight: 300;
     text-align: center;
-    padding: 20px;
+    padding-bottom: 20px;
     border-bottom: solid 1px #aaa;
 `
 
 const Img = styled.img`
-    width: 60%;
+    width: 80%;
 `
 
 const KakaoLogin = styled.img`
+width: 70%;
+margin: auto;
 `
 
-const Login = styled.button`
+const Login = styled.div`
+cursor: pointer;
     border: none;
     background: none;
+  
 `
 
 const Footer = styled.div` 
     font-size: 20px;
-    width: 80%;
     font-family: var(--font-secondary);
     font-weight: 300;
     text-align: center;
     padding: 20px;
 `
 
-const FlexContainer = styled.div`
-  display: flex;
+const Container = styled.div`
   justify-content: space-between;
   align-items: center;
   margin-bottom: 20px;

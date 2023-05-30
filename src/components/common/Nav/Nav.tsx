@@ -18,7 +18,7 @@ const Navbar = () => {
   const handleDropdownToggle = () => {
     setIsDropdownOpen(!isDropdownOpen);
   };
-
+  
   const [user, setUser] = useRecoilState(userAtom);
   const { isShowing, toggle } = useModal();
 
@@ -27,9 +27,18 @@ const Navbar = () => {
   };
 
   const handleLogout = () => {
+    localStorage.removeItem('user');
     setUser(null);
   };
 
+  useEffect(() => {
+    const storedUser = localStorage.getItem('user');
+    
+    if (storedUser) {
+      setUser(JSON.parse(storedUser));
+    }
+  }, [setUser]);
+  
   // useEffect(() => {
   //   console.log(user);
 
@@ -50,6 +59,9 @@ const Navbar = () => {
       <NavbarLinks>
         <ul>
           <li>
+            <Link href="/odeseoul">오디서울</Link>
+          </li>
+          <li>
             <Link href="/course">코스 추천</Link>
           </li>
           <li>
@@ -57,9 +69,6 @@ const Navbar = () => {
           </li>
           <li>
             <Link href="/community">같이 걸어요</Link>
-          </li>
-          <li>
-            <Link href="/notices">공지사항</Link>
           </li>
         </ul>
       </NavbarLinks>
@@ -123,10 +132,11 @@ const NavbarContainer = styled.nav`
   align-items: center;
   height: 100px;
   background-color: #fff;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 4px -2px rgba(0, 0, 0, 0.1);
   padding: 0 50px;
   font-weight: 100;
   font-family: var(--font-secondary);
+  
 `;
 
 const Logo = styled.div`
@@ -139,6 +149,7 @@ const Image = styled.img`
 `;
 
 const NavbarLinks = styled.div`
+ 
   ul {
     display: flex;
     justify-content: space-between;

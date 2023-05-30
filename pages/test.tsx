@@ -14,9 +14,9 @@ export default function Index() {
     <div className="App">
       <Test text='test'/>
       <button onClick={handleClick}>Test Modal</button>
-      {isShowing && <EModal isShowing={isShowing} hide={toggle}>
+      {/* {isShowing && <EModal isShowing={isShowing} hide={toggle}>
         <Test text='hello world'/>
-      </EModal>}
+      </EModal>} */}
     </div>
   );
 }

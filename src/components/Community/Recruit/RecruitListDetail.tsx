@@ -6,7 +6,7 @@ import Footer  from "../../common/Footer/Footer";
 import Modal from "../../../modal/DefaultModal";
 import useModal from '../../../hooks/useModal';
 import Application from './Application';
-import { getReceuitDetail } from '@/src/apis/recruitDetail';
+import { getRecruitDetail } from '@/src/apis/recruitDetail';
 import { userAtom } from '../../../states/UserAtom';
 import { atom, useRecoilValue } from 'recoil';
 import { postComments, deleteComments } from "@/src/apis/RecruitComment";
@@ -14,7 +14,12 @@ import { deleteApplication } from "@/src/apis/application";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAngleRight, faMapLocationDot, faCalendarCheck, faPencil, faUserGroup } from "@fortawesome/free-solid-svg-icons";
 import LModal from '../../../modal/LoginError';
-
+import Loading from "../../Error/Loading";
+import { useParams } from 'react-router-dom';
+import { useRecruitListQuery } from './RecruitListDetailQuery';
+import { IHostData } from "@/src/types/recruitDetail";
+import { useCourseListQuery } from '../../CourseList/courseListQuery';
+import usePatchRefresh from '../../../apis/usePatchRefresh';
 
 interface ApplicationData {
     id: number;
@@ -26,11 +31,6 @@ interface ApplicationData {
       signupStatus: string;
     };
     createdAt: string;
-  }
-
-  interface CourseListDetailProps {
-    applications: ApplicationData[];
-    user: string;
   }
 
   interface Comment {
@@ -78,14 +78,46 @@ interface ApplicationData {
   };
 
 export default function CourseListDetail(){
+    const router=useRouter();
+    const { query } = router;
 
+  //쿼리 id 사라짐 방지
+    const [id, setId] = useState(null);
+
+    useEffect(() => {
+      const paramId = query.param?.[0];
+      if (paramId) {
+        setId(paramId);
+      }
+    }, [query.param]);
+
+    //courseList
+    const { data: courseData } = useCourseListQuery();
+    //courseId를 courseName으로 바꾸는 함수
+    const printCourseName = (courseId: number) => {
+        const matchingCourse = courseData?.find((course) => course.id === courseId);
+        if (matchingCourse) {
+        return matchingCourse.name;
+        } else {
+        console.log(`Course with id ${courseId} not found.`);
+        }
+    };
+    const courseName = printCourseName(Number(id));
     
+    //----
 
+     //formatDate
+    function formatDate(dateString: string) {
+    const date = new Date(dateString);
+        const year = date.getFullYear();
+        const month = date.getMonth() + 1;
+        const day = date.getDate();
+        
+        return `${year}년 ${month}월 ${day}일`;
+    }
 
     const [Rcontent, setRContent] = useState('');
-
     const user = useRecoilValue(userAtom);
-
     const handleCommentChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const { value } = e.target;
         console.log(value);
@@ -97,7 +129,15 @@ export default function CourseListDetail(){
             alert("로그인이 필요한 서비스입니다.");
             router.push('/');
         }else if(user){
-            postComments(String(id), user.accessToken, Rcontent);
+            postComments(String(id), user.accessToken, Rcontent)
+            .then((response) => {
+                if (response.data.code === 401) {
+                    //TODO
+                }
+              })
+            .catch((error) => {
+                console.error(error);
+            });
             setRContent("");
         }
        
@@ -112,51 +152,53 @@ export default function CourseListDetail(){
     const handleClick = () => {
         toggle();
       };
+; 
+    const { isLoading, data: RecruitListData } = useRecruitListQuery(Number(id));
+    let result;
+    let comments: any[] = [];
+    let applications: any[] = [];
+    let host : IHostData;
+    let ImgSrc : string;
 
-    const router=useRouter();
-    const {courseId,courseName, category,title,content,image,maxPeople,scheduledAt,
-        currentPeople,progressStatus, createdAt, id  }=router.query;
-
-       //detail
-       const [result, setResult] = useState(null); // 결과를 저장할 상태
-
-       useEffect(() => {
-        // 데이터 가져오기
-        getReceuitDetail(Number(id))
-          .then((response) => {
-            const result = response.result;
-            setResult(result);
-          })
-          .catch((error) => {
-            console.error(error);
-          });
-     }, [id, result]); 
-
-      const { host, comments, applications } = result || {};
-
-      const imageSrc = Array.isArray(image) ? image[0] : image;
-
-      if (!result) {
-        return null; // 데이터가 로딩 중인 경우에는 null을 반환하여 아무것도 렌더링하지 않음
+    
+    console.log('gg',courseName )
+    console.log('gg',RecruitListData )
+    if (RecruitListData) {
+        const { host: hostData, comments: commentList, applications: applicationList, category, title, content, image, currentPeople, maxPeople, scheduledAt, progressStatus, createdAt } = RecruitListData;
+        result = { host: hostData, category, title, content, image, currentPeople, maxPeople, scheduledAt, progressStatus, createdAt };
+        comments = commentList;
+        applications = applicationList;
+        host = hostData;
+        ImgSrc = image;
+      } else {
+        result = undefined;
+        comments = [];
+        applications = [];
+        host = undefined;
       }
-      const categoryLabel = getCategoryLabel(String(category));
+
+      const formattedDate = formatDate(result?.scheduledAt);
+
+      if (!isLoading && result) {
+        const categoryLabel = getCategoryLabel(String(result.category));
         return(
+        
         <>
         <Navbar />
             <Wrapper >
                 <div className="row" style={{display: 'flex', flexWrap: 'wrap'}}>
                     <StyledCategory>{categoryLabel}</StyledCategory> 
-                    <StyledCategory>{progressStatus}</StyledCategory> 
-                    <StyledTitle>{title}</StyledTitle> 
+                    <StyledCategory>{result.progressStatus}</StyledCategory> 
+                    <StyledTitle>{result.title}</StyledTitle> 
                     <div className="row" style={{display: 'flex', flexWrap: 'wrap'}}>
                         <StyledSub className="col-lg-2"><FontAwesomeIcon icon={faMapLocationDot} className="mr-10" style={{color: 'rgb(171, 184, 104)' }}/>{courseName}</StyledSub>
-                        <StyledSub className="col-lg-2"><FontAwesomeIcon icon={faCalendarCheck} className="mr-10" style={{color: 'rgb(171, 184, 104)' }}/>{scheduledAt}</StyledSub>
-                        <StyledSub className="col-lg-2"><FontAwesomeIcon icon={faUserGroup} className="mr-10" style={{color: 'rgb(171, 184, 104)' }}/>참여 인원 : {currentPeople}/{maxPeople}</StyledSub>
+                        <StyledSub className="col-lg-2"><FontAwesomeIcon icon={faCalendarCheck} className="mr-10" style={{color: 'rgb(171, 184, 104)' }}/>{formattedDate}</StyledSub>
+                        <StyledSub className="col-lg-2"><FontAwesomeIcon icon={faUserGroup} className="mr-10" style={{color: 'rgb(171, 184, 104)' }}/>참여 인원 : {result.currentPeople}/{result.maxPeople}</StyledSub>
                     </div>
                     <div className="col-lg-8">
-                        <Img src={imageSrc} width="90%"></Img>
-                        < StyledSubTitle>{content}</ StyledSubTitle>
-                        <StyledSub className="col-lg-4">{createdAt}</StyledSub>
+                        <Img src={ImgSrc} width="90%"></Img>
+                        < StyledSubTitle>{result.content}</ StyledSubTitle>
+                        <StyledSub className="col-lg-4">{result.createdAt}</StyledSub>
                         <Border></Border>
                         <StyledInput
                             type="text"
@@ -206,11 +248,12 @@ export default function CourseListDetail(){
                         {isShowing && (
                         <Modal isShowing={isShowing} hide={toggle}>
                             <Application
-                                title={String(title)}
-                                date={String(scheduledAt)}
-                                time={String(scheduledAt)}
-                                dest={String(courseId)}
-                                nickname={host.nickname} 
+                                title={String(result.title)}
+                                date={String(result.scheduledAt)}
+                                time={String(result.scheduledAt)}
+                                dest={String(courseName)}
+                                host={String(host.nickname)}
+                                nickname={user.nickname} 
                                 id={Number(id)}
                                 />
                         </Modal>
@@ -219,7 +262,7 @@ export default function CourseListDetail(){
                         <Container2 className="row" style={{display: 'flex', flexWrap: 'wrap'}}>
                             <Box1 className="col-lg-7" >함께하는 사람</Box1>
                             <Angle onClick={handlerToggle} className="col-lg-5"
-                              ><FontAwesomeIcon icon={faUserGroup} className="mr-10" style={{color: 'rgb(171, 184, 104)' }}/>{currentPeople}/{maxPeople}</Angle>
+                              ><FontAwesomeIcon icon={faUserGroup} className="mr-10" style={{color: 'rgb(171, 184, 104)' }}/>{result.currentPeople}/{result.maxPeople}</Angle>
                             { applicationtoggle && 
                                 <div>
                                         <div>
@@ -250,6 +293,13 @@ export default function CourseListDetail(){
         </>
 
     );
+        
+      }
+      else{
+       
+        return (<Loading/>) 
+      }
+      
 } 
 
 const Wrapper = styled.div`

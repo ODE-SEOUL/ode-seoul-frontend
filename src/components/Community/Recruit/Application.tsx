@@ -14,21 +14,29 @@ export interface Props {
     time: string;
     dest: string;
     nickname: string;
+    host: string;
   }
 
 
-export const Application = ({ id, title, date, time, dest, nickname }: Props) => {
+export const Application = ({ id, title, date, time, dest, nickname, host }: Props) => {
+
+
+   
 
     const router = useRouter();
     const user = useRecoilValue(userAtom);
     console.log(user);
+    const accessToken = localStorage.getItem("token") || (user && user.accessToken);
 
     const handleClick = () => {
+        console.log('dsfsdd', host, nickname);
         if (!user){
             alert("로그인이 필요한 서비스입니다.");
             router.push('/');
+        }else if(host === nickname ){
+            alert("내 모집글에는 신청할 수 없습니다.");
         }else{
-            postApplication(id, user.accessToken);
+            postApplication(id, accessToken);
             alert("신청되었습니다!");
         }
         
@@ -71,9 +79,10 @@ export default Application;
 const Title = styled.div`
     font-weight: 600;
     font-size: 30px;
-    margin-bottom: 20px;
-    text-algin: center;
-    margin: 30px 85px;
+    margin: auto;
+    margin-bottom: 30px;
+    text-align: center;
+    
 
     
 
@@ -88,6 +97,8 @@ const SubTitle = styled.div`
 
 const Wrapper = styled.div`
     width: 80%;
+    margin: auto;
+    margin-top: 30px;
 `;
 
 const StyledButton = styled.div`

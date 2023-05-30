@@ -9,7 +9,7 @@ export interface IRecruitDetailData{
     content: string;
     image: string;
     currentPeople:number;
-    maxPeoPle:number;
+    maxPeople:number;
     scheduledAt:string;
     progressStatus: string;
     createdAt: string;
@@ -25,6 +25,6 @@ export interface IHostData{
     signupStatus:string;
 }
 
-export type GetRecruitDetailDto=ResponseDto<IRecruitDetailData[]>;
+export type GetRecruitDetailDto=ResponseDto<IRecruitDetailData>;
 
 export type GetHostDto=ResponseDto<IHostData>;

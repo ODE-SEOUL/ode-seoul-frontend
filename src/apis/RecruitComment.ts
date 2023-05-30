@@ -1,4 +1,5 @@
-import { postAsync, deleteAsync } from './common';
+import { postAsync, deleteAsync, patchAsync } from './common';
+import usePatchRefresh from './usePatchRefresh'; 
 
 interface Contents {
   content: string;
