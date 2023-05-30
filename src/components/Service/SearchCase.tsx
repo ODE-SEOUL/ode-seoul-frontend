@@ -2,14 +2,16 @@ import styled from "@emotion/styled";
 import SearchService from "./SearchService";
 import ServiceItem from "./ServiceItem";
 import { ICaseProps } from ".";
-import { Grid } from "@mui/material";
-import { spacing } from '@mui/system';
+import { Breadcrumb } from "../common/Breadcrumb";
+
+
 
 export default function SearchCaseContainer({searchServiceData,value}:ICaseProps){
   
   return(
         <>
           <Container>
+            <Breadcrumb title="서울시 문화행사" subTitle="생태문화길을 걷다 즐길 수 있는 문화행사들을 추천드려요"/>
             <div className='mt-90'></div>
             <SearchContainer>
       
