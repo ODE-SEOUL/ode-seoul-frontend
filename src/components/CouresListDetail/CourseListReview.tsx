@@ -54,10 +54,10 @@ const FlexBox=styled.div`
 `
 
 const CommentContainer=styled.div`
-    background-color: #F9F9F9;
+    //background-color: #F9F9F9;
     width:35rem;
-    height: 1300px;
+    /* height: 1300px;
     border-radius: 10px;
     padding-top: 10px;
-    padding-left: 10px;
+    padding-left: 10px; */
 `;

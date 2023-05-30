@@ -39,7 +39,7 @@ export default function CourseReviewItem({userId,score,date,content,mainImg}:ICo
                     <div className="mt-20"></div>
                     <ProfileImg img={courseReviewUserData?.profileImage}/>
                     <div className="mr-20"></div>
-                    <Text size={20} weight={500} color={"var(--color-black)"}>{courseReviewUserData?.nickname}</Text>
+                    <Text size={17} weight={500} color={"var(--color-black)"}>{courseReviewUserData?.nickname}</Text>
 
                 </ProfileContainer>
                 <div className="mt-10"></div>
@@ -67,8 +67,8 @@ type CommentProps={
 }
 
 const Container=styled.div`
-    margin-left: 20px;
-    margin-right: 20px;
+    /* margin-left: 20px;
+    margin-right: 20px; */
     width: 410px;
     height: 400px;
 `;

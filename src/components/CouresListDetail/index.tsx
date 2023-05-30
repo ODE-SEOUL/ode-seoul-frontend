@@ -54,21 +54,22 @@ export default function CourseListDetail(){
             return(
                 <>
                     <Navbar/>
-                    <MainContainer>
-                        <Container>
-                            <CourseListDescription name={name} distance={distance}
-                            time={timeText}  description={description} subway={nearSubway}
-                            accessway={accessWay as string} image={mainImage} setCommunityClick={setCommunityClick}
-                            setReviewClick={setReviewClick}
-                            />
+
+                    <div style={{display:"flex"}}>
+                        <div className="col-lg-7 ml-40">
+                            <CourseListDescription 
+                                name={name} distance={distance}
+                                time={timeText}  description={description} subway={nearSubway}
+                                accessway={accessWay as string} image={mainImage} setCommunityClick={setCommunityClick}
+                                setReviewClick={setReviewClick}/>
                             <CourseDetailMap  latitude={lat} longitude={lng} routes={routes}/>
-                        </Container>
-                        <CommentContainer>
-                            {
+                        </div>
+                        <div className="col-lg-3 mr-20 mt-60" >
+                                {
                                 reviewClick? <CourseReviewWriting coursename={name as string} courseId={+paramId}/>:<CourseListReview id={+id as number} name={name as string}/>
-                            }
-                        </CommentContainer>
-                    </MainContainer>
+                                }
+                        </div>
+                    </div>
 
                 </>
 
@@ -84,13 +85,17 @@ export default function CourseListDetail(){
 type CourseMainImageProps={
     imageUrl:string;
 }
-const MainContainer=styled.div`
-    display: grid;
-    grid-template-columns: 4fr 1.5fr;
-    margin-right: 80px;
-    margin-left: 80px !important;
+// const MainContainer=styled.div`
+//     display: grid;
+//     grid-template-columns: 4fr 1.5fr;
+//     margin-right: 80px;
+//     margin-left: 80px !important;
    
-`
+// `
+
+const MainContainer=styled.div`
+    
+`;
 
 const CommentContainer=styled.div`
     //background-color: aliceblue;
@@ -100,6 +105,7 @@ const CommentContainer=styled.div`
     
 `;
 const Container=styled.div`
+    margin-right: 80px;
     margin-left: 80px;
     align-items: center;
    
