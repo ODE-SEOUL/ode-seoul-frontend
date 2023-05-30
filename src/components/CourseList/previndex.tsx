@@ -27,13 +27,10 @@ export default function PrevIndex() {
   }
   return (
     <>
-
-        
-          <div className='mt-100'></div>
+          <div className='mt-80'></div>
           <CourseCategoryBarContainer>
             <CourseCarousel/>
           </CourseCategoryBarContainer>
-          <div className='mt-35'></div>
           <div className='row col-lg-12'>
               <div className="row" style={{display:'flex',flexWrap:'wrap'}}>
               {
