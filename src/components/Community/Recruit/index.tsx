@@ -19,8 +19,8 @@ import 'react-calendar/dist/Calendar.css'; // css import
 import Modal from '../../../modal/LoginError';
 import useModal from '@/src/hooks/useModal';
 import { useRouter } from 'next/router';
-
-
+import Checkbox from './Checkbox';
+import { useCourseListQuery } from '../../CourseList/courseListQuery';
 const Recruit = () => {
 
   
@@ -28,7 +28,7 @@ const Recruit = () => {
   const router = useRouter();
   //캘린더
     const [value, onChange] = useState(new Date());
-
+    const [showRecoil, setShowRecoil] = useState(false); // Recoil 컴포넌트 보여줄지 여부
     const user = useRecoilValue(userAtom);
    
     // console.log(user);
@@ -41,13 +41,28 @@ const Recruit = () => {
     
     
     const HandlerRecruit = () => {
-        if (!user){
-          alert("로그인이 필요한 서비스입니다.");
-          router.push('/');
-      }else{
-        postRecruit(recruit, user.accessToken) ;
+      if (!user) {
+        alert("로그인이 필요한 서비스입니다.");
+        router.push('/');
+      } else {
+        postRecruit(recruit, user.accessToken)
+        .then((res: any) => {
+          console.log(res);
+          if (res.code === 200) {
+            alert('신청되었습니다.')
+            router.push(`/community`);
+            } else{
+            alert('성공적으로 업데이트 되지 않았습니다. 다시 시도해주세요.')
+          }
+        });
       }
-      };
+  
+      if (!isChecked) {
+        alert("주의사항을 확인하셔야 신청가능합니다.");
+      } else {
+        setShowRecoil(true); // OK 버튼이 클릭되면 상태 변경
+      }
+    };
 
     const handleUpload = async () => {
         const requestData = {
@@ -217,9 +232,92 @@ const Recruit = () => {
     }));
   };
 
-  const ShowRecoil = () => {
-    console.log(recruit);
+  type RecruitData = {
+  [key: string]: any;
+};
+
+//courseList
+const { data: courseData } = useCourseListQuery();
+//courseId를 courseName으로 바꾸는 함수
+const printCourseName = (courseId: number) => {
+  const matchingCourse = courseData?.find((course) => course.id === courseId);
+  if (matchingCourse) {
+    return matchingCourse.name;
+  } else {
+    console.log(`Course with id ${courseId} not found.`);
   }
+};
+
+//formatDate
+function formatDate(dateString: string) {
+  const date = new Date(dateString);
+  const year = date.getFullYear();
+  const month = date.getMonth() + 1;
+  const day = date.getDate();
+  
+  return `${year}년 ${month}월 ${day}일`;
+}
+enum Category {
+  COM_ANIMAL = '#반려동물',
+  COM_HOUSE = '#주부',
+  COM_OFFICE = '#직장인',
+  COM_NEIGHBOR = '#이웃주민',
+  COM_EXERCISE = '#운동',
+  COM_PHOTO = '#사진',
+  COM_EXPER = '#체험',
+}
+const getCategoryLabel = (category: string): string | undefined => {
+  switch (category) {
+    case 'COM_ANIMAL':
+      return Category.COM_ANIMAL;
+    case 'COM_HOUSE':
+      return Category.COM_HOUSE;
+    case 'COM_OFFICE':
+      return Category.COM_OFFICE;
+    case 'COM_NEIGHBOR':
+      return Category.COM_NEIGHBOR;
+    case 'COM_EXERCISE':
+      return Category.COM_EXERCISE;
+    case 'COM_PHOTO':
+      return Category.COM_PHOTO;
+    case 'COM_EXPER':
+      return Category.COM_EXPER;
+    default:
+      return undefined;
+  }
+};
+
+
+const ShowRecoil: React.FC<{ recruit: RecruitData }> = ({ recruit }) => {
+
+  
+  if (!recruit) {
+  return null; // recruit 값이 유효하지 않을 때 null 또는 다른 처리를 하세요.
+  }
+  
+  const { courseId, category, title, content, image, maxPeople, scheduledAt } = recruit;
+  const course = printCourseName(courseId)
+  const formattedDate = formatDate(scheduledAt)
+  const cate = getCategoryLabel(category)
+  return (
+   
+  <>
+  <StyledTitle>약속 정보가 맞다면 등록해주세요!</StyledTitle>
+  <Card>
+  <div>
+  <LLi>생태문화길: {course}</LLi>
+  <LLi>카테고리: {cate}</LLi>
+  <LLi>제목: {title}</LLi>
+  <LLi>내용: {content}</LLi>
+  <LLi>최대 인원: {maxPeople}</LLi>
+  <LLi>약속 날짜: {formattedDate}</LLi>
+  </div>
+  </Card>
+  </>
+  );
+  };
+
+
   useEffect(() => {
     setRecruit(state); // Recoil 상태 업데이트
   }, [state, setRecruit]);
@@ -232,6 +330,8 @@ const Recruit = () => {
   const toggleAMPM = () => {
     setIsAM(!isAM);
   };
+
+  const [isChecked, setIsChecked] = useState(false); //주의사항
 
   return (
     <>
@@ -342,8 +442,14 @@ const Recruit = () => {
                 </SmallText>
 
                 
-            <Title text='주의사항 확인했어요' />
-            <Btn onClick={ShowRecoil}>OK</Btn>
+                <Checkbox
+                  checked={isChecked}
+                  onChange={() => setIsChecked(!isChecked)}
+                  label="주의사항 확인했어요"
+                />
+
+                {/* isChecked 값이 true일 때만 ShowRecoil 컴포넌트를 보여줌 */}
+                {isChecked && <ShowRecoil recruit={recruit} />}
 
             <Btn onClick={HandlerRecruit}>등록하기</Btn>
 
@@ -370,6 +476,15 @@ const Btn = styled.button`
     border:  1px solid #eee;
     border-radius: 5px;
 `;
+
+// const Checkbox = styled.div`
+// width:10%;
+//     padding: 0.5rem 0.3rem;
+//     margin: 0rem 0.2rem;
+//     border:  1px solid #eee;
+//     border-radius: 5px;
+
+// `
 
 const StyledInput = styled.input`
   padding: 0.8rem 0rem;
@@ -401,6 +516,35 @@ const Container = styled.div`
     }
 
 `;
+
+const Card = styled.div`
+border: 1px solid #eee;
+padding: 10px;
+margin: 20px 0px;
+border-radius: 15px;
+width: 300px;
+`;
+
+const LLi = styled.li`
+  list-style: none;
+  font-weight: 100;
+  border-bottom :  1px solid #eee;
+  width: 100%;
+  line-height: 50px;
+ 
+`;
+
+const StyledTitle = styled.div`
+    font-size: 18px;
+    width: 100%;
+    font-family: var(--font-secondary);
+    font-weight: 300;
+    padding: 20px 0px 0px 0px ;
+    color: rgb(108, 128, 75);
+    font-weight: 300;
+
+`;
+
 
 const CharacterCount1 = styled.div`
 font-family: var(--font-secondary);

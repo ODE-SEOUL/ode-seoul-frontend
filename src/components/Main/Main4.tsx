@@ -35,7 +35,7 @@ const FlexContainer = styled.div`
   justify-content: space-between;
   align-items: center;
   margin-bottom: 20px;
-  margin: 0px 100px;
+  margin: 200px 100px 0px 100px;
 
   @media screen and (max-width: 768px) {
     margin: 10px;
