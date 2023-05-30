@@ -82,7 +82,7 @@ const CourseItemBtn=styled.div`
     cursor:pointer;
     margin: auto;
     height:38rem;
-    width:25rem; 
+    width:28rem; 
     box-sizing: border-box;
   
 
