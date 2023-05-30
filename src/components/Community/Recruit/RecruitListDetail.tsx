@@ -251,10 +251,9 @@ export default function CourseListDetail(){
                                 title={String(result.title)}
                                 date={String(result.scheduledAt)}
                                 time={String(result.scheduledAt)}
-                                // dest={String(result.courseId)}
-                                dest={String()}
-
-                                nickname={host.nickname} 
+                                dest={String(courseName)}
+                                host={String(host.nickname)}
+                                nickname={user.nickname} 
                                 id={Number(id)}
                                 />
                         </Modal>

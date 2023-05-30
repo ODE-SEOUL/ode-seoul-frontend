@@ -9,6 +9,7 @@ import { atom, useRecoilValue } from 'recoil';
 import { updateProgressStatus } from '@/src/apis/patchState';
 import { patchAsync } from '@/src/apis/common';
 import { useRouter } from "next/router";
+import Link from 'next/link';
 
 enum Category {
   COM_ANIMAL = '#반려동물',
@@ -51,7 +52,7 @@ const MyReport = () => {
   const { data: courseData } = useCourseListQuery();
 
   useEffect(() => {
-    getRecruitList(user?.id)
+    getRecruitList(user?.id, undefined)
       .then((response) => {
         const result = response.result.recruits.map((item) => ({
           ...item,
@@ -73,7 +74,6 @@ const MyReport = () => {
     }
   };
 
-  const [toggle, setToggle] = useState(false);
   const handlerStatus = useCallback(
     (itemId: number) => {
       setMydata((prevData) =>
@@ -85,21 +85,29 @@ const MyReport = () => {
     []
   );
 
+  const [toggle, setToggle] = useState(false);
+
   const handlerStatusUpdate = (status: string, id: number) => {
     updateProgressStatus(status, id, user.accessToken)
       .then((response) => {
         console.log(response);
-        return response;
+        // 토글 상태 변경
+        setMydata((prevData) =>
+          prevData.map((item) =>
+            item.id === id ? { ...item, progressStatus: status, toggle: false } : item
+          )
+        );
       })
       .catch((error) => {
         console.error(error);
-      });   
+      });
+  };
 
-  }
 
   
   return (
     <>
+    <TTitle>내 모집글</TTitle>
       <Container>
         {!mydata ? (
           <div>잠시만 기다려주세요...</div>
@@ -168,7 +176,11 @@ const MyReport = () => {
                         <Small><FontAwesomeIcon icon={faCalendarCheck} style={{ color: 'rgb(171, 184, 104)', paddingRight: '10px' }} />{scheduledAt}</Small>
                         <Small><FontAwesomeIcon icon={faUser} style={{ color: 'rgb(171, 184, 104)', paddingRight: '10px' }} />{currentPeople}/{maxPeople}</Small>
                         <Small><FontAwesomeIcon icon={faTags} style={{ color: 'rgb(171, 184, 104)', paddingRight: '10px' }} />{category}</Small>
-                        <Small><FontAwesomeIcon icon={faPaperclip} style={{ color: 'rgb(171, 184, 104)', paddingRight: '10px' }} />글 상세 확인하기</Small>
+                        <Small>
+                          <Link href={`/recruit/${id}`}>
+                            <FontAwesomeIcon icon={faPaperclip} style={{ color: 'rgb(171, 184, 104)', paddingRight: '10px' }} />글 상세 확인하기
+                          </Link>
+                        </Small>
                       </FlexContainer>
                     </Card>
                   </div>
@@ -232,6 +244,15 @@ const Circle = styled.div`
   text-align: center;
   padding: 5px;
 `;
+
+const TTitle = styled.div`
+  font-size: 20px;
+  font-weight: 500;
+  font-family: var(--font-secondary);
+  margin-bottom: 15px;
+  color: rgb(171, 184, 104);
+`;
+
 
 const SubTitle = styled.div`
   font-size: 15px;
