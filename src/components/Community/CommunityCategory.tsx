@@ -51,6 +51,7 @@ enum Category {
               return (
                 <Set key={index} >
                   <CircleButton
+                   
                     isSelected={selectedCategory === category}
                     onClick={() => handleCategoryClick(category)}
                     className={colorClass}
@@ -89,6 +90,10 @@ const Set = styled.div`
     @media screen and (max-width: 768px) {
         margin: 10px;
     } 
+`;
+
+const Img = styled.div`
+
 `;
 const CircleButton = styled.div<{ isSelected: boolean; onClick?: () => void }>`
   font-weight: 100;
