@@ -2,12 +2,13 @@ import styled from "@emotion/styled";
 import SearchService from "./SearchService";
 import { ICaseProps } from ".";
 import ServiceItem from "./ServiceItem";
-import { Grid } from "@mui/material";
+import { Breadcrumb } from "../common/Breadcrumb";
 
 export default function DefaultCaseContainer({serviceData}:ICaseProps){
     return(
         <>
           <Container>
+          <Breadcrumb title="서울시 문화행사" subTitle="생태문화길을 걷다 즐길 수 있는 문화행사들을 추천드려요"/>
             <div className='mt-90'></div>
             <SearchContainer style={{margin:"auto"}}>
       
