@@ -52,6 +52,11 @@ export default function CourseReviewWriting({courseId,coursename}:ICourseWriting
         console.log(text);
 
     }
+
+    if(!userInfo){
+        alert("로그인이 필요한 서비스입니다.");
+        router.push('/');
+    }
     return(<>
         <ReviewText size={30} weight={500} color="black">후기를 작성해보세요!</ReviewText>
         <div className="mt-30"></div>
