@@ -132,7 +132,7 @@ const NavbarContainer = styled.nav`
   align-items: center;
   height: 100px;
   background-color: #fff;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 4px -2px rgba(0, 0, 0, 0.1);
   padding: 0 50px;
   font-weight: 100;
   font-family: var(--font-secondary);
