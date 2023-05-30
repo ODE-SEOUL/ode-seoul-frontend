@@ -3,7 +3,8 @@ import styled from '@emotion/styled';
 import MyProfile from './MyProfile';
 import MyReport from './MyReport';
 import MyStamp from './MyStamp';
-
+import MyApplication from './MyApplication';
+// import MyComment from './MyComment';
 
 interface ContentProps {
     selectedComponent: number;
@@ -14,7 +15,9 @@ interface ContentProps {
       <>
         {selectedComponent === 1 && <MyProfile />}
         {selectedComponent === 2 && <MyReport />}
-        {selectedComponent === 3 && <MyStamp />}
+        {selectedComponent === 3 && <MyApplication />}
+        {/* {selectedComponent === 4 && <MyComment />} */}
+        {selectedComponent === 5 && <MyStamp />}
       </>
     );
   };

@@ -29,14 +29,31 @@ interface MenuProps {
             프로필
           </Li>
           <Li
-            className={selectedMenu === 2 ? "selected" : ""}
             onClick={() => handleClick(2)}
           >
             내 활동
           </Li>
+              <SmallLi
+                className={selectedMenu === 2 ? "selected" : ""}
+                onClick={() => handleClick(2)}
+              >
+                내 모집글
+              </SmallLi>
+              <SmallLi
+                className={selectedMenu === 3 ? "selected" : ""}
+                onClick={() => handleClick(3)}
+              >
+                내 약속 정보
+              </SmallLi>
+              {/* <SmallLi
+                className={selectedMenu === 4 ? "selected" : ""}
+                onClick={() => handleClick(4)}
+              >
+                내 댓글
+              </SmallLi> */}
           <Li
-            className={selectedMenu === 3 ? "selected" : ""}
-            onClick={() => handleClick(3)}
+            className={selectedMenu === 5 ? "selected" : ""}
+            onClick={() => handleClick(5)}
           >
             스탬프 북
           </Li>
@@ -64,6 +81,27 @@ line-height: 50px;
     font-weight: 500; /* 선택된 메뉴의 글꼴 굵기를 여기에 지정하세요 */
   }
 `;
+
+const SmallLi = styled.li`
+  list-style: none;
+  font-weight: 100;
+  width: 55%;
+  padding: 5px 40px;
+  border-radius: 5px;
+  height: 30px;
+  line-height: 30px;
+  font-size: 20px;
+
+
+  &.selected {
+    color:#fff; 
+
+    background-color: rgba(171, 184, 104, 0.8) ;
+    font-weight: 500; /* 선택된 메뉴의 글꼴 굵기를 여기에 지정하세요 */
+  }
+`;
+
+
 
 
 const Ul = styled.ul`
