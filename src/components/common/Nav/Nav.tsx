@@ -37,12 +37,7 @@ const Navbar = () => {
     if (storedUser) {
       setUser(JSON.parse(storedUser));
     }
-  }, []);
-  
-  const setUserAndLocalStorage = (userData: any) => {
-    localStorage.setItem('user', JSON.stringify(userData));
-    setUser(userData);
-  };
+  }, [setUser]);
   
   // useEffect(() => {
   //   console.log(user);
