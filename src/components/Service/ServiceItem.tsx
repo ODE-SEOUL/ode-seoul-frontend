@@ -58,7 +58,7 @@ export default function ServiceItem({title,location,startDate,endDate,useFee,mai
                 <div className="mt-25"></div>
                 <div style={{textAlign:"center"}}>
                     <Button onClick={onClick}>
-                            <Text weight={300} size={15} color="white">더보기</Text>
+                            <Text style={{marginTop:'10px'}}weight={300} size={15} color="white">더보기</Text>
                     </Button>
                 </div>
         </>

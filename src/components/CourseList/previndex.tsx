@@ -81,7 +81,7 @@ const CourseCategoryBarContainer=styled.div`
 const CourseItemBtn=styled.div`
     cursor:pointer;
     margin: auto;
-    height:38rem;
+    height:32rem;
     width:28rem; 
     box-sizing: border-box;
   
