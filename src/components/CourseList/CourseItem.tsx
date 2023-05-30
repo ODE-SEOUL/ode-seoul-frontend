@@ -18,10 +18,10 @@ export default function CourseItem({name,image,gugunSummary,description,lat,lng}
     return(<>
         
                  <div className="mt-60" ></div>
-                <CourseImage imageUrl={image}>
-                    
-                </CourseImage>
+                <CourseImage imageUrl={image}/>
+                
                 <div className="mt-20"></div>
+                
                 <Coursename>{name}</Coursename>
                 <div className="mt-20"></div>
                 <CourseItemgugunSummary>

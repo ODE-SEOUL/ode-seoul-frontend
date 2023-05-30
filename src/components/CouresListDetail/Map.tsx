@@ -68,6 +68,7 @@ export default function CourseDetailMap({latitude, longitude ,routes}: MapProps)
         <CourseDetailTitle>위치를 확인해보세요!</CourseDetailTitle>
         <div className="mt-60"></div>
         <MapContainer id="map" />
+        <div className="mb-80"/>
 
     
     
