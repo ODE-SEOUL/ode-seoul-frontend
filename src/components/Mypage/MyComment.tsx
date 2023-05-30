@@ -1,4 +1,4 @@
-// import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 // import styled from '@emotion/styled';
 // import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 // import { faAngleRight, faMapLocationDot, faCalendarCheck, faPencil, faUser, faTags, faBars, faCheckCircle, faPaperclip } from "@fortawesome/free-solid-svg-icons";
@@ -12,7 +12,7 @@
 // import Link from 'next/link';
 // import { deleteComments } from '../../apis/RecruitComment';
 
-// const MyComment = () => {
+const MyComment = () => {
 
 //   const [mydata, setMydata] = useState([]);
 //   const user = useRecoilValue(userAtom);
@@ -118,9 +118,9 @@
 //       </Container>
 //     </>
 //   );
-// };
+};
 
-// export default MyComment;
+export default MyComment;
 
 // const TTitle = styled.div`
 //   font-size: 20px;
