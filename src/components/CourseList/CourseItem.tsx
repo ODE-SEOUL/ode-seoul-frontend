@@ -17,7 +17,7 @@ export default function CourseItem({name,image,gugunSummary,description,lat,lng}
     
     return(<>
         
-                 <div className="mt-60" ></div>
+                 <div className="mt-20" ></div>
                 <CourseImage imageUrl={image}/>
                 
                 <div className="mt-20"></div>
@@ -48,7 +48,7 @@ type CourseItemImageProps={
 const CourseImage=styled('div')`
     position: relative;
     height : 20rem;
-    width: 25rem;
+    width: 28rem;
     background : url(${(props:CourseItemImageProps)=>props.imageUrl});
     box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.1);
     background-size : cover;
@@ -73,7 +73,7 @@ const CourseItemdescription=styled.div`
 const CourseItemgugunSummaryText=styled.div`  
     margin-left: 10px;
     margin-top: 10px;
-    font-weight:200;
+    font-weight:600;
     color:var(--color-gray);
     font-family:var(--font-secondary);
 `

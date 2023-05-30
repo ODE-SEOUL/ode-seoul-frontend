@@ -102,9 +102,8 @@ const Text=styled.div<{weight:number,size:number,color:string}>`
     text-align: center;
 `;
 
-const Button=styled.button`
-    border:0;
-    outline:0;
+const Button=styled.div`
+    cursor:pointer;
     width:10rem;
     height:2.323rem;
     border-radius: 20px;
