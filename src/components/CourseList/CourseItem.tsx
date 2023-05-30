@@ -23,14 +23,14 @@ export default function CourseItem({name,image,gugunSummary,description,lat,lng}
                 <div className="mt-20"></div>
                 
                 <Coursename>{name}</Coursename>
-                <div className="mt-20"></div>
+                <div className="mt-10"></div>
                 <CourseItemgugunSummary>
                     <CourseItemgugunSummaryMarker/>
                     <CourseItemgugunSummaryText>{gugunSummary}</CourseItemgugunSummaryText>
                 </CourseItemgugunSummary>
-                <div className="mt-10"></div>
+                <div className="mt-5"></div>
                 
-                <CourseItemdescription>{description.substring(0,100).concat("...")}</CourseItemdescription>
+                <CourseItemdescription>{description.substring(0,50).concat("...")}</CourseItemdescription>
        
         
 
@@ -53,13 +53,13 @@ const CourseImage=styled('div')`
     box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.1);
     background-size : cover;
     background-position : center;
-    border-radius: 10px;
+    border-radius: 5px;
     
 `
 
 const Coursename=styled.div`
-    text-align: center;
-    font-weight: 700;
+    //text-align: center;
+    font-weight: 500;
     font-size: 20px;
     font-family: var(--font-secondary);
 `
@@ -71,21 +71,21 @@ const CourseItemdescription=styled.div`
 `
 
 const CourseItemgugunSummaryText=styled.div`  
-    margin-left: 10px;
-    margin-top: 10px;
+    margin-left: 8px;
+    margin-top: 5px;
     font-weight:600;
     color:var(--color-gray);
     font-family:var(--font-secondary);
 `
 const CourseItemgugunSummaryMarker=styled.div`
-    width:23.35px;
-    height:33.41px;
+    width:18px;
+    height:25px;
     content: url("./assets/img/courseItem_marker.svg");
 
 `
 const CourseItemgugunSummary=styled.div`
-    width:18rem;
-    height:48px;
+    width:100%;
+    height:32px;
     display: flex;
     
 `
