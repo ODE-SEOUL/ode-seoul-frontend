@@ -170,6 +170,11 @@ const CommunityItem = ({ limit , isMain = false }: WrapperProps) => {
                   //TODO: 타입 확장 필요
                   host:{hostId,nickname,profileImage,locationCode,signupStatus}
                 } = item;
+
+                if (progressStatus !== "OPEN") {
+                  // progressStatus가 "OPEN"이 아닌 경우에는 렌더링하지 않음
+                  return null;
+                }
               
                 const courseName = printCourseName(courseId)
                 const formattedDate = formatDate(scheduledAt);

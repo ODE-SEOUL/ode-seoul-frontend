@@ -104,6 +104,37 @@ const MyReport = () => {
   };
 
 
+  //formatDate
+  function formatDate(dateString: string) {
+    const date = new Date(dateString);
+    const year = date.getFullYear();
+    const month = date.getMonth() + 1;
+    const day = date.getDate();
+    
+    return `${year}년 ${month}월 ${day}일`;
+  }
+
+  const getCategoryLabel = (category: string): string | undefined => {
+    switch (category) {
+      case 'COM_ANIMAL':
+        return Category.COM_ANIMAL;
+      case 'COM_HOUSE':
+        return Category.COM_HOUSE;
+      case 'COM_OFFICE':
+        return Category.COM_OFFICE;
+      case 'COM_NEIGHBOR':
+        return Category.COM_NEIGHBOR;
+      case 'COM_EXERCISE':
+        return Category.COM_EXERCISE;
+      case 'COM_PHOTO':
+        return Category.COM_PHOTO;
+      case 'COM_EXPER':
+        return Category.COM_EXPER;
+      default:
+        return undefined;
+    }
+  };
+
   
   return (
     <>
@@ -171,11 +202,11 @@ const MyReport = () => {
                         {content.length > 100 ? content.slice(0, 130) + "..." : content}
                       </SubTitle>
                       <FlexContainer>
-                        <Small><FontAwesomeIcon icon={faPencil} style={{ color: 'rgb(171, 184, 104)', paddingRight: '10px' }} />{createdAt}</Small>
+                        <Small><FontAwesomeIcon icon={faPencil} style={{ color: 'rgb(171, 184, 104)', paddingRight: '10px' }} />{formatDate(createdAt)}</Small>
                         <Small><FontAwesomeIcon icon={faMapLocationDot} style={{ color: 'rgb(171, 184, 104)', paddingRight: '10px' }} />{printCourseName(courseId)}</Small>
-                        <Small><FontAwesomeIcon icon={faCalendarCheck} style={{ color: 'rgb(171, 184, 104)', paddingRight: '10px' }} />{scheduledAt}</Small>
+                        <Small><FontAwesomeIcon icon={faCalendarCheck} style={{ color: 'rgb(171, 184, 104)', paddingRight: '10px' }} />{formatDate(scheduledAt)}</Small>
                         <Small><FontAwesomeIcon icon={faUser} style={{ color: 'rgb(171, 184, 104)', paddingRight: '10px' }} />{currentPeople}/{maxPeople}</Small>
-                        <Small><FontAwesomeIcon icon={faTags} style={{ color: 'rgb(171, 184, 104)', paddingRight: '10px' }} />{category}</Small>
+                        <Small><FontAwesomeIcon icon={faTags} style={{ color: 'rgb(171, 184, 104)', paddingRight: '10px' }} />{getCategoryLabel(category)}</Small>
                         <Small>
                           <Link href={`/recruit/${id}`}>
                             <FontAwesomeIcon icon={faPaperclip} style={{ color: 'rgb(171, 184, 104)', paddingRight: '10px' }} />글 상세 확인하기
