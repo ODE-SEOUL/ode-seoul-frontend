@@ -65,7 +65,7 @@ const MyApplication = () => {
     const handlerApplication = (ApplicationId: number) => {
       deleteApplication(ApplicationId, user.accessToken)
         .then((response) => {
-          console.log(response.code);
+          // console.log(response.code);
           if (response.code === 200) {
             alert('약속을 취소하였습니다!');
             // 약속 취소 후 목록을 다시 가져와서 렌더링

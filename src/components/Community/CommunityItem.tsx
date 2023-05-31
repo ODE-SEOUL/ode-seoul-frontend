@@ -72,7 +72,7 @@ const CommunityItem = ({ limit , isMain = false }: WrapperProps) => {
    const router=useRouter();
    const DetailHandler=(recruit:RecruitItem  & HostItem)=>{
     const courseName = printCourseName(recruit.courseId);
-    console.log('이거이거', recruit.id);
+    // console.log('이거이거', recruit.id);
    router.push({
      pathname:`/recruit/${recruit.id}`});
     }

@@ -12,7 +12,7 @@ export const postApplication = async (id: number, accessToken: string) => {
         },
       }
     );
-    console.log('응답:', response);
+    // console.log('응답:', response);
     return response;
 
     // 요청 성공 시 처리할 내용
