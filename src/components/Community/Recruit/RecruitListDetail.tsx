@@ -122,7 +122,7 @@ export default function CourseListDetail(){
     const user = useRecoilValue(userAtom);
     const handleCommentChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const { value } = e.target;
-        console.log(value);
+        // console.log(value);
         setRContent(value);
       };
 
@@ -145,6 +145,7 @@ export default function CourseListDetail(){
        
     };
 
+
     const [applicationtoggle, setApplicationToggle] = useState(false);
     const handlerToggle = () => {
         setApplicationToggle(!applicationtoggle);
@@ -163,8 +164,6 @@ export default function CourseListDetail(){
     let ImgSrc : string;
 
     
-    console.log('gg',courseName )
-    console.log('gg',RecruitListData )
     if (RecruitListData) {
         const { host: hostData, comments: commentList, applications: applicationList, category, title, content, image, currentPeople, maxPeople, scheduledAt, progressStatus, createdAt } = RecruitListData;
         result = { host: hostData, category, title, content, image, currentPeople, maxPeople, scheduledAt, progressStatus, createdAt };

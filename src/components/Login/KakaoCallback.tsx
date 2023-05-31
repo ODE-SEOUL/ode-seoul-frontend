@@ -88,7 +88,7 @@ const KakaoCallback = () => {
   }, [setUser]);
 
   useEffect(() => {
-    console.log(user); // 콘솔에 유저 정보 출력
+    // console.log(user); // 콘솔에 유저 정보 출력
   }, [user]);
 
   const handleSignupSuccess = () => {

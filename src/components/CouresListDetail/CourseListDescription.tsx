@@ -26,7 +26,7 @@ export default function CourseListDescription({name,distance,time,description,su
     const router=useRouter();
     
     const onReviewClick=()=>{
-        console.log("click");
+        // console.log("click");
         setReviewClick(true);
         
 

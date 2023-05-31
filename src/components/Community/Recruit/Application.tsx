@@ -25,11 +25,11 @@ export const Application = ({ id, title, date, time, dest, nickname, host }: Pro
 
     const router = useRouter();
     const user = useRecoilValue(userAtom);
-    console.log(user);
+    // console.log(user);
     const accessToken = localStorage.getItem("token") || (user && user.accessToken);
 
     const handleClick = () => {
-        console.log('dsfsdd', host, nickname);
+        // console.log('dsfsdd', host, nickname);
         if (!user){
             alert("로그인이 필요한 서비스입니다.");
             router.push('/');

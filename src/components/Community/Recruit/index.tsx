@@ -39,7 +39,7 @@ const Recruit = () => {
   
     //등록
     const HandlerRecruit = () => {
-      console.log('어것', state);
+      // console.log('어것', state);
       if (!user) {
         alert("로그인이 필요한 서비스입니다.");
         router.push('/');
@@ -70,7 +70,7 @@ const Recruit = () => {
       const file = imgRef.current.files[0];
       const res=uploadImage(file,user.accessToken);
       res.then(result => {
-          console.log('여기', typeof(result));
+          // console.log('여기', typeof(result));
           setRecruitImg((prevRecruit) => ({
             ...prevRecruit,
             image: result,

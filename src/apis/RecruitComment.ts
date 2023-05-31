@@ -20,7 +20,7 @@ export const postComments = async (id: string, accessToken: string, contents: st
         },
       }
     );
-    console.log('응답:', response);
+    // console.log('응답:', response);
     return response;
   } catch (error) {
     console.error('에러:', error);
@@ -47,7 +47,7 @@ export async function deleteComments(commentId: number, accessToken: string): Pr
     );
 
     if (response.result) {
-      console.log('댓글이 삭제되었습니다.');
+      // console.log('댓글이 삭제되었습니다.');
     } else {
       console.error('댓글 삭제 실패:', response.message);
     }

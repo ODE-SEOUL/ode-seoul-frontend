@@ -55,7 +55,7 @@ const MyStamp = () => {
             ...item,
           }));
           setMydata(result);
-          console.log('내 스탬프', result);
+          // console.log('내 스탬프', result);
         } else {
           console.log('response.result is not an array');
         }
