@@ -21,6 +21,8 @@ import useModal from '@/src/hooks/useModal';
 import { useRouter } from 'next/router';
 import Checkbox from './Checkbox';
 import { useCourseListQuery } from '../../CourseList/courseListQuery';
+import { useRef } from "react";
+
 const Recruit = () => {
 
   
@@ -64,42 +66,22 @@ const Recruit = () => {
       }
     };
 
-    const handleUpload = async () => {
-        const requestData = {
-            file: selectedFile
-          };
-        const config = {
-            headers: {
-              "Content-Type": "multipart/form-data",
-              Authorization: `Bearer ${user.accessToken}`,
-            },
-          };
-        
-          try {
-            const res = await axios.post(
-              'https://ode-seoul.fly.dev/images',
-              requestData,
-              config
-            );
+    const imgRef = useRef(null);
+    function SaveImgFile() {
+      const file = imgRef.current.files[0];
+      const res=uploadImage(file,user.accessToken);
+      res.then(result => {
+          console.log('여기', typeof(result));
+          setRecruitImg((prevRecruit) => ({
+            ...prevRecruit,
+            image: result,
+          }))
+      }).catch(error => {
+          console.error(error);
+      });
       
-            if (res.data.code === 200) {
-                
-              console.log('업로드 성공', res.data.result.url);
       
-              setRecruitImg((prevRecruit) => ({
-                ...prevRecruit,
-                image: res.data.result.url,
-              }));
-            } else {
-              // TODO: 실패 처리
-            }
-          } catch (error) {
-            console.error(error);
-          }
-
-            
-
-    };
+  };
 
     const Noti = 
         "자유게시판에서는 주제와 무관히 자유롭게 이야기를 나눌 수 있습니다. \n 자유게시판의 게시글 및 댓글은 로그인을 해야만 작성 수 있습니다.\n 아직 가입하지 않으셨나요? 지금 바로 회원가입하세요!(우상단 버튼)\n자유게시판에서 모든 게시물 및 댓글의 작성자는 작성자의 닉네임으로 표시됩니다.\n 작성자를 익명으로 하고 싶다면 ‘익명게시판’을 이용해 보세요!\n 홍보성 게시글이나 제제가 필요한 게시물 및 댓글은 관리자에 의해 삭제될 수 있습니다.\n 홍보성 게시글은 ‘정보게시판’을 이용 바랍니다. "
@@ -432,8 +414,8 @@ const ShowRecoil: React.FC<{ recruit: RecruitData }> = ({ recruit }) => {
             <Title text='배경 사진을 선택해주세요' />
                 <UploadImg text='img' />
                 <Container2>
-                    <input type="file" onChange={handleFileChange} />
-                    <button onClick={handleUpload}>Upload</button>
+                    <input type="file" ref={imgRef} accept="image/*" onChange={SaveImgFile} />
+                    {/* <button onClick={SaveImgFile}>Upload</button> */}
                 </Container2>
 
             <Title text='주의사항을 확인해주세요' />
