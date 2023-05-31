@@ -53,12 +53,14 @@ export default function Service(){
   // 검색 설정시 value
   const value=useRecoilValue(searchValueAtom);
 
-  const {isLoading:defaultLoading,data:serviceData}=useQuery("serviceList",getServiceList,{
+  const {isLoading:defaultLoading,data:serviceData}=useQuery(["serviceList",value], getServiceList,{
+    // @ts-ignore
     select: (data)=>data.result.events
   })
 
+
   
-  const {isLoading:searchLoading,data:searchServiceData}=useQuery("searchServiceList",()=>getServiceSearchList(value),{
+  const {isLoading:searchLoading,data:searchServiceData}=useQuery(["searchServiceList", value],()=>getServiceSearchList(value),{
     select:(data)=>data.result.events
   });
   

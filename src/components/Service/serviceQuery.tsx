@@ -3,7 +3,7 @@ import { GetServiceSearchParams, getServiceSearchList } from "@/src/apis/service
 
 
 export const useServiceSearchQuery = (searchParams:string) => {
-    return useQuery("searchServiceList",()=>getServiceSearchList(searchParams),{
+    return useQuery(["searchServiceList", searchParams],()=>getServiceSearchList(searchParams),{
         select:(data)=>data.result.events
     });
   };
