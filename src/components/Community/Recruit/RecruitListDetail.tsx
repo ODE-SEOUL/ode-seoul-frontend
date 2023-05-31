@@ -323,10 +323,11 @@ const Small = styled.div`
 `;
 
 const StyledCategory= styled.div`
+    font-size: 20px;
+    line-height: 20px;
     width: 100px;
     padding: 5px 10px;
     border-radius: 20px;
-    height: 20px;
     border: 1px solid rgb(108, 128, 75);
     font-weight: 100;
     text-align: center;
