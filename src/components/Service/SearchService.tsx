@@ -28,7 +28,6 @@ export default function SearchService(){
     const onChange=(event:React.ChangeEvent<HTMLInputElement>)=>{
         event.preventDefault();
         setValue(event.currentTarget.value);
-        setSearchValue(value);
         setSearch(true);
     }
     return(<>
