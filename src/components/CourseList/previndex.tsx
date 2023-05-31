@@ -32,9 +32,9 @@ export default function PrevIndex() {
             <CourseCarousel/>
           </CourseCategoryBarContainer>
           <div className='row col-lg-12'>
-              <div className="row" style={{display:'flex',flexWrap:'wrap'}}>
+              <div className="row" style={{display:'flex',flexWrap:'wrap',margin:'auto'}}>
               {
-                          courseData?.slice(0,17).filter(item=>item.categories.includes(selectCategory)).map(
+                          courseData?.filter(item=>item.categories.includes(selectCategory)).map(
                             course=>
                             <div className='col-lg-4 col-sm-12' key={course.id}>
                               <CourseItemBtn onClick={()=>onClick(course)} > 
@@ -79,10 +79,9 @@ const CourseCategoryBarContainer=styled.div`
 
 
 const CourseItemBtn=styled.div`
-    cursor:pointer;
     margin: auto;
-    height:32rem;
-    width:28rem; 
+    height:30rem;
+    width:25rem; 
     box-sizing: border-box;
   
 

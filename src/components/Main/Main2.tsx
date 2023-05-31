@@ -18,7 +18,7 @@ const Main2 = () => {
         </Circle>
       </FlexContainer>
       <Container>
-        <CourseForMain limit= {4} />
+        <CourseForMain limit= {3} />
       </Container>
     </>
   );
