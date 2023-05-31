@@ -52,6 +52,11 @@ export default function CourseReviewWriting({courseId,coursename}:ICourseWriting
         console.log(text);
 
     }
+
+    if(!userInfo){
+        alert("로그인이 필요한 서비스입니다.");
+        router.push('/');
+    }
     return(<>
         <ReviewText size={30} weight={500} color="black">후기를 작성해보세요!</ReviewText>
         <div className="mt-30"></div>
@@ -60,7 +65,7 @@ export default function CourseReviewWriting({courseId,coursename}:ICourseWriting
         </PhotoUploadContainer>
         <div className="mt-40"></div>
         <form onSubmit={onSubmit}>
-            <TextBox type="text" onChange={onChange} value={text}/>
+            <TextBox type="text" onChange={onChange} value={text} placeholder="후기를 작성해주세요!"/>
             <div className="mt-100"></div>
             
             <Center>
@@ -84,22 +89,23 @@ const TextBox=styled.input`
     background-color: #D9D9D9;
     border-radius: 10px;
     border:transparent;
-    width:500px;
-    height:600px;
+    width:31.25rem;
+    height:25rem;
 `;
 
 const PhotoUploadContainer=styled.div`
     border:1px solid gray;
     border-radius: 10px;
-    width:500px;
+    width:31.25rem;
     height:400px;
 `
 
 const PhotoUpload=styled.input`
+    
     /* border-style: none;
     width:100px;
     height: 200px; */
-    //background-repeat : no-repeat;
+    background-repeat : no-repeat;
     //background-image: url('./assets/img/courseDetailPhoto.svg');
     
 `;
@@ -115,13 +121,16 @@ const RegisterButton=styled.button`
     background-color: var(--color-green);
     box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.1);
     border-radius: 10px;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    margin: auto;
+   
 `
 
 const Center=styled.div`
-    position: relative;
-`
 
+    width:31.25rem;
+    height: 1rem;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+
+`

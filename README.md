@@ -1,5 +1,6 @@
 # ODE?SEOUL팀의 프론트 레포지토리입니다.🌳
 
+![image](https://github.com/ODE-SEOUL/ode-seoul-frontend/assets/85864699/a21e6d92-78fa-48e0-b276-52cda3351b66)
 ## Commit Convention
 
 - **커밋 메시지 규칙** 

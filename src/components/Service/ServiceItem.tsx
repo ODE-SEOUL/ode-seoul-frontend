@@ -58,7 +58,7 @@ export default function ServiceItem({title,location,startDate,endDate,useFee,mai
                 <div className="mt-25"></div>
                 <div style={{textAlign:"center"}}>
                     <Button onClick={onClick}>
-                            <Text weight={300} size={15} color="white">더보기</Text>
+                            <Text style={{marginTop:'10px'}}weight={300} size={15} color="white">더보기</Text>
                     </Button>
                 </div>
         </>
@@ -102,9 +102,8 @@ const Text=styled.div<{weight:number,size:number,color:string}>`
     text-align: center;
 `;
 
-const Button=styled.button`
-    border:0;
-    outline:0;
+const Button=styled.div`
+    cursor:pointer;
     width:10rem;
     height:2.323rem;
     border-radius: 20px;
