@@ -50,7 +50,7 @@ const Recruit = () => {
           if (res.code === 200) {
             alert('신청되었습니다.')
             router.push(`/community`);
-            removeItemIdFromLocalStorage();
+            // removeItemIdFromLocalStorage();
             } else{
             alert('성공적으로 업데이트 되지 않았습니다. 다시 시도해주세요.')
           }
@@ -151,14 +151,14 @@ const Recruit = () => {
     setLocation(name);
     
   };
-  const itemId = localStorage.getItem("itemId");
-  console.log(itemId);
-  useEffect(() => {
-    setState((prevState) => ({
-      ...prevState,
-      courseId: Number(itemId),
-    }));
-  }, [itemId]);
+  // const itemId = localStorage.getItem("itemId");
+  // console.log(itemId);
+  // useEffect(() => {
+  //   setState((prevState) => ({
+  //     ...prevState,
+  //     courseId: Number(itemId),
+  //   }));
+  // }, [itemId]);
 
 
   //4. 날짜
@@ -248,9 +248,9 @@ const Recruit = () => {
 
 
 //-------기타---------//
-const removeItemIdFromLocalStorage = () => {
-  localStorage.removeItem("itemId");
-};
+// const removeItemIdFromLocalStorage = () => {
+//   localStorage.removeItem("itemId");
+// };
 //formatDate
 function formatDate(dateString: string) {
   const date = new Date(dateString);

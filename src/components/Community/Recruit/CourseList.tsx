@@ -18,7 +18,7 @@ interface CourseListProps {
    
   //3. 코스 선택 시, 
     const handleItemClick = (itemId: number) => {
-      localStorage.setItem("itemId", itemId.toString());
+      // localStorage.setItem("itemId", itemId.toString());
       setRecruit((prevRecruit) => ({
         ...prevRecruit,
         courseId: itemId,
