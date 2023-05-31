@@ -28,21 +28,18 @@ const Recruit = () => {
   
 
   const router = useRouter();
-  //캘린더
+    //캘린더
     const [value, onChange] = useState(new Date());
     const [showRecoil, setShowRecoil] = useState(false); // Recoil 컴포넌트 보여줄지 여부
+    
+    //유저
     const user = useRecoilValue(userAtom);
    
-    // console.log(user);
-    const [selectedFile, setSelectedFile] = useState(null);
     const setRecruitImg = useSetRecoilState(RecruitAtom);
   
-    const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        setSelectedFile(e.target.files[0]);
-    };
-    
-    
+    //등록
     const HandlerRecruit = () => {
+      console.log('어것', state);
       if (!user) {
         alert("로그인이 필요한 서비스입니다.");
         router.push('/');
@@ -53,6 +50,7 @@ const Recruit = () => {
           if (res.code === 200) {
             alert('신청되었습니다.')
             router.push(`/community`);
+            removeItemIdFromLocalStorage();
             } else{
             alert('성공적으로 업데이트 되지 않았습니다. 다시 시도해주세요.')
           }
@@ -66,6 +64,7 @@ const Recruit = () => {
       }
     };
 
+    //이미지 업로드
     const imgRef = useRef(null);
     function SaveImgFile() {
       const file = imgRef.current.files[0];
@@ -82,29 +81,14 @@ const Recruit = () => {
       
       
   };
-
-    const Noti = 
+  
+  //주의사항
+  const Noti = 
         "자유게시판에서는 주제와 무관히 자유롭게 이야기를 나눌 수 있습니다. \n 자유게시판의 게시글 및 댓글은 로그인을 해야만 작성 수 있습니다.\n 아직 가입하지 않으셨나요? 지금 바로 회원가입하세요!(우상단 버튼)\n자유게시판에서 모든 게시물 및 댓글의 작성자는 작성자의 닉네임으로 표시됩니다.\n 작성자를 익명으로 하고 싶다면 ‘익명게시판’을 이용해 보세요!\n 홍보성 게시글이나 제제가 필요한 게시물 및 댓글은 관리자에 의해 삭제될 수 있습니다.\n 홍보성 게시글은 ‘정보게시판’을 이용 바랍니다. "
       
-  //구군 get 요청
-  const [names, setNames] = useState([]);
-  useEffect(() => {
-    getGugunList()
-      .then((response) => {
-        const result = response.result;
-        const names = result.map((item) => item.name);
-        setNames(names);
-      })
-      .catch((error) => {
-        console.error(error);
-      });
-  }, []);
-  const [location, setLocation] = useState('');
-  const handleLocationSelect = (name: string) => {
-    setLocation(name);
-  };
+  
 
-  //상태
+  //초기 상태
   const [state, setState] = useState<RecruitInfo>({
     courseId: 0,
     category: 'COM_ANIMAL',
@@ -117,6 +101,8 @@ const Recruit = () => {
 
   const [recruit, setRecruit] = useRecoilState(RecruitAtom);
   const [isOverLimit, setIsOverLimit]= useState(false);
+
+  //1. 제목
   const handleTitleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { value } = e.target;
     const truncatedValue = value.slice(0, 15); // 15자로 제한
@@ -125,7 +111,6 @@ const Recruit = () => {
     } else{
       setIsOverLimit(false);
     }
-      
     
     setState((prevState) => ({
       ...prevState,
@@ -133,79 +118,115 @@ const Recruit = () => {
     }));
   };
   
-  const [isCalender, setIsCalender] = useState(false);
-  const handleClick = (e:any) =>{
-    setIsCalender(true);
-  }
-
+  //2. 내용
   const handleContentChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { value } = e.target;
     setState((prevState) => ({
       ...prevState,
       content: value,
     }));
-  };
+  };  
 
-   //날짜, 시간 선택
-   const convertTo24HourFormat = (timeString: string) => {
-    const [hours, minutes] = timeString.split(':');
-    let formattedHours = parseInt(hours);
-  
-    if (!isAM && formattedHours < 12) {
-      formattedHours += 12;
-    }
-  
-    if (isAM && formattedHours === 12) {
-      formattedHours = 0;
-    }
-  
-    const formattedTime = `${formattedHours.toString().padStart(2, '0')}:${minutes}`;
-    return formattedTime;
-  };
-  
-    
-    const [selectedDate, setSelectedDate] = useState('');
-    const [schedule, setSchedule] = useState(['', '']);
-    
-    const handleTimeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-      setSelectedTime(e.target.value);
-      const timeString = e.target.value;
-      const dateString = selectedDate;
-      const scheduleString = `${dateString}T${timeString}`;
-      setSchedule([dateString, timeString]);
-      setState((prevState) => ({
-        ...prevState,
-        scheduledAt: scheduleString,
-      }));
-    
-      const formattedTime = isAM ? timeString : convertTo24HourFormat(timeString);
-      const formattedDateTime = `${selectedDate}T${formattedTime}:00`;
-      handleScheduledAtChange(new Date(formattedDateTime));
-    };
-    
-    const handleScheduledAtChange = (value: any) => {
-      const dateString = value.toLocaleDateString("ko", {
-        year: "numeric",
-        month: "2-digit",
-        day: "2-digit",
+  const [isCalender, setIsCalender] = useState(false);
+  const handleClick = (e:any) =>{
+    setIsCalender(true);
+  }
+
+  //3. 지역, 코스
+  const [names, setNames] = useState([]);
+  useEffect(() => {
+    getGugunList()
+      .then((response) => {
+        const result = response.result;
+        const names = result.map((item) => item.name);
+        setNames(names);
+      })
+      .catch((error) => {
+        console.error(error);
       });
-      const timeString = selectedTime;
-      const scheduleString = `${dateString}T${timeString}:00`;
-      const date = scheduleString.replace(/\./g, '-');
-      const formattedDate = date.replace(/\s/g, '').replace('-T', 'T');
-      console.log(formattedDate); 
+  }, []);
+
+  const [location, setLocation] = useState('');
+  const handleLocationSelect = (name: string) => {
+    setLocation(name);
     
-      setSelectedDate(dateString); // selectedDate 상태 업데이트
-      setState((prevState) => ({
-        ...prevState,
-        scheduledAt: formattedDate,
-      }));
-    
-      setIsCalender(false);
-    };
+  };
+  const itemId = localStorage.getItem("itemId");
+  console.log(itemId);
+  useEffect(() => {
+    setState((prevState) => ({
+      ...prevState,
+      courseId: Number(itemId),
+    }));
+  }, [itemId]);
+
+
+  //4. 날짜
+  function formatSchedule(dateString: string) {
+    const date = new Date(dateString);
+    const year = date.getFullYear();
+    const month = date.toLocaleString('default', { month: 'long' });
+    const day = date.getDate();
+    return `${year}년 ${month} ${day}일`;
+  }
+
+   const [date, setDate] = useState('');
+
+   function handleScheduledAtChange(date: any) {
+    const formattedDate = formatSchedule(date);
+    // setState((prevState) => ({
+    //   ...prevState,
+    //   scheduledAt: formattedDate,
+    // }));
+    setDate(formattedDate);
+  }
+
   
+  //5. 시간
+  const [hour, setHour] = useState('');
+  const [minute, setMinute] = useState('');
+
+  function handleHourChange(event: React.ChangeEvent<HTMLInputElement>) {
+    const inputHour = event.target.value;
+    setHour(inputHour);
+  }
+  function handleMinuteChange(event: React.ChangeEvent<HTMLInputElement>) {
+    const inputMinute = event.target.value;
+    setMinute(inputMinute);
+  }
 
 
+  //5+6. 날짜와 시간을 포맷팅
+  function formatDateTime(dateString: string, hour: string, minute: string) {
+    const dateRegex = /(\d{4})년 (\d{1,2})월 (\d{1,2})일/;
+    const timeRegex = /(\d{1,2}) (\d{1,2})/;
+  
+    const dateMatch = dateString.match(dateRegex);
+    const timeMatch = `${hour} ${minute}`.match(timeRegex);
+  
+    if (!dateMatch || !timeMatch) {
+      return '';
+    }
+  
+    const [, year, month, day] = dateMatch;
+    const [, Fhour, Fminute] = timeMatch;
+  
+    const FDate = `${year}-${month.padStart(2, '0')}-${day.padStart(2, '0')}T${Fhour.padStart(2, '0')}:${Fminute.padStart(2, '0')}:00`;
+
+    return FDate;
+  }
+
+  useEffect(() => {
+    const formattedDateTime = formatDateTime(date, hour, minute);
+    setState((prevState) => ({
+      ...prevState,
+      scheduledAt: formattedDateTime,
+    }));
+  }, [date, hour, minute]);
+
+
+  
+  //6. 최대 인원
   const handleMaxPeopleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { value } = e.target;
     setState((prevState) => ({
@@ -218,18 +239,18 @@ const Recruit = () => {
   [key: string]: any;
 };
 
-//courseList
-const { data: courseData } = useCourseListQuery();
-//courseId를 courseName으로 바꾸는 함수
-const printCourseName = (courseId: number) => {
-  const matchingCourse = courseData?.find((course) => course.id === courseId);
-  if (matchingCourse) {
-    return matchingCourse.name;
-  } else {
-    console.log(`Course with id ${courseId} not found.`);
-  }
-};
 
+
+
+
+
+
+
+
+//-------기타---------//
+const removeItemIdFromLocalStorage = () => {
+  localStorage.removeItem("itemId");
+};
 //formatDate
 function formatDate(dateString: string) {
   const date = new Date(dateString);
@@ -248,6 +269,17 @@ enum Category {
   COM_PHOTO = '#사진',
   COM_EXPER = '#체험',
 }
+//courseList
+const { data: courseData } = useCourseListQuery();
+//courseId를 courseName으로 바꾸는 함수
+const printCourseName = (courseId: number) => {
+  const matchingCourse = courseData?.find((course) => course.id === courseId);
+  if (matchingCourse) {
+    return matchingCourse.name;
+  } else {
+    console.log(`Course with id ${courseId} not found.`);
+  }
+};
 const getCategoryLabel = (category: string): string | undefined => {
   switch (category) {
     case 'COM_ANIMAL':
@@ -278,8 +310,8 @@ const ShowRecoil: React.FC<{ recruit: RecruitData }> = ({ recruit }) => {
   }
   
   const { courseId, category, title, content, image, maxPeople, scheduledAt } = recruit;
+
   const course = printCourseName(courseId)
-  const formattedDate = formatDate(scheduledAt)
   const cate = getCategoryLabel(category)
   return (
    
@@ -292,7 +324,7 @@ const ShowRecoil: React.FC<{ recruit: RecruitData }> = ({ recruit }) => {
   <LLi>제목: {title}</LLi>
   <LLi>내용: {content}</LLi>
   <LLi>최대 인원: {maxPeople}</LLi>
-  <LLi>약속 날짜: {formattedDate}</LLi>
+  <LLi>약속 날짜: {date} {hour}시{minute}분</LLi>
   </div>
   </Card>
   </>
@@ -304,14 +336,6 @@ const ShowRecoil: React.FC<{ recruit: RecruitData }> = ({ recruit }) => {
     setRecruit(state); // Recoil 상태 업데이트
   }, [state, setRecruit]);
 
-
-  //시간 선택
-  const [selectedTime, setSelectedTime] = useState('00:00');
-  const [isAM, setIsAM] = useState(true);
-
-  const toggleAMPM = () => {
-    setIsAM(!isAM);
-  };
 
   const [isChecked, setIsChecked] = useState(false); //주의사항
 
@@ -357,45 +381,47 @@ const ShowRecoil: React.FC<{ recruit: RecruitData }> = ({ recruit }) => {
                     <CourseList location={location} />
                 </div>
             </Container>
+
             <Title text='약속 정보를 입력해주세요' />
-            
-             
-              
-                <SearchInput>
-                    <Input
-                          type="text"
-                          onClick={handleClick}
-                          onChange={handleScheduledAtChange}
-                          placeholder="약속 날짜를 정해주세요"
-                          value={state.scheduledAt}
-                    />
-                    <SearchIcon />
-                </SearchInput>
+            <SearchInput>
+              <Input
+                type="text"
+                onClick={handleClick}
+                onChange={handleScheduledAtChange}
+                placeholder="약속 날짜를 정해주세요"
+                value={date}
+              />
+              <SearchIcon />
+            </SearchInput>
+
 
                {isCalender &&
                <>
                 <Container>
                   <Calendar onChange={handleScheduledAtChange} value={value} />
                 </Container>
-                <div>
-                  
-                </div>
                </>
-              
                }
-
-              
               <SearchInput>
-                <Btn onClick={toggleAMPM}>{isAM ? 'AM' : 'PM'}</Btn>
                 <Input
-                type="text"
-                value={selectedTime}
-                onChange={handleTimeChange}
-                placeholder="시간을 입력해주세요 (HH:MM)">
-                </Input>
-                
+                  type="number"
+                  min="8"
+                  max="22"
+                  step="1"
+                  value={hour}
+                  onChange={handleHourChange}
+                  placeholder="시간을 설정해주세요 (08-22시 사이에만 약속을 설정할 수 있습니다.)"
+                />
+                <Input
+                  type="number"
+                  min="0"
+                  max="55"
+                  step="10"
+                  value={minute}
+                  onChange={handleMinuteChange}
+                  placeholder="분을 설정해주세요"
+                />
               </SearchInput>
-               
 
 
                
@@ -415,7 +441,6 @@ const ShowRecoil: React.FC<{ recruit: RecruitData }> = ({ recruit }) => {
                 <UploadImg text='img' />
                 <Container2>
                     <input type="file" ref={imgRef} accept="image/*" onChange={SaveImgFile} />
-                    {/* <button onClick={SaveImgFile}>Upload</button> */}
                 </Container2>
 
             <Title text='주의사항을 확인해주세요' />

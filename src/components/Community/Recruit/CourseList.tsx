@@ -16,8 +16,9 @@ interface CourseListProps {
     const recruit = useRecoilValue(RecruitAtom);
 
    
-  
+  //3. 코스 선택 시, 
     const handleItemClick = (itemId: number) => {
+      localStorage.setItem("itemId", itemId.toString());
       setRecruit((prevRecruit) => ({
         ...prevRecruit,
         courseId: itemId,
