@@ -48,7 +48,7 @@ type CourseItemImageProps={
 const CourseImage=styled('div')`
     position: relative;
     height : 20rem;
-    width: 28rem;
+    width: 100%;
     background : url(${(props:CourseItemImageProps)=>props.imageUrl});
     box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.1);
     background-size : cover;
