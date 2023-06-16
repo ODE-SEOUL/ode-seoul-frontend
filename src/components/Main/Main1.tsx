@@ -32,11 +32,18 @@ const Container = styled.div`
 
 const ImgContainer = styled.div`
 height: 668px;
+
+@media screen and (max-width: 768px) {
+  height: auto;
+}
 `;
 
 const TitleContainer = styled.div`
 margin: 120px 20px 30px 120px;
 
+@media screen and (max-width: 768px) {
+  margin: 80px 20px 180px 30px;
+}
 `;
 
 const Img = styled.img`
@@ -45,6 +52,11 @@ right: 0;
 top: -100px;
 width:85%;
 z-index: -1;
+
+@media screen and (max-width: 768px) {
+  top: 100px;
+  width:100%;
+}
 
 `;
 
@@ -56,5 +68,6 @@ const Title = styled.div`
   @media screen and (max-width: 768px) {
     font-size: 25px;
     font-weight: 200;
+    
   }
 `;

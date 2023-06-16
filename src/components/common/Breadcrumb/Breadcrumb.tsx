@@ -40,10 +40,18 @@ const Box = styled.div`
     width: 100%;
     height: 200px;
     background: rgba(171, 184, 104, 0.8);
+
+    @media screen and (max-width: 768px) {
+      height: 150px;
+    }
 `;
 
 const Container = styled.div`
     padding: 50px;
+
+    @media screen and (max-width: 768px) {
+      padding: 50px 0px;
+    }
 `;
 
 
@@ -70,7 +78,7 @@ const SubTitle = styled.div`
   text-align: left;
 
   @media screen and (max-width: 768px) {
-    font-size: 25px;
+    font-size: 15px;
     font-weight: 200;
   }
 `;

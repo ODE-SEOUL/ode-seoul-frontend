@@ -227,11 +227,13 @@ const FlexContainer = styled.div`
   text-align: center;
   font-family: var(--font-secondary);
   font-weight: 200;
+
   @media screen and (max-width: 768px) {
     margin: 10px;
     display: flex;
     flex-direction: column;
     align-items: center;
+    padding: 10px;
   }
   height: auto;
 `;
@@ -245,7 +247,7 @@ const Title = styled.div`
   text-align: left;
 
   @media screen and (max-width: 768px) {
-    font-size: 25px;
+    font-size: 20px;
     font-weight: 200;
   }
 `;
@@ -253,6 +255,10 @@ const Title = styled.div`
 const Img = styled.img`
   object-fit: cover;
   height: 300px;
+
+  @media screen and (max-width: 768px) {
+    height: 200px;
+  }
 `;
 
 
@@ -263,6 +269,8 @@ const Body = styled.div`
   text-align: center;
   margin: 10px;
   margin-bottom: 15px;
+
+  
 `;
 
 const SubBody = styled.div`
@@ -273,7 +281,7 @@ const SubBody = styled.div`
   margin: 10px;
   margin-left: 20px;
   @media screen and (max-width: 768px) {
-    font-size: 20px;
+    font-size: 15px;
     font-weight: 200;
   }
 `;
@@ -293,6 +301,7 @@ const Card = styled.div`
   @media screen and (max-width: 768px) {
     flex-direction: row;
     width: 90%;
+    height: 350px;
   }
 `
 
