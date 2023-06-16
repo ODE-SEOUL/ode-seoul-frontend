@@ -136,6 +136,10 @@ const NavbarContainer = styled.nav`
   padding: 0 50px;
   font-weight: 100;
   font-family: var(--font-secondary);
+
+  @media screen and (max-width: 768px) {
+    padding: 0px;
+  }
   
 `;
 
@@ -172,6 +176,10 @@ const NavbarLinks = styled.div`
   a:hover {
     color: rgb(108, 128, 75);
     font-weight: 300;
+  }
+
+  @media screen and (max-width: 768px) {
+    display: none;
   }
 `;
 

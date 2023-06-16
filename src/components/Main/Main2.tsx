@@ -55,7 +55,7 @@ text-align: left;
 color: rgb(108, 128, 75);
 
   @media screen and (max-width: 768px) {
-    font-size: 25px;
+    font-size: 20px;
     font-weight: 200;
   }
 `;
@@ -73,6 +73,7 @@ const Circle = styled.div`
     width: 100px;
     font-size: 15px;
     float: right;
+    margin: 10px;
   }
 
   :hover{
