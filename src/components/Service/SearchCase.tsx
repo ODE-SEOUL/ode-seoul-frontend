@@ -14,9 +14,7 @@ export default function SearchCaseContainer({searchServiceData,value}:ICaseProps
             <Breadcrumb title="서울시 문화행사" subTitle="생태문화길을 걷다 즐길 수 있는 문화행사들을 추천드려요"/>
             <div className='mt-90'></div>
             <SearchContainer>
-      
                 <SearchService />
-      
             </SearchContainer>
             <div className='mt-100'></div>
             <div className='row col-lg-12'>
