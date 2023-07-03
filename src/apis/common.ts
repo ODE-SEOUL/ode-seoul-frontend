@@ -1,4 +1,4 @@
-import axios, { AxiosRequestConfig, AxiosResponse } from 'axios';
+import axios, { AxiosRequestConfig, AxiosResponse } from "axios";
 
 const apiUrl = "https://ode-seoul.fly.dev";
 
@@ -28,7 +28,7 @@ export interface ApiError {
  */
 function processError(
   error: unknown,
-  errorMessages?: Record<number, string>,
+  errorMessages?: Record<number, string>
 ): ApiError {
   if (axios.isAxiosError(error)) {
     if (error.response) {
@@ -37,7 +37,7 @@ function processError(
         statusCode: error.response.status,
         errorMessage:
           errorMessages?.[error.response.status] ??
-          '문제가 발생했어요. 다시 시도하거나 문의해 주세요.',
+          "문제가 발생했어요. 다시 시도하거나 문의해 주세요.",
         info: error.response.data,
       };
     }
@@ -47,7 +47,7 @@ function processError(
       return {
         statusCode: -1,
         errorMessage:
-          '서버와 연결하지 못했어요. 인터넷 연결 상태를 확인하고 다시 시도해 주세요.',
+          "서버와 연결하지 못했어요. 인터넷 연결 상태를 확인하고 다시 시도해 주세요.",
         info: error.request,
       };
     }
@@ -56,7 +56,7 @@ function processError(
   // 케이스 분류 실패
   return {
     statusCode: -1,
-    errorMessage: '문제가 발생했어요. 다시 시도하거나 문의해 주세요.',
+    errorMessage: "문제가 발생했어요. 다시 시도하거나 문의해 주세요.",
     info: error,
   };
 }
@@ -77,19 +77,19 @@ function processError(
 export async function getAsync<T, D>(
   path: string,
   config?: AxiosRequestConfig<D>,
-  errorMessages?: Record<number, string>,
+  errorMessages?: Record<number, string>
 ): Promise<T> {
   try {
     const response = await axios.get<T, AxiosResponse<T, D>, D>(path, {
       baseURL: apiUrl,
-      responseType: 'json',
+      responseType: "json",
       ...config,
     });
-    
 
     return response.data;
   } catch (error) {
     // return을 쓰면 resolve가 됨
+
     throw processError(error, errorMessages);
   }
 }
@@ -108,14 +108,15 @@ export async function postAsync<T, D>(
   path: string,
   data?: D,
   config?: AxiosRequestConfig,
-  errorMessages?: Record<number, string>,
+  errorMessages?: Record<number, string>
 ): Promise<T> {
   try {
     const response = await axios.post<T, AxiosResponse<T, D>, D>(path, data, {
       baseURL: apiUrl,
-      responseType: 'json',
+      responseType: "json",
       ...config,
     });
+    console.log(response);
 
     return response.data;
   } catch (error) {
@@ -135,12 +136,12 @@ export async function postAsync<T, D>(
 export async function deleteAsync<T, D>(
   path: string,
   config?: AxiosRequestConfig,
-  errorMessages?: Record<number, string>,
+  errorMessages?: Record<number, string>
 ): Promise<T> {
   try {
     const response = await axios.delete<T, AxiosResponse<T, D>, D>(path, {
       baseURL: apiUrl,
-      responseType: 'json',
+      responseType: "json",
       ...config,
     });
 
@@ -163,16 +164,16 @@ export async function patchAsync<T, D>(
   path: string,
   data?: D,
   config?: AxiosRequestConfig,
-  errorMessages?: Record<number, string>,
+  errorMessages?: Record<number, string>
 ): Promise<T> {
   try {
     const response = await axios.patch<T, AxiosResponse<T, D>, D>(path, data, {
       baseURL: apiUrl,
-      responseType: 'json',
+      responseType: "json",
       ...config,
     });
 
-    return response.data
+    return response.data;
   } catch (error) {
     throw processError(error, errorMessages);
   }
