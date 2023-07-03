@@ -1,7 +1,9 @@
 ## 2023 서울열린데이터광장 공모전 우수상 수상작 - ODESEOUL🌳의 프론트 레포지토리
 
+시연영상 바로가기 ->[시연영상](https://drive.google.com/drive/folders/1_gP0x8Htxmt4qGbLaK3GHG-O5qCjNFow?usp=drive_link)  
+오디서울 배포링크 -> [배포](https://ode-seoul-frontend.vercel.app/)
+
 ![image](https://github.com/ODE-SEOUL/ode-seoul-frontend/assets/85864699/a21e6d92-78fa-48e0-b276-52cda3351b66)
-![시연영상 링크 ](https://drive.google.com/drive/folders/1_gP0x8Htxmt4qGbLaK3GHG-O5qCjNFow?usp=sharing)
 ![image](https://github.com/ODE-SEOUL/ode-seoul-frontend/assets/85864699/267d5672-1157-4a88-ab97-830231b78e85)
 
 ## Commit Convention
